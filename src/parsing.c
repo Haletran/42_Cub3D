@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_tab.c                                         :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/18 23:42:08 by baptiste          #+#    #+#             */
-/*   Updated: 2024/04/18 23:42:28 by baptiste         ###   ########.fr       */
+/*   Created: 2024/05/23 15:21:39 by bapasqui          #+#    #+#             */
+/*   Updated: 2024/05/23 15:22:04 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../includes/cub3d.h"
 
-void   free_tab(char **tab)
+int parse_map(char **str)
 {
-    int i = 0;
-    while (tab[i]) {
-        free(tab[i]);
-        i++;
-    }
-    free(tab);
+    
+
+
 }

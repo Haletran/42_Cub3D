@@ -6,14 +6,15 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:59:29 by ygaiffie          #+#    #+#             */
-/*   Updated: 2024/04/17 15:30:13 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/21 18:40:01 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
 char	*ft_read(int fd, char *static_buffer);
 char	*fill_bucket(char *buffer);
-int	ft_strlen_endc(const char *str, int c);
+int		ft_strlen_endc(const char *str, int c);
 
 char	*get_next_line(int fd)
 {

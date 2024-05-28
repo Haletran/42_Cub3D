@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 15:31:04 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/17 15:31:08 by bapasqui         ###   ########.fr       */
+/*   Created: 2024/05/23 20:14:46 by bapasqui          #+#    #+#             */
+/*   Updated: 2024/05/23 20:22:35 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/cub3d.h"
 
-char	*ft_free(char *buffer)
+void ft_error(int choice)
 {
-	free(buffer);
-	return (NULL);
+    ft_printf_fd(2, RED""RESET);
+
+
+
 }

@@ -6,16 +6,16 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 14:40:33 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/04/17 15:31:16 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/21 18:38:50 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include "../ft_printf/ft_printf.h"
+# include <stdarg.h>
 # include <stdlib.h>
-
+# include <unistd.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 8
@@ -67,5 +67,6 @@ char	*get_next_line(int fd);
 char	*ft_strcpy(char *dest, char *src);
 char	*ft_free(char *buffer);
 char	*ft_strjoin_f(char *s1, char *s2);
+int		ft_printf_fd(int fd, const char *format, ...);
 
 #endif

@@ -1,33 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 10:49:02 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/23 20:22:25 by bapasqui         ###   ########.fr       */
+/*   Created: 2024/04/17 11:13:14 by bapasqui          #+#    #+#             */
+/*   Updated: 2024/05/23 16:03:49 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	main(int argc, char **argv)
+void get_user_input(t_mlx *mlx)
 {
-	t_mlx	*mlx;
+	mlx_key_hook(mlx->win ,key_hook ,mlx);
+	mlx_hook(mlx->win, 2, 1L<<0 , window_hook,mlx);
+	mlx_hook(mlx->win, 17, 0, ft_close, mlx);
+}
 
-	if (argc < 2)
-		return (ERROR);
-	mlx = ft_calloc(1, sizeof(t_mlx));
-	mlx->mlx = mlx_init();
-	mlx = init(mlx, argv);
-	if (!mlx)
-		return (ERROR);
-	mlx->win = mlx_new_window(mlx->mlx, 854, 480, "Cub3D");
-	draw_map(mlx);
-	rotate_line(mlx);
-   	render_player(mlx);
-	get_user_input(mlx);
-	mlx_loop(mlx->mlx);
-	free_all(&mlx);
+int	window_hook(int event, void *param)
+{
+	t_mlx *mlx;
+
+	mlx = param;
+	if (event == KEY_ESC)
+		mlx_loop_end(mlx->mlx);
+	return (0);
+}
+
+int ft_close(int event, void *param)
+{
+	t_mlx *mlx;
+	(void)event;
+
+	mlx = param;
+	mlx_loop_end(mlx->mlx);
+	return (0);
 }
