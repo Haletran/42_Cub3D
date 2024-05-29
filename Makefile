@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/17 10:49:06 by bapasqui          #+#    #+#              #
-#    Updated: 2024/05/23 16:06:58 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/05/29 21:27:57 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,8 +47,9 @@ $(NAME): $(OBJS)
 	echo "\033[42mSuccessfully compiled :)\033[0m"
 
 
-gt:
+lib:
 	@if [ ! -d "minilibx" ]; then wget https://cdn.intra.42.fr/document/document/22379/minilibx-linux.tgz && tar -xvf minilibx-linux.tgz && rm -f minilibx-linux.tgz && mv minilibx-linux minilibx; fi
+	@if [ -d "minilibx/.git" ]; then rm -rf minilibx/.git; fi
 	
 norm:
 	@-norminette src/ includes/ lib/
