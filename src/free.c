@@ -6,13 +6,13 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 23:42:08 by baptiste          #+#    #+#             */
-/*   Updated: 2024/05/23 16:05:13 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/29 22:48:58 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-char *free_char(char *str)
+char	*free_char(char *str)
 {
 	free(str);
 	str = NULL;
@@ -32,7 +32,7 @@ void	free_tab(char **tab)
 	free(tab);
 }
 
-void free_all(t_mlx **mlx)
+void	free_all(t_mlx **mlx)
 {
 	mlx_destroy_image((*mlx)->mlx, (*mlx)->floor);
 	mlx_destroy_image((*mlx)->mlx, (*mlx)->wall);
@@ -42,6 +42,7 @@ void free_all(t_mlx **mlx)
 	(*mlx)->map->path = free_char((*mlx)->map->path);
 	free((*mlx)->map);
 	free((*mlx)->player);
+	free((*mlx)->error);
 	free((*mlx)->ray);
 	free((*mlx)->mlx);
 	free((*mlx));

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:02:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/23 20:20:43 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/29 22:47:05 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@
 # include <unistd.h>
 
 /* DEFINE */
-# define FOV 60
+# define FOV 180
 # define RAYS 300
 # define PI 3.14159265358979323846
+# define RAYS_SIZE 500
 
 # define WINDOW_WIDHT 1920
 # define WINDOW_HEIGHT 1080
@@ -84,24 +85,21 @@ typedef struct s_map
 typedef struct s_ray
 {
 	int				rayon;
+	double			ray_angle;
 	float			x;
 	float			y;
 	float			hx;
 	float			hy;
-	float			raise_angle;
-	float			aTan;
 	double			dir;
 	double			dist;
 }					t_ray;
 
 /* FUNCTIONS */
-void				draw_rays(t_mlx *mlx);
 void				draw_map(t_mlx *mlx);
 void				init_map(t_mlx *mlx);
 void				rotate_fov(t_mlx *mlx);
 void				rotate_line(t_mlx *mlx);
 void				free_tab(char **tab);
-void				render_player(t_mlx *mlx);
 t_mlx				*init(t_mlx *mlx, char **str);
 int					window_hook(int event, void *param);
 int					key_hook(int key, void *param);
@@ -109,5 +107,7 @@ int					ft_close(int event, void *param);
 void				free_all(t_mlx **mlx);
 void				get_user_input(t_mlx *mlx);
 int					get_map_len(char *path);
+void				basic_direction(char *key, t_mlx *mlx);
+void				rotation_direction(char *direction, t_mlx *mlx);
 
 #endif
