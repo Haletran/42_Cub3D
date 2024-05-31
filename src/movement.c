@@ -25,13 +25,13 @@ void	rotate_fov(t_mlx *mlx)
 			mlx->player->angle -= 2 * PI;
 		mlx->player->delta_x = cos(mlx->player->angle) * 5;
 		mlx->player->delta_y = sin(mlx->player->angle) * 5;
-		rotate_line(mlx);
+		rotate_line(mlx, i * 3.0666);
 		i++;
 	}
 	mlx->player->angle -= 0.0034 * 150;
 }
 
-void	rotate_line(t_mlx *mlx)
+void	rotate_line(t_mlx *mlx, int r)
 {
 	int		steps;
 	float		i;
@@ -39,7 +39,7 @@ void	rotate_line(t_mlx *mlx)
 	double	y;
 	double	m;
 
-	steps = 80;
+	steps = 40;
 	i = 0;
 	y = 0;
 	x = 0;
@@ -52,8 +52,8 @@ void	rotate_line(t_mlx *mlx)
 			break;
 		mlx_pixel_put(mlx->mlx, mlx->win, x, y, 0xFFE8FF00);
 		i+= 0.1;
-
 	}
+	draw_wall(mlx, x, y, r);
 }
 
 int	key_hook(int key, void *param)
@@ -97,17 +97,15 @@ int	key_hook(int key, void *param)
 	}
 	if (key == 'a')
 	{	
+		mlx->player->delta_x = cos(mlx->player->angle + PI/2) * 5;
+		mlx->player->delta_y = sin(mlx->player->angle + PI/2) * 5;
 		if (mlx->player->angle > PI/2 && mlx->player->angle < 3 * PI / 2)
 		{	
-			mlx->player->delta_x = cos(mlx->player->angle + PI/2) * 5;
-			mlx->player->delta_y = sin(mlx->player->angle + PI/2) * 5;
 			mlx->player->x += mlx->player->delta_x;
 			mlx->player->y += mlx->player->delta_y;
 		}
 		else
 		{
-			mlx->player->delta_x = cos(mlx->player->angle + PI/2) * 5;
-			mlx->player->delta_y = sin(mlx->player->angle + PI/2) * 5;
 			mlx->player->x -= mlx->player->delta_x;
 			mlx->player->y -= mlx->player->delta_y;
 		}
@@ -115,17 +113,15 @@ int	key_hook(int key, void *param)
 	}
 	if (key == 'd')
 	{		
+		mlx->player->delta_x = cos(mlx->player->angle + PI/2) * 5;
+		mlx->player->delta_y = sin(mlx->player->angle + PI/2) * 5;
 		if (mlx->player->angle > PI/2 && mlx->player->angle < 3 * PI / 2)
 		{	
-			mlx->player->delta_x = cos(mlx->player->angle + PI/2) * 5;
-			mlx->player->delta_y = sin(mlx->player->angle + PI/2) * 5;
 			mlx->player->x -= mlx->player->delta_x;
 			mlx->player->y -= mlx->player->delta_y;
 		}
 		else
 		{
-			mlx->player->delta_x = cos( mlx->player->angle + PI/2) * 5;
-			mlx->player->delta_y = sin(mlx->player->angle + PI/2) * 5;
 			mlx->player->x += mlx->player->delta_x;
 			mlx->player->y += mlx->player->delta_y;
 		}

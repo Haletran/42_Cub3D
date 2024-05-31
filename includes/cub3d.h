@@ -88,7 +88,6 @@ typedef struct s_ray
 	float			y;
 	float			hx;
 	float			hy;
-	float			raise_angle;
 	float			aTan;
 	double			dir;
 	double			dist;
@@ -99,7 +98,7 @@ void				draw_rays(t_mlx *mlx);
 void				draw_map(t_mlx *mlx);
 void				init_map(t_mlx *mlx);
 void				rotate_fov(t_mlx *mlx);
-void				rotate_line(t_mlx *mlx);
+void				rotate_line(t_mlx *mlx, int r);
 void				free_tab(char **tab);
 void				render_player(t_mlx *mlx);
 t_mlx				*init(t_mlx *mlx, char **str);
@@ -109,5 +108,6 @@ int					ft_close(int event, void *param);
 void				free_all(t_mlx **mlx);
 void				get_user_input(t_mlx *mlx);
 int					get_map_len(char *path);
+void    			draw_wall(t_mlx *mlx, double x, double y, int r);
 
 #endif
