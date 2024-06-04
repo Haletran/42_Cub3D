@@ -26,9 +26,9 @@
 
 /* DEFINE */
 # define FOV 60
-# define RAYS 10
+# define RAYS 1920
 # define PI 3.14159265358979323846
-# define RAYS_SIZE 500
+# define RAYS_SIZE 100
 
 # define WINDOW_WIDHT 1920
 # define WINDOW_HEIGHT 1080
@@ -66,6 +66,7 @@ typedef struct s_player
 	float			y;
 	float			delta_x;
 	float			delta_y;
+	int				eye_h;
 	double			angle;
 	double			dir;
 	double			fov;

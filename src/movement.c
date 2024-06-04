@@ -38,14 +38,14 @@ void	rotate_line(t_mlx *mlx, int r)
 	double	y;
 
 	i = 0;
-	while (i < RAYS_SIZE)
+	while (1)
 	{
 		x = mlx->player->x + i * cos(mlx->player->angle);
 		y = mlx->player->y + i * sin(mlx->player->angle);
 		if (mlx->map->map[(int)y / 32][(int)x / 32] == '1')
 			break ;
 		mlx_pixel_put(mlx->mlx, mlx->win, x, y, 0xFFE8FF00);
-		i += 1;
+		i += 0.1;
 	}
 	draw_wall(mlx, x, y, r);
 }

@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 	mlx = init(mlx, argv);
 	if (!mlx)
 		return (ERROR);
-	mlx->win = mlx_new_window(mlx->mlx, 920, 580, "Cub3D");
+	mlx->win = mlx_new_window(mlx->mlx, WINDOW_WIDHT, WINDOW_HEIGHT, "Cub3D");
 	draw_map(mlx);
 	rotate_fov(mlx);
 	get_user_input(mlx);
