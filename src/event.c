@@ -6,22 +6,22 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:13:14 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/23 16:03:49 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/05/29 22:50:07 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void get_user_input(t_mlx *mlx)
+void	get_user_input(t_mlx *mlx)
 {
-	mlx_key_hook(mlx->win ,key_hook ,mlx);
-	mlx_hook(mlx->win, 2, 1L<<0 , window_hook,mlx);
+	mlx_key_hook(mlx->win, key_hook, mlx);
+	mlx_hook(mlx->win, 2, 1L << 0, window_hook, mlx);
 	mlx_hook(mlx->win, 17, 0, ft_close, mlx);
 }
 
 int	window_hook(int event, void *param)
 {
-	t_mlx *mlx;
+	t_mlx	*mlx;
 
 	mlx = param;
 	if (event == KEY_ESC)
@@ -29,11 +29,11 @@ int	window_hook(int event, void *param)
 	return (0);
 }
 
-int ft_close(int event, void *param)
+int	ft_close(int event, void *param)
 {
-	t_mlx *mlx;
-	(void)event;
+	t_mlx	*mlx;
 
+	(void)event;
 	mlx = param;
 	mlx_loop_end(mlx->mlx);
 	return (0);

@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/17 10:49:06 by bapasqui          #+#    #+#              #
-#    Updated: 2024/05/29 21:27:57 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/06/04 13:57:47 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,9 @@ NAME    := cube3d
 CFLAGS  := -Wextra -Wall -Werror -g #-fsanitize=address -fsanitize=undefined
 SRCS    := src/main.c \
            src/event.c \
+		   src/movement_utils.c \
            src/init_mlx.c \
-           src/render_player.c \
+           src/render_wall.c \
            src/render_map.c \
            src/movement.c \
            src/free.c \

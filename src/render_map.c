@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:25:15 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/23 20:11:36 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/04 13:50:36 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,25 @@
 int	get_map_len(char *path)
 {
 	char	*line;
-    int fd;
+	int		fd;
 	int		i;
 
 	i = 0;
-    fd = open(path, O_RDONLY);
+	fd = open(path, O_RDONLY);
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-        free(line);
+		free(line);
 		i++;
 	}
-    free(line);
+	free(line);
 	close(fd);
-    return (i + 1);
+	return (i + 1);
 }
 
-void	init_map(t_mlx *mlx) 
+void	init_map(t_mlx *mlx)
 {
 	int	fd;
 	int	i;
@@ -69,12 +69,12 @@ void	draw_map(t_mlx *mlx)
 			if (mlx->map->map[i][j] == '1')
 				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->wall, j * 32, i
 					* 32);
-			else if (mlx->map->map[i][j] == '0' || mlx->map->map[i][j] == 'W')
+/* 			else if (mlx->map->map[i][j] == '0' || mlx->map->map[i][j] == 'W')
 				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->floor, j * 32,
-					i * 32);
-			else if (mlx->map->map[i][j] == 'E')
+					i * 32); */
+/* 			else if (mlx->map->map[i][j] == 'E')
 				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->floor, j * 32,
-					i * 32);
+					i * 32); */
 			j++;
 		}
 		i++;
