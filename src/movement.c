@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:24:46 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/29 22:56:31 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/04 13:51:37 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void	rotate_fov(t_mlx *mlx)
 	int	i;
 
 	i = 0;
-	mlx->player->angle -= 0.0034 * FOV / 2;
-	while (i < FOV)
+	mlx->player->angle -= (((FOV * PI) / 180) / RAYS) * RAYS / 2;
+	while (i < RAYS)
 	{
-		mlx->player->angle += 0.0034;
+		mlx->player->angle += (((FOV * PI) / 180) / RAYS);
 		if (mlx->player->angle < 2 * PI)
 			mlx->player->angle -= 2 * PI;
 		mlx->player->delta_x = cos(mlx->player->angle) * 5;
@@ -28,7 +28,7 @@ void	rotate_fov(t_mlx *mlx)
 		rotate_line(mlx);
 		i++;
 	}
-	mlx->player->angle -= 0.0034 * FOV / 2;
+	mlx->player->angle -= (((FOV * PI) / 180) / RAYS) * RAYS / 2;
 }
 
 void	rotate_line(t_mlx *mlx)
@@ -37,7 +37,7 @@ void	rotate_line(t_mlx *mlx)
 	double	x;
 	double	y;
 
-	i = 0; // Ecart des rayons
+	i = 0;
 	while (i < RAYS_SIZE)
 	{
 		x = mlx->player->x + i * cos(mlx->player->angle);
@@ -45,10 +45,10 @@ void	rotate_line(t_mlx *mlx)
 		if (mlx->map->map[(int)y / 32][(int)x / 32] == '1')
 			break ;
 		mlx_pixel_put(mlx->mlx, mlx->win, x, y, 0xFFE8FF00);
-		i += 0.2;
+		i += 1;
 	}
 }
-
+// Collision
 int	key_hook(int key, void *param)
 {
 	t_mlx	*mlx;

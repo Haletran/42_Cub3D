@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:02:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/29 22:47:05 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/04 13:48:05 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # include <unistd.h>
 
 /* DEFINE */
-# define FOV 180
-# define RAYS 300
+# define FOV 60
+# define RAYS 10
 # define PI 3.14159265358979323846
 # define RAYS_SIZE 500
 
