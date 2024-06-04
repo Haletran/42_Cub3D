@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:24:46 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/04 13:51:37 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/04 14:03:34 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ void	rotate_fov(t_mlx *mlx)
 			mlx->player->angle -= 2 * PI;
 		mlx->player->delta_x = cos(mlx->player->angle) * 5;
 		mlx->player->delta_y = sin(mlx->player->angle) * 5;
-		rotate_line(mlx);
+		rotate_line(mlx, i);
 		i++;
 	}
 	mlx->player->angle -= (((FOV * PI) / 180) / RAYS) * RAYS / 2;
 }
 
-void	rotate_line(t_mlx *mlx)
+void	rotate_line(t_mlx *mlx, int r)
 {
 	float	i;
 	double	x;
@@ -47,6 +47,7 @@ void	rotate_line(t_mlx *mlx)
 		mlx_pixel_put(mlx->mlx, mlx->win, x, y, 0xFFE8FF00);
 		i += 1;
 	}
+	draw_wall(mlx, x, y, r);
 }
 // Collision
 int	key_hook(int key, void *param)
