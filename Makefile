@@ -19,7 +19,7 @@ MAKEFLAGS += -j
 # Makefile vars
 CC := clang                                                       
 NAME    := cube3d
-CFLAGS  := -Wextra -Wall -Werror -g #-fsanitize=address -fsanitize=undefined
+CFLAGS  := -Wextra -Wall -Werror -g #-O3 -ffast-math #-fsanitize=address -fsanitize=undefined
 SRCS    := src/main.c \
            src/event.c \
 		   src/movement_utils.c \

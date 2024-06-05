@@ -17,12 +17,14 @@ void	rotate_fov(t_mlx *mlx)
 	int	i;
 
 	i = 0;
+	mlx->player->save = mlx->player->angle;
 	mlx->player->angle -= (((FOV * PI) / 180) / RAYS) * RAYS / 2;
-	while (i < RAYS)
+	while (i <= RAYS)
 	{
 		mlx->player->angle += (((FOV * PI) / 180) / RAYS);
 		if (mlx->player->angle < 2 * PI)
 			mlx->player->angle -= 2 * PI;
+		mlx->ray->ray_angle = mlx->player->angle;
 		mlx->player->delta_x = cos(mlx->player->angle) * 5;
 		mlx->player->delta_y = sin(mlx->player->angle) * 5;
 		rotate_line(mlx, i);
@@ -48,6 +50,7 @@ void	rotate_line(t_mlx *mlx, int r)
 		i += 0.1;
 	}
 	draw_wall(mlx, x, y, r);
+	draw_map(mlx);
 }
 // Collision
 int	key_hook(int key, void *param)
