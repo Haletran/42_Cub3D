@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:24:46 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/04 14:03:34 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/05 22:51:17 by baptiste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	rotate_fov(t_mlx *mlx)
 	while (i <= RAYS)
 	{
 		mlx->player->angle += (((FOV * PI) / 180) / RAYS);
-		if (mlx->player->angle < 2 * PI)
+		if (mlx->player->angle >= 2 * PI)
 			mlx->player->angle -= 2 * PI;
 		mlx->ray->ray_angle = mlx->player->angle;
 		mlx->player->delta_x = cos(mlx->player->angle) * 5;
@@ -30,8 +30,9 @@ void	rotate_fov(t_mlx *mlx)
 		rotate_line(mlx, i);
 		i++;
 	}
-	mlx->player->angle -= (((FOV * PI) / 180) / RAYS) * RAYS / 2;
+	mlx->player->angle = mlx->player->save;
 }
+
 
 void	rotate_line(t_mlx *mlx, int r)
 {
@@ -46,11 +47,13 @@ void	rotate_line(t_mlx *mlx, int r)
 		y = mlx->player->y + i * sin(mlx->player->angle);
 		if (mlx->map->map[(int)y / 32][(int)x / 32] == '1')
 			break ;
-		mlx_pixel_put(mlx->mlx, mlx->win, x, y, 0xFFE8FF00);
+		if (mlx->map->print == 0)
+			mlx_pixel_put(mlx->mlx, mlx->win, x, y, 0xFFE8FF00);
 		i += 0.1;
 	}
 	draw_wall(mlx, x, y, r);
-	draw_map(mlx);
+	if (mlx->map->print == 0)
+		draw_map(mlx);
 }
 // Collision
 int	key_hook(int key, void *param)
@@ -110,8 +113,16 @@ int	key_hook(int key, void *param)
 			mlx->player->y += mlx->player->delta_y;
 		}
 	}
-	mlx_clear_window(mlx->mlx, mlx->win);
-	draw_map(mlx);
+	if (key == 'm')
+	{
+		if (mlx->map->print == 0)
+			mlx->map->print = 1;
+		else
+			mlx->map->print = 0;
+	}
+	//mlx_clear_window(mlx->mlx, mlx->win);
+	if (mlx->map->print == 0)
+		draw_map(mlx);
 	rotate_fov(mlx);
 	return (0);
 }

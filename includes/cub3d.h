@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:02:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/04 14:01:30 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/05 23:08:08 by baptiste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,26 +26,30 @@
 
 /* DEFINE */
 # define FOV 60
-# define RAYS 1920
+# define RAYS 1000
 # define PI 3.14159265358979323846
 //# define RAYS_SIZE 100
 
-# define WINDOW_WIDHT 1920
-# define WINDOW_HEIGHT 1080
+# define WINDOW_WIDTH 1000
+# define WINDOW_HEIGHT 500
 
 # define SUCCESS 0
 # define ERROR 1
 
-/*STRUCTURES*/
 
-typedef enum s_message
-{
-	NO_OPTION,
-	NO_FILE,
-	NOT_VALID,
-	UNKNOWN,
-	MALLOC,
-}					t_message;
+# define SUCCESS 0
+# define ERROR 1
+# define ARG_ERROR -20
+# define NO_FILE -30
+# define NOT_CUB -90
+# define NOT_VALID -40
+# define UNKNOWN -50
+# define MALLOC_ERROR -70
+# define ERROR_IMAGE -80
+# define FD_ERROR -100
+# define NOTHING -110
+
+/*STRUCTURES*/
 
 typedef struct s_mlx
 {
@@ -57,7 +61,6 @@ typedef struct s_mlx
 	struct s_player	*player;
 	struct s_ray	*ray;
 	struct s_map	*map;
-	t_message		*error;
 }					t_mlx;
 
 typedef struct s_player
@@ -82,6 +85,7 @@ typedef struct s_map
 	char			*path;
 	int				lenght;
 	int				backup_fd;
+	int 			print;
 }					t_map;
 
 typedef struct s_ray
@@ -98,11 +102,11 @@ typedef struct s_ray
 
 /* FUNCTIONS */
 void				draw_map(t_mlx *mlx);
-void				init_map(t_mlx *mlx);
+int 				init_map(t_mlx *mlx);
 void				rotate_fov(t_mlx *mlx);
 void	rotate_line(t_mlx *mlx, int r);
 void				free_tab(char **tab);
-t_mlx				*init(t_mlx *mlx, char **str);
+int 				init(t_mlx **mlx, char **str);
 int					window_hook(int event, void *param);
 int					key_hook(int key, void *param);
 int					ft_close(int event, void *param);
@@ -112,5 +116,7 @@ int					get_map_len(char *path);
 void				basic_direction(char *key, t_mlx *mlx);
 void				rotation_direction(char *direction, t_mlx *mlx);
 void    draw_wall(t_mlx *mlx, double x, double y, int r);
+int					ft_error(int choice);
+
 
 #endif

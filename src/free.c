@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 23:42:08 by baptiste          #+#    #+#             */
-/*   Updated: 2024/05/29 22:48:58 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/05 23:08:39 by baptiste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	free_all(t_mlx **mlx)
 	(*mlx)->map->path = free_char((*mlx)->map->path);
 	free((*mlx)->map);
 	free((*mlx)->player);
-	free((*mlx)->error);
 	free((*mlx)->ray);
 	free((*mlx)->mlx);
 	free((*mlx));
