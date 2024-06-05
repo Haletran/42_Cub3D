@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/17 10:49:06 by bapasqui          #+#    #+#              #
-#    Updated: 2024/06/04 13:57:47 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/06/05 20:05:55 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS    := src/main.c \
            src/render_map.c \
            src/movement.c \
            src/free.c \
+		   src/error.c \
 
 
 OBJS_DIR := obj

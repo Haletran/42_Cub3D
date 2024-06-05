@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:25:15 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/04 13:50:36 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/05 20:14:10 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	get_map_len(char *path)
 
 	i = 0;
 	fd = open(path, O_RDONLY);
+	if (fd < 0)
+	    return (ft_error(FD_ERROR));
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -33,7 +35,7 @@ int	get_map_len(char *path)
 	return (i + 1);
 }
 
-void	init_map(t_mlx *mlx)
+int init_map(t_mlx *mlx)
 {
 	int	fd;
 	int	i;
@@ -41,10 +43,10 @@ void	init_map(t_mlx *mlx)
 	i = 0;
 	mlx->map->map = ft_calloc(sizeof(char *), mlx->map->lenght);
 	if (!mlx->map->map)
-		return ;
+		return (ft_error(MALLOC_ERROR));
 	fd = open(mlx->map->path, O_RDONLY);
 	if (!fd)
-		return ;
+		return (ft_error(FD_ERROR));
 	while (1)
 	{
 		mlx->map->map[i] = get_next_line(fd);
@@ -53,6 +55,7 @@ void	init_map(t_mlx *mlx)
 		i++;
 	}
 	close(fd);
+	return (SUCCESS);
 }
 
 void	draw_map(t_mlx *mlx)
