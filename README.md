@@ -19,3 +19,6 @@ make a dynamic view inside a maze, in which you’ll have to find your way.
 - https://austinhenley.com/blog/raycasting.html
 - https://lodev.org/cgtutor/raycasting4.html#Introduction
 - https://github.com/vinibiavatti1/RayCastingTutorial/wiki/RayCasting
+
+
+<a href="https://imgflip.com/i/8swnm0"><img src="https://i.imgflip.com/8swnm0.jpg" title="made at imgflip.com"/></a><div><a href="https://imgflip.com/memegenerator"></a></div>
