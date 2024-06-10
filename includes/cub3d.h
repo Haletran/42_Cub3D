@@ -26,12 +26,12 @@
 
 /* DEFINE */
 # define FOV 60
-# define RAYS 1000
+# define RAYS 1920
 # define PI 3.14159265358979323846
 //# define RAYS_SIZE 100
 
-# define WINDOW_WIDTH 1000
-# define WINDOW_HEIGHT 500
+# define WINDOW_WIDTH 1920
+# define WINDOW_HEIGHT 1080
 
 # define SUCCESS 0
 # define ERROR 1
@@ -90,21 +90,24 @@ typedef struct s_map
 
 typedef struct s_ray
 {
-	int				rayon;
+	int				hit;
 	double			ray_angle;
-	float			x;
-	float			y;
-	float			delta_x;
-	float			delta_y;
-	double			dir;
+	double			x;
+	double			y;
+	double			step_x;
+	double			step_y;
+	double			h_dist;
+	double			v_dist;
 	double			dist;
 }					t_ray;
 
 /* FUNCTIONS */
 void				draw_map(t_mlx *mlx);
 int 				init_map(t_mlx *mlx);
-void				rotate_fov(t_mlx *mlx);
-void	rotate_line(t_mlx *mlx, int r);
+double				pythagoras(t_mlx *mlx, double x, double y);
+void				fov_details(t_mlx *mlx);
+// void				rotate_fov(t_mlx *mlx);
+// void				rotate_line(t_mlx *mlx, int r);
 void				free_tab(char **tab);
 int 				init(t_mlx **mlx, char **str);
 int					window_hook(int event, void *param);
@@ -115,7 +118,8 @@ void				get_user_input(t_mlx *mlx);
 int					get_map_len(char *path);
 void				basic_direction(char *key, t_mlx *mlx);
 void				rotation_direction(char *direction, t_mlx *mlx);
-void    draw_wall(t_mlx *mlx, double x, double y, int r);
+// void				draw_wall(t_mlx *mlx, double x, double y, int r);
+void				draw_wall(t_mlx *mlx, int r);
 int					ft_error(int choice);
 
 

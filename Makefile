@@ -29,6 +29,7 @@ SRCS    := src/main.c \
            src/movement.c \
            src/free.c \
 		   src/error.c \
+		   src/ray_handle.c \
 
 
 OBJS_DIR := obj
