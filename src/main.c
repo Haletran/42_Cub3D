@@ -26,8 +26,7 @@ int	main(int argc, char **argv)
 	if (!mlx->win)
 		return (ERROR);
 	draw_map(mlx);
-	// rotate_fov(mlx);
-	fov_details(mlx);
+	rotate_fov(mlx);
 	get_user_input(mlx);
 	mlx_loop(mlx->mlx);
 	free_all(&mlx);

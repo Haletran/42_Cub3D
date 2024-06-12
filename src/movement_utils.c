@@ -25,7 +25,7 @@ void	rotation_direction(char *direction, t_mlx *mlx)
 	else if (!ft_strncmp(direction, "right", 5))
 	{
 		mlx->player->angle += 0.2;
-		if (mlx->player->angle > 0)
+		if (mlx->player->angle > 2 * PI)
 			mlx->player->angle -= 2 * PI;
 		mlx->player->delta_x = cos(mlx->player->angle) * 5;
 		mlx->player->delta_y = sin(mlx->player->angle) * 5;

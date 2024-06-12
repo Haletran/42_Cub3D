@@ -82,4 +82,6 @@ void	draw_map(t_mlx *mlx)
 		}
 		i++;
 	}
+	mlx->map->width = j;
+	mlx->map->height = i;
 }
