@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 14:40:33 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/21 18:38:50 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/18 22:57:08 by baptiste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,7 @@ char	*ft_strcpy(char *dest, char *src);
 char	*ft_free(char *buffer);
 char	*ft_strjoin_f(char *s1, char *s2);
 int		ft_printf_fd(int fd, const char *format, ...);
+void	print_tab(char **tab);
+int ft_atoi_base(const char *str, const char *base);
 
 #endif

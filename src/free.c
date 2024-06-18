@@ -6,7 +6,7 @@
 /*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 23:42:08 by baptiste          #+#    #+#             */
-/*   Updated: 2024/06/05 23:08:39 by baptiste         ###   ########.fr       */
+/*   Updated: 2024/06/18 23:18:05 by baptiste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,17 @@ void	free_tab(char **tab)
 
 void	free_all(t_mlx **mlx)
 {
-	mlx_destroy_image((*mlx)->mlx, (*mlx)->floor);
-	mlx_destroy_image((*mlx)->mlx, (*mlx)->wall);
-	mlx_destroy_window((*mlx)->mlx, (*mlx)->win);
+	//mlx_destroy_image((*mlx)->mlx, (*mlx)->floor);
+	//mlx_destroy_image((*mlx)->mlx, (*mlx)->wall);
+	//mlx_destroy_window((*mlx)->mlx, (*mlx)->win);
 	mlx_destroy_display((*mlx)->mlx);
-	free_tab((*mlx)->map->map);
 	(*mlx)->map->path = free_char((*mlx)->map->path);
+	free_tab((*mlx)->map->map);
+	free((*mlx)->map->data_map->no);
+	free((*mlx)->map->data_map->so);
+	free((*mlx)->map->data_map->we);
+	free((*mlx)->map->data_map->ea);
+	free((*mlx)->map->data_map);
 	free((*mlx)->map);
 	free((*mlx)->player);
 	free((*mlx)->ray);

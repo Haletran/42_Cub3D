@@ -1,5 +1,8 @@
 {
 	"files.associations": {
-		"iterator": "c"
+		"iterator": "c",
+		"random": "c",
+		"libft.h": "c",
+		"cub3d.h": "c"
 	}
 }

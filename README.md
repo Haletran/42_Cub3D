@@ -14,6 +14,13 @@ make a dynamic view inside a maze, in which you’ll have to find your way.
 - Lissage des textures (crenelages, distance, ...) 
 
 
+## PARSING
+
+-> PARSE into table
+-> Analyze data
+-> Attribuate data
+
+
 ## RESSOURCES
 
 - https://austinhenley.com/blog/raycasting.html

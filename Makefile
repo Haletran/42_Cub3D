@@ -6,7 +6,7 @@
 #    By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/17 10:49:06 by bapasqui          #+#    #+#              #
-#    Updated: 2024/06/05 23:07:41 by baptiste         ###   ########.fr        #
+#    Updated: 2024/06/18 22:21:31 by baptiste         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,8 @@ SRCS    := src/main.c \
            src/render_map.c \
            src/movement.c \
            src/free.c \
+		   src/lst_print.c \
+		   src/parser.c \
 		   src/error.c \
 
 

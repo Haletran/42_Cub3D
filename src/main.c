@@ -6,7 +6,7 @@
 /*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 10:49:02 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/05 23:08:09 by baptiste         ###   ########.fr       */
+/*   Updated: 2024/06/18 23:18:15 by baptiste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,13 @@ int	main(int argc, char **argv)
 	mlx->mlx = mlx_init();
 	if (init(&mlx, argv) != SUCCESS)
 		return (ERROR);
-	mlx->win = mlx_new_window(mlx->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3D");
+/* 	mlx->win = mlx_new_window(mlx->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3D");
 	if (!mlx->win)
-		return (ERROR);
-	draw_map(mlx);
-	rotate_fov(mlx);
-	get_user_input(mlx);
-	mlx_loop(mlx->mlx);
+		return (ERROR); */
+	lst_print_data(mlx->map);
+	
+	//draw_map(mlx);
+	//rotate_fov(mlx);
+	//get_user_input(mlx);
 	free_all(&mlx);
 }
