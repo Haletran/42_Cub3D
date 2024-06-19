@@ -14,8 +14,8 @@
 
 int	init_images(t_mlx **mlx)
 {
-	int	img_width;
-	int	img_height;
+	int		img_width;
+	int		img_height;
 
 	img_width = 32;
 	img_height = 32;

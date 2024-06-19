@@ -61,6 +61,7 @@ typedef struct s_mlx
 	struct s_player	*player;
 	struct s_ray	*ray;
 	struct s_map	*map;
+	struct s_xpm	*xpm;
 }					t_mlx;
 
 typedef struct s_player
@@ -90,23 +91,30 @@ typedef struct s_map
 
 typedef struct s_ray
 {
-	int				hit;
-	double			ray_angle;
-	double			x;
-	double			y;
-	double			step_x;
-	double			step_y;
-	double			h_dist;
-	double			v_dist;
-	double			dist;
+	int				pix;
+	int				h_hit;
+	float			ray_angle;
+	float			x;
+	float			y;
+	float			step_x;
+	float			step_y;
+	float			h_dist;
+	float			v_dist;
+	float			dist;
 }					t_ray;
+
+typedef struct s_xpm
+{
+	char			*img_n;
+	char			*img_s;
+	char			*img_w;
+	char			*img_e;
+}					t_xpm;
 
 /* FUNCTIONS */
 void				draw_map(t_mlx *mlx);
 int 				init_map(t_mlx *mlx);
-double				pythagoras(t_mlx *mlx, double x, double y);
-void				rotate_fov(t_mlx *mlx);
-void				rotate_line(t_mlx *mlx, int index);
+float				pythagoras(t_mlx *mlx, float x, float y);
 void				free_tab(char **tab);
 int 				init(t_mlx **mlx, char **str);
 int					window_hook(int event, void *param);
@@ -117,8 +125,9 @@ void				get_user_input(t_mlx *mlx);
 int					get_map_len(char *path);
 void				basic_direction(char *key, t_mlx *mlx);
 void				rotation_direction(char *direction, t_mlx *mlx);
-void				draw_wall(t_mlx *mlx, double x, double y, int r);
+void				draw_wall(t_mlx *mlx, int r);
 int					ft_error(int choice);
+void				fov_details(t_mlx *mlx);
 
 
 #endif
