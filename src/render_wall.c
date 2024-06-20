@@ -50,12 +50,10 @@ void	draw_other(t_mlx *mlx, int ray_index, float start, float end)
 	}
 }
 
-int	select_color(t_mlx *mlx, float x, int y, int pix)
+int	select_color(t_mlx *mlx, float y)
 {
 	int	color;
-	(void)x;
 	(void)y;
-	(void)pix;
 
 
 	if (mlx->ray->h_hit)
@@ -63,8 +61,7 @@ int	select_color(t_mlx *mlx, float x, int y, int pix)
 		if(mlx->ray->ray_angle > 0 && mlx->ray->ray_angle < PI)
 			color = 0xFFd0d3d4;
 		else
-			color = mlx->img_n->pix_map[(int)(y * (mlx->img_n->size_line / 4) + pix)];
-
+			color = mlx->img_n->pix_map[(int)((mlx->ray->y / 32) * (mlx->img_n->size_line / 4) + (mlx->ray->x))];
 	}
 	else
 	{
@@ -80,13 +77,11 @@ void	draw_in_color(t_mlx *mlx, int ray_index, float start, float end)
 {
 	int color;
 
-	int pix = 0;
 	while(start < end)
 	{
-		color = select_color(mlx, start, ray_index, pix);
+		color = select_color(mlx, start);
 		mlx_pixel_put(mlx->mlx, mlx->win, ray_index, start, color);
 		start++;
-		pix++;
 	}
 }
 
