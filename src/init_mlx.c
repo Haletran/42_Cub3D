@@ -12,6 +12,13 @@
 
 #include "../includes/cub3d.h"
 
+void	init_textures(t_mlx **mlx)
+{
+	(*mlx)->img_n = ft_calloc(1, sizeof(t_img));
+	(*mlx)->img_n->img = mlx_xpm_file_to_image((*mlx)->mlx, "textures/1.xpm", &(*mlx)->size, &(*mlx)->size);
+	(*mlx)->img_n->pix_map = (int *)mlx_get_data_addr((*mlx)->img_n->img ,&(*mlx)->img_n->bpp ,&(*mlx)->img_n->size_line, &(*mlx)->img_n->endian);
+}
+
 int	init_images(t_mlx **mlx)
 {
 	int		img_width;
@@ -19,10 +26,8 @@ int	init_images(t_mlx **mlx)
 
 	img_width = 32;
 	img_height = 32;
-	(*mlx)->floor = mlx_xpm_file_to_image((*mlx)->mlx, "images/floor.xpm",
-			&img_width, &img_height);
-	(*mlx)->wall = mlx_xpm_file_to_image((*mlx)->mlx, "images/wall.xpm",
-			&img_width, &img_height);
+	(*mlx)->wall = mlx_xpm_file_to_image((*mlx)->mlx, "images/floor.xpm", &img_width, &img_height);
+	init_textures(mlx);
 	return (SUCCESS);
 }
 

@@ -50,19 +50,21 @@ void	draw_other(t_mlx *mlx, int ray_index, float start, float end)
 	}
 }
 
-
-
-int	select_color(t_mlx *mlx, float x, int y)
+int	select_color(t_mlx *mlx, float x, int y, int pix)
 {
 	int	color;
 	(void)x;
 	(void)y;
+	(void)pix;
+
+
 	if (mlx->ray->h_hit)
 	{
 		if(mlx->ray->ray_angle > 0 && mlx->ray->ray_angle < PI)
 			color = 0xFFd0d3d4;
 		else
-			color = 0xFF000000;
+			color = mlx->img_n->pix_map[(int)(y * (mlx->img_n->size_line / 4) + pix)];
+
 	}
 	else
 	{
@@ -78,25 +80,14 @@ void	draw_in_color(t_mlx *mlx, int ray_index, float start, float end)
 {
 	int color;
 
+	int pix = 0;
 	while(start < end)
 	{
-		color = select_color(mlx, start, ray_index);
+		color = select_color(mlx, start, ray_index, pix);
 		mlx_pixel_put(mlx->mlx, mlx->win, ray_index, start, color);
 		start++;
+		pix++;
 	}
-}
-
-void	init_texture(t_mlx *mlx)
-{
-	void	*img;
-	int		width;
-	int		height;
-
-	width = 32;
-	height = 32;
-	img = mlx_xpm_file_to_image(mlx->mlx, "textures/brick.xpm", &width, &height);
-	mlx->xpm->img_n = mlx_get_data_addr(img, );
-	printf("%s", mlx->xpm->img_n);
 }
 
 void	draw_wall(t_mlx *mlx, int ray_index)
@@ -106,7 +97,6 @@ void	draw_wall(t_mlx *mlx, int ray_index)
 	float	h;
 	float	screen_x;
 
-	init_texture(mlx);
 	mlx->player->eye_h = WINDOW_HEIGHT / 2;
 	mlx->ray->dist *= cos(keep_circle(mlx->ray->ray_angle - mlx->player->angle));
 	screen_x = (ray_index * WINDOW_WIDTH) / RAYS;

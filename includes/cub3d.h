@@ -58,10 +58,14 @@ typedef struct s_mlx
 	void			*img;
 	void			*floor;
 	void			*wall;
+	int				size;
 	struct s_player	*player;
 	struct s_ray	*ray;
 	struct s_map	*map;
-	struct s_xpm	*xpm;
+	struct s_img	*img_n;
+	struct s_img	*img_s;
+	struct s_img	*img_w;
+	struct s_img	*img_e;
 }					t_mlx;
 
 typedef struct s_player
@@ -103,13 +107,15 @@ typedef struct s_ray
 	float			dist;
 }					t_ray;
 
-typedef struct s_xpm
+typedef struct s_img
 {
-	char			*img_n;
-	char			*img_s;
-	char			*img_w;
-	char			*img_e;
-}					t_xpm;
+	void			*img;
+	int				*pix_map;
+	int				bpp;
+	int				size_line;
+	int				endian;
+
+}					t_img;
 
 /* FUNCTIONS */
 void				draw_map(t_mlx *mlx);
