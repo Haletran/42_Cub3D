@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*   print_tab.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 14:18:54 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/18 22:57:13 by baptiste         ###   ########.fr       */
+/*   Created: 2024/06/18 21:51:50 by baptiste          #+#    #+#             */
+/*   Updated: 2024/06/18 21:53:35 by baptiste         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+void	print_tab(char **tab)
 {
-	unsigned int	c;
+    int	i;
 
-	c = 0;
-	if (!s)
-		return ;
-	while (s[c])
-	{
-		f(c, &s[c]);
-		c++;
-	}
+    i = 0;
+    while (tab[i])
+    {
+        ft_putstr_fd(tab[i], 1);
+        i++;
+    }
 }

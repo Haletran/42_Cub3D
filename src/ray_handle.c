@@ -47,7 +47,7 @@ void	draw_ray(t_mlx *mlx)
 	{
 		x = mlx->player->x + j * cos(mlx->ray->ray_angle);
 		y = mlx->player->y + j * sin(mlx->ray->ray_angle);
-		if (x < 0 || y < 0 || x > mlx->map->width * 32 || y > mlx->map->height * 32)
+		if (x < 0 || y < 0 || x > mlx->map->data_map->width * 32 || y > mlx->map->data_map->height * 32)
 			break;
 		color = 0x00FF00;
 		mlx_pixel_put(mlx->mlx, mlx->win, x, y, color);
@@ -108,7 +108,7 @@ int	hit_wall(t_mlx *mlx, float x, float y)
 		return (0);
 	pos_x = (int)x / 32;
 	pos_y = (int)y / 32;
-	if (pos_y >= mlx->map->height || pos_x >= mlx->map->width)
+	if (pos_y >= mlx->map->data_map->height || pos_x >= mlx->map->data_map->width)
 		return (0);
 	if (mlx->map->map[pos_y] && mlx->map->map[pos_y][pos_x])
 	{

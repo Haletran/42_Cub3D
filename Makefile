@@ -28,8 +28,10 @@ SRCS    := src/main.c \
            src/render_map.c \
            src/movement.c \
            src/free.c \
-		   src/error.c \
+		   src/lst_print.c \
+		   src/parser.c \
 		   src/ray_handle.c \
+		   src/error.c \
 
 
 OBJS_DIR := obj

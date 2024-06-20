@@ -48,8 +48,27 @@
 # define ERROR_IMAGE -80
 # define FD_ERROR -100
 # define NOTHING -110
+# define DATA_ERROR -120
+# define PATH_ERROR -130
 
 /*STRUCTURES*/
+
+typedef struct s_data_map
+{
+	char *no;
+	char *so;
+	char *we;
+	char *ea;
+	char *s;
+	int floor_c;
+	int sky_c;
+	int				width;
+	int				height;
+	int map_lenght;
+	char *floor_char;
+	char *sky_char;
+}					t_data_map;
+
 
 typedef struct s_mlx
 {
@@ -83,14 +102,15 @@ typedef struct s_player
 
 typedef struct s_map
 {
+	struct s_data_map *data_map;
 	int				*map2;
 	char			**map;
-	int				width;
-	int				height;
+	char 			**file;
 	char			*path;
-	int				lenght;
+	int				file_lenght;
 	int				backup_fd;
 	int 			print;
+	int 			start_map;
 }					t_map;
 
 typedef struct s_ray
@@ -134,6 +154,12 @@ void				rotation_direction(char *direction, t_mlx *mlx);
 void				draw_wall(t_mlx *mlx, int r);
 int					ft_error(int choice);
 void				fov_details(t_mlx *mlx);
-
+int					attribute_data_map(t_mlx *mlx);
+void				lst_print_data(t_map *lst);
+int					check_data_map(t_data_map *data_map);
+int					init_map(t_mlx *mlx);
+int					convert_rgb_to_hex(char *color);
+char				*free_char(char *str);
+int					read_file(t_mlx *mlx);
 
 #endif

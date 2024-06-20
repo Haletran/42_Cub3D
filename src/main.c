@@ -25,6 +25,7 @@ int	main(int argc, char **argv)
 	mlx->win = mlx_new_window(mlx->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3D");
 	if (!mlx->win)
 		return (ERROR);
+	lst_print_data(mlx->map);
 	draw_map(mlx);
 	fov_details(mlx);
 	get_user_input(mlx);
