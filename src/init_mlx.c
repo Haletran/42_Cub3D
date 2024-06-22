@@ -15,7 +15,7 @@
 void	init_textures(t_mlx **mlx)
 {
 	(*mlx)->img_n = ft_calloc(1, sizeof(t_img));
-	(*mlx)->img_n->img = mlx_xpm_file_to_image((*mlx)->mlx, "textures/1.xpm", &(*mlx)->size, &(*mlx)->size);
+	(*mlx)->img_n->img = mlx_xpm_file_to_image((*mlx)->mlx, "textures/1.xpm", &(*mlx)->img_n->t_wid, &(*mlx)->img_n->t_hei);
 	(*mlx)->img_n->pix_map = (int *)mlx_get_data_addr((*mlx)->img_n->img ,&(*mlx)->img_n->bpp ,&(*mlx)->img_n->size_line, &(*mlx)->img_n->endian);
 }
 

@@ -118,7 +118,7 @@ int	hit_wall(t_mlx *mlx, float x, float y)
 	return (1);
 }
 
-void	get_horizontal_hit(t_mlx *mlx)
+float	get_horizontal_hit(t_mlx *mlx)
 {
 	float	h_x;
 	float	h_y;
@@ -135,10 +135,10 @@ void	get_horizontal_hit(t_mlx *mlx)
 	}
 	mlx->ray->x = h_x;
 	mlx->ray->y = h_y;
-	mlx->ray->h_dist = pythagoras(mlx, mlx->ray->x, mlx->ray->y);
+	return(pythagoras(mlx, mlx->ray->x, mlx->ray->y));
 }
 
-void	get_vertical_hit(t_mlx *mlx)
+float	get_vertical_hit(t_mlx *mlx)
 {
 	float	v_x;
 	float	v_y;
@@ -155,23 +155,26 @@ void	get_vertical_hit(t_mlx *mlx)
 	}
 	mlx->ray->step_x = v_x;
 	mlx->ray->step_y = v_y;
-	mlx->ray->v_dist = pythagoras(mlx, mlx->ray->step_x, mlx->ray->step_y);
+	return(pythagoras(mlx, mlx->ray->step_x, mlx->ray->step_y));
 }
 
 void	find_ray_lenght(t_mlx *mlx)
 {
-	get_horizontal_hit(mlx);
-	get_vertical_hit(mlx);
-	if (mlx->ray->h_dist < mlx->ray->v_dist)
+	float	h_dist;
+	float	v_dist;
+
+	h_dist = get_horizontal_hit(mlx);
+	v_dist = get_vertical_hit(mlx);
+	if (h_dist < v_dist)
 	{
 		mlx->ray->h_hit = 1;
-		mlx->ray->dist = mlx->ray->h_dist;
+		mlx->ray->dist = h_dist;
 	}
 	else
 	{
 		mlx->ray->x = mlx->ray->step_x;
 		mlx->ray->y = mlx->ray->step_y;
-		mlx->ray->dist = mlx->ray->v_dist;
+		mlx->ray->dist = v_dist;
 	}
 }
 
@@ -187,7 +190,7 @@ void	fov_details(t_mlx *mlx)
 	{
 		mlx->ray->h_hit = 0;
 		find_ray_lenght(mlx);
-		if (i % 100)
+		if (i % 100 == 0)
 			draw_ray(mlx);
 		draw_wall(mlx, i);
 		mlx->ray->ray_angle += ((FOV * PI) / 180) / RAYS;
@@ -195,6 +198,6 @@ void	fov_details(t_mlx *mlx)
 			mlx->ray->ray_angle -= 2 * PI;
 		i++;
 	}
-	if (mlx->map->print == 0)
-		draw_map(mlx);
+	//if (mlx->map->print == 0)
+	//	draw_map(mlx);
 }

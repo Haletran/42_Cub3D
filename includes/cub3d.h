@@ -122,14 +122,16 @@ typedef struct s_ray
 	float			y;
 	float			step_x;
 	float			step_y;
-	float			h_dist;
-	float			v_dist;
 	float			dist;
+	float			x_dir;
+	float			y_dir;
 }					t_ray;
 
 typedef struct s_img
 {
 	void			*img;
+	int				t_wid;
+	int				t_hei;
 	int				*pix_map;
 	int				bpp;
 	int				size_line;
