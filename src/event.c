@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:13:14 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/05/29 22:50:07 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/24 16:23:17 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	get_user_input(t_mlx *mlx)
 {
 	mlx_key_hook(mlx->win, key_hook, mlx);
 	mlx_hook(mlx->win, 2, 1L << 0, window_hook, mlx);
-	mlx_hook(mlx->win, 17, 0, ft_close, mlx);
+	mlx_hook(mlx->win, 17, 1L << 17, ft_close, mlx);
 }
 
 int	window_hook(int event, void *param)
@@ -29,12 +29,8 @@ int	window_hook(int event, void *param)
 	return (0);
 }
 
-int	ft_close(int event, void *param)
+int	ft_close(t_mlx *mlx)
 {
-	t_mlx	*mlx;
-
-	(void)event;
-	mlx = param;
-	mlx_loop_end(mlx->mlx);
-	return (0);
+    mlx_loop_end(mlx->mlx);
+    return (0);
 }

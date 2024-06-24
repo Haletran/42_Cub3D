@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:02:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/05 23:08:08 by baptiste         ###   ########.fr       */
+/*   Updated: 2024/06/24 16:24:07 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@ void				free_tab(char **tab);
 int 				init(t_mlx **mlx, char **str);
 int					window_hook(int event, void *param);
 int					key_hook(int key, void *param);
-int					ft_close(int event, void *param);
+int					ft_close(t_mlx *mlx);
 void				free_all(t_mlx **mlx);
 void				get_user_input(t_mlx *mlx);
 int					get_map_len(char *path);

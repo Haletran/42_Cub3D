@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 23:42:08 by baptiste          #+#    #+#             */
-/*   Updated: 2024/06/18 23:18:05 by baptiste         ###   ########.fr       */
+/*   Updated: 2024/06/24 16:19:43 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	free_tab(char **tab)
 
 void	free_all(t_mlx **mlx)
 {
-	mlx_destroy_image((*mlx)->mlx, (*mlx)->floor);
+	//mlx_destroy_image((*mlx)->mlx, (*mlx)->floor);
 	mlx_destroy_image((*mlx)->mlx, (*mlx)->wall);
 	mlx_destroy_window((*mlx)->mlx, (*mlx)->win);
 	mlx_destroy_display((*mlx)->mlx);
