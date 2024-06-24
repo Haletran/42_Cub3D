@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:37:15 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/05 23:07:59 by baptiste         ###   ########.fr       */
+/*   Updated: 2024/06/24 16:33:05 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ static int	check_file_and_init(t_mlx **mlx)
         return (ERROR);
     (*mlx)->map->data_map->floor_c = convert_rgb_to_hex((*mlx)->map->data_map->floor_char);
     (*mlx)->map->data_map->sky_c = convert_rgb_to_hex((*mlx)->map->data_map->sky_char);
+    if ((*mlx)->map->data_map->floor_c == ERROR || (*mlx)->map->data_map->sky_c == ERROR)
+        return (ERROR);
     (*mlx)->map->data_map->floor_char = free_char((*mlx)->map->data_map->floor_char);
     (*mlx)->map->data_map->sky_char = free_char((*mlx)->map->data_map->sky_char);
 	init_images(mlx);
@@ -76,6 +78,6 @@ int	init(t_mlx **mlx, char **str)
     if (ft_strncmp((*mlx)->map->path + ft_strlen((*mlx)->map->path) - 4, ".cub", 4))
         return (ft_error(NOT_CUB));
     if (check_file_and_init(mlx) != SUCCESS)
-        return (ERROR);
+        return (ft_error(DATA_ERROR));
     return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 22:21:15 by baptiste          #+#    #+#             */
-/*   Updated: 2024/06/24 16:09:39 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/24 17:15:40 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,60 @@ int init_map(t_mlx *mlx)
     return (SUCCESS);
 }
 
+int check_verif_color(char *color)
+{
+    int i;
+    char **tmp;
+    int j;
+
+    i = 0;
+    tmp = ft_split(color, ',');
+    while(tmp[i])
+    {
+        j = 0;
+        while (j < (int)ft_strlen(tmp[i]) - 1)
+        {
+            if (!ft_isdigit(tmp[i][j]))
+            {
+                free_tab(tmp);
+                return (ERROR);
+            }
+            j++;
+        }
+        if (j < 1 || j > 3)
+            return (free_tab(tmp), ERROR);
+        i++;
+    }
+    free_tab(tmp);
+    return (SUCCESS);
+}
+
+int check_verif_hex(char *color)
+{
+    int i;
+
+    i = 0;
+    while (color[i])
+    {
+        if (!((color[i] >= '0' && color[i] <= '9') || 
+              (color[i] >= 'a' && color[i] <= 'f') || 
+              (color[i] >= 'A' && color[i] <= 'F')))
+            return (ERROR);
+        i++;
+    }
+    if (i != 6)
+        return (ERROR);
+    return (SUCCESS);
+}
+
 int convert_rgb_to_hex(char *color)
 {
     int r;
     int g;
     int b;
 
+    if (check_verif_color(color) == ERROR)
+        return (ERROR);
     r = ft_atoi(color);
     while (*color && *color != ',')
         color++;
@@ -59,5 +107,7 @@ int convert_rgb_to_hex(char *color)
         color++;
     color++;
     b = ft_atoi(color);
+    if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
+        return (ERROR);
     return (r << 16 | g << 8 | b);
 }
