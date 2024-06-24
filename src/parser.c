@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 22:21:15 by baptiste          #+#    #+#             */
-/*   Updated: 2024/06/24 17:16:12 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/24 17:17:14 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,24 +69,6 @@ int check_verif_color(char *color)
         i++;
     }
     free_tab(tmp);
-    return (SUCCESS);
-}
-
-int check_verif_hex(char *color)
-{
-    int i;
-
-    i = 0;
-    while (color[i])
-    {
-        if (!((color[i] >= '0' && color[i] <= '9') || 
-              (color[i] >= 'a' && color[i] <= 'f') || 
-              (color[i] >= 'A' && color[i] <= 'F')))
-            return (ERROR);
-        i++;
-    }
-    if (i != 6)
-        return (ERROR);
     return (SUCCESS);
 }
 

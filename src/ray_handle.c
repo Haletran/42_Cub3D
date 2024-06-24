@@ -198,6 +198,6 @@ void	fov_details(t_mlx *mlx)
 			mlx->ray->ray_angle -= 2 * PI;
 		i++;
 	}
-	//if (mlx->map->print == 0)
-	//	draw_map(mlx);
+	if (mlx->map->print == 0)
+		draw_map(mlx);
 }

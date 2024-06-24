@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:25:15 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/18 23:01:30 by baptiste         ###   ########.fr       */
+/*   Updated: 2024/06/24 17:26:58 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,12 @@ int attribute_data_map(t_mlx *mlx)
 			mlx->map->data_map->floor_char = ft_strdup(mlx->map->file[i] + 2);
 		else if (!ft_strncmp(mlx->map->file[i], "C", 1))
 			mlx->map->data_map->sky_char = ft_strdup(mlx->map->file[i] + 2);			
-		else if (mlx->map->file[i][0] == '1' || mlx->map->file[i][0] == '0')
+		if (mlx->map->data_map->no && mlx->map->data_map->so && mlx->map->data_map->we
+			&& mlx->map->data_map->ea && mlx->map->data_map->floor_char && mlx->map->data_map->sky_char)
 			break ;
 		i++;
 	}
+	i++;
 	if (check_data_map(mlx->map->data_map))
 		return (ERROR);
 	mlx->map->start_map = i;
@@ -102,6 +104,11 @@ void	draw_map(t_mlx *mlx)
 			if (mlx->map->map[i][j] == '1')
 				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->wall, j * 32, i
 					* 32);
+			if (mlx->map->map[i][j] == 'P')
+			{
+				mlx->player->x = j * 32;
+				mlx->player->y = i * 32;
+			}
 			j++;
 		}
 		i++;

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:37:15 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/24 16:33:05 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/24 17:27:23 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ int	init_images(t_mlx **mlx)
 static int	init_values(t_mlx **mlx, char **str)
 {
     (*mlx)->map->path = ft_strdup(str[1]);
-    (*mlx)->player->x = 40;
-    (*mlx)->player->y = 40;
     (*mlx)->player->angle = 0;
     (*mlx)->player->delta_x = cos((*mlx)->player->angle) * 5;
     (*mlx)->player->delta_y = sin((*mlx)->player->angle) * 5;
