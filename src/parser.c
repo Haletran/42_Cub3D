@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 22:21:15 by baptiste          #+#    #+#             */
-/*   Updated: 2024/06/24 17:15:40 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/24 17:16:12 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int convert_rgb_to_hex(char *color)
     int g;
     int b;
 
-    if (check_verif_color(color) == ERROR)
+    if (!color || check_verif_color(color) == ERROR)
         return (ERROR);
     r = ft_atoi(color);
     while (*color && *color != ',')
