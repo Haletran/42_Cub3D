@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 10:49:02 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/24 16:24:31 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/24 18:21:24 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	main(int argc, char **argv)
 	if (!mlx->win)
 		return (ERROR);
 	lst_print_data(mlx->map);
-	draw_map(mlx);
 	fov_details(mlx);
 	get_user_input(mlx);
 	mlx_loop(mlx->mlx);

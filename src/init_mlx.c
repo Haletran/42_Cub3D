@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:37:15 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/24 17:27:23 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/24 18:15:46 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static int	check_file_and_init(t_mlx **mlx)
         return (ERROR);
     if (init_map((*mlx)) != SUCCESS)
         return (ERROR);
+    get_map_dimension(*mlx);
     (*mlx)->map->data_map->floor_c = convert_rgb_to_hex((*mlx)->map->data_map->floor_char);
     (*mlx)->map->data_map->sky_c = convert_rgb_to_hex((*mlx)->map->data_map->sky_char);
     if ((*mlx)->map->data_map->floor_c == ERROR || (*mlx)->map->data_map->sky_c == ERROR)

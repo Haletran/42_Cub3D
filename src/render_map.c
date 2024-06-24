@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:25:15 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/24 17:26:58 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/24 18:17:24 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,32 @@ int read_file(t_mlx *mlx)
 	return (SUCCESS);
 }
 
+void get_map_dimension(t_mlx *mlx)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (mlx->map->map[i])
+	{
+		j = 0;
+		while (mlx->map->map[i][j])
+		{
+			if (mlx->map->map[i][j] == '1')
+				mlx->map->data_map->width = j;
+			if (mlx->map->map[i][j] == 'P')
+			{
+				mlx->player->x = j * 32;
+				mlx->player->y = i * 32;
+			}
+			j++;
+		}
+		i++;
+	}
+	mlx->map->data_map->height = i;
+	mlx->map->print = 1;
+}
+
 void	draw_map(t_mlx *mlx)
 {
 	int	i;
@@ -104,15 +130,8 @@ void	draw_map(t_mlx *mlx)
 			if (mlx->map->map[i][j] == '1')
 				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->wall, j * 32, i
 					* 32);
-			if (mlx->map->map[i][j] == 'P')
-			{
-				mlx->player->x = j * 32;
-				mlx->player->y = i * 32;
-			}
 			j++;
 		}
 		i++;
 	}
-	mlx->map->data_map->width = j;
-	mlx->map->data_map->height = i;
 }

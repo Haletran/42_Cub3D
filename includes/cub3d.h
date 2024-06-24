@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:02:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/24 16:24:07 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/24 18:14:14 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,5 +163,6 @@ int					init_map(t_mlx *mlx);
 int					convert_rgb_to_hex(char *color);
 char				*free_char(char *str);
 int					read_file(t_mlx *mlx);
+void				get_map_dimension(t_mlx *mlx);
 
 #endif
