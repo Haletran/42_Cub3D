@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:25:15 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/24 18:17:24 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/24 18:31:29 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,22 +116,28 @@ void get_map_dimension(t_mlx *mlx)
 	mlx->map->print = 1;
 }
 
+// debug map rendering
 void	draw_map(t_mlx *mlx)
 {
-	int	i;
-	int	j;
+    int	i;
+    int	j;
 
-	i = 0;
-	while (mlx->map->map[i])
-	{
-		j = 0;
-		while (mlx->map->map[i][j])
-		{
-			if (mlx->map->map[i][j] == '1')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->wall, j * 32, i
-					* 32);
-			j++;
-		}
-		i++;
-	}
+    i = 0;
+    while (mlx->map->map[i])
+    {
+        j = 0;
+        while (mlx->map->map[i][j])
+        {
+            if (mlx->map->map[i][j] == '1')
+            {
+                int x = j * 32;
+                int y = i * 32;
+                for (int dx = 0; dx < 32; dx++)
+                    for (int dy = 0; dy < 32; dy++)
+                        mlx_pixel_put(mlx->mlx, mlx->win, x + dx, y + dy, 0xFFFFFF);
+            }
+            j++;
+        }
+        i++;
+    }
 }
