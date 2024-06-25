@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:25:15 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/25 15:10:02 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/25 16:53:13 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void get_map_dimension(t_mlx *mlx)
 		}
 		i++;
 	}
-	mlx->map->data_map->height = i;
+	mlx->map->data_map->height = i - 1;
 	mlx->map->print = 1;
 }
 

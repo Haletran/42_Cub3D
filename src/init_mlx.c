@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:37:15 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/25 15:55:31 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/25 16:28:45 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ static int	check_file_and_init(t_mlx **mlx)
         return (ERROR);
     if (init_map((*mlx)) != SUCCESS)
         return (ERROR);
-    get_map_dimension(*mlx);
     (*mlx)->map->data_map->floor_c = convert_rgb_to_hex((*mlx)->map->data_map->floor_char);
     (*mlx)->map->data_map->sky_c = convert_rgb_to_hex((*mlx)->map->data_map->sky_char);
     if ((*mlx)->map->data_map->floor_c == ERROR || (*mlx)->map->data_map->sky_c == ERROR)
@@ -77,6 +76,6 @@ int	init(t_mlx **mlx, char **str)
     if (ft_strncmp((*mlx)->map->path + ft_strlen((*mlx)->map->path) - 4, ".cub", 4))
         return (ft_error(NOT_CUB));
     if (check_file_and_init(mlx) != SUCCESS)
-        return (ft_error(DATA_ERROR));
+        return (ERROR);
     return (SUCCESS);
 }
