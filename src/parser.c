@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 22:21:15 by baptiste          #+#    #+#             */
-/*   Updated: 2024/06/25 15:23:31 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/25 15:56:18 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ int init_map(t_mlx *mlx)
     if (!mlx->map->map)
         return (ft_error(MALLOC_ERROR));
     while (mlx->map->file[i])
-    {
+    {   
+        if (!mlx->map->file[i])
+            mlx->map->map[j] = ft_strdup("1");
         mlx->map->map[j] = ft_strdup(mlx->map->file[i]);
         j++;
         i++;
