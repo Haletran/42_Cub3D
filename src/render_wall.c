@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:25:19 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/24 18:26:48 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/25 15:31:21 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int select_color(t_mlx *mlx, float pos)
 		if(mlx->ray->ray_angle > 0 && mlx->ray->ray_angle < PI)
             color = 0xFFd0d3d4;//south
 		else
-            color = mlx->img_n->pix_map[(int)(pos * (mlx->img_n->size_line / 4) + wall_x)];//north
+            color = mlx->img_n->pix_map[(int)(pos * (mlx->img_n->size_line / 32) + wall_x)];//north
     }
     else
     {

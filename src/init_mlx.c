@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:37:15 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/24 18:15:46 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/06/25 15:29:12 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	init_textures(t_mlx **mlx)
 {
 	(*mlx)->img_n = ft_calloc(1, sizeof(t_img));
-	(*mlx)->img_n->img = mlx_xpm_file_to_image((*mlx)->mlx, "textures/1.xpm", &(*mlx)->img_n->t_wid, &(*mlx)->img_n->t_hei);
+	(*mlx)->img_n->img = mlx_xpm_file_to_image((*mlx)->mlx, "textures/redbrick.xpm", &(*mlx)->img_n->t_wid, &(*mlx)->img_n->t_hei);
 	(*mlx)->img_n->pix_map = (int *)mlx_get_data_addr((*mlx)->img_n->img ,&(*mlx)->img_n->bpp ,&(*mlx)->img_n->size_line, &(*mlx)->img_n->endian);
 }
 
