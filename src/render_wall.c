@@ -50,22 +50,19 @@ void	draw_other(t_mlx *mlx, int ray_index, float start, float end)
 	}
 }
 
-int select_color(t_mlx *mlx, float pos)
+int select_color(t_mlx *mlx, int pos)
 {
     int color;
-    float wall_x;
 
     if (mlx->ray->h_hit)
     {
-        wall_x = fmod(mlx->ray->x, 32);
 		if(mlx->ray->ray_angle > 0 && mlx->ray->ray_angle < PI)
             color = 0xFFd0d3d4;//south
 		else
-            color = mlx->img_n->pix_map[(int)(pos * (mlx->img_n->size_line / 4) + wall_x)];//north
+            color = mlx->img_n->pix_map[pos];//north
     }
     else
     {
-        //wall_x = mlx->ray->y + mlx->ray->dist * sin(mlx->ray->ray_angle);
         if(mlx->ray->ray_angle > (PI / 2) && mlx->ray->ray_angle < (3 * PI / 2))
             color = 0xFF2874a6;//east
         else
@@ -74,20 +71,41 @@ int select_color(t_mlx *mlx, float pos)
     return color;
 }
 
+/* 
+step = 1.0 * tex_height / line_height;
+
+	int tex_x, tex_y;
+double wall_x; // Position exacte de l'impact sur le mur (de 0 à 1)
+double tex_pos; // Position de départ sur la texture
+
+wall_x = hit_x - floor(hit_x); // Exemple de calcul de position exacte
+tex_x = (int)(wall_x * (double)tex_width);
+
+tex_pos = (draw_start - screen_height / 2 + line_height / 2) * step;
+for (int y = draw_start; y < draw_end; y++)
+{
+    tex_y = (int)tex_pos & (tex_height - 1);
+    tex_pos += step;
+    int color = *(int*)(data_addr + (tex_y * size_line + tex_x * (bpp / 8)));
+    my_mlx_pixel_put(img, x, y, color);
+}
+
+*/
+
 void	draw_in_color(t_mlx *mlx, int ray_index, float start, float end)
 {
 	int color;
-	float pos;
-	float line_height;
+	int pos;
+	int y;
 
-	line_height = end - start;
-	pos = (line_height / mlx->img_n->t_hei);
+	
 	while(start < end)
 	{
+		y = start * ((end - start) / mlx->img_n->t_hei);
+		pos = (y * mlx->img_n->size_line + (mlx->ray->x / 32) * (mlx->img_n->bpp / 8));
 		color = select_color(mlx, pos);
 		mlx_pixel_put(mlx->mlx, mlx->win, ray_index, start, color);
 		start++;
-		pos++;
 	}
 }
 
