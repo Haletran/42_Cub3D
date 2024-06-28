@@ -117,14 +117,13 @@ typedef struct s_ray
 {
 	int				pix;
 	int				h_hit;
+	float			h_height;
 	float			ray_angle;
 	float			x;
 	float			y;
 	float			step_x;
 	float			step_y;
 	float			dist;
-	float			x_dir;
-	float			y_dir;
 }					t_ray;
 
 typedef struct s_img
