@@ -30,5 +30,5 @@ int	main(int argc, char **argv)
 	fov_details(mlx);
 	get_user_input(mlx);
 	mlx_loop(mlx->mlx);
-	free_all(&mlx);
+	//free_all(&mlx);
 }

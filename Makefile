@@ -17,9 +17,9 @@ endif
 MAKEFLAGS += -j
 
 # Makefile vars
-CC := clang                                                       
+CC := clang                                                             
 NAME    := cub3D
-CFLAGS  := -Wextra -Wall -Werror -g -O3 -ffast-math #-fsanitize=address -fsanitize=undefined
+CFLAGS  := -Wextra -Wall -Werror -g #-fsanitize=address
 SRCS    := src/main.c \
            src/event.c \
 		   src/movement_utils.c \
@@ -36,7 +36,7 @@ SRCS    := src/main.c \
 
 OBJS_DIR := obj
 OBJS    := $(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
-LIBS    := -L ./minilibx -lmlx -lXext -lX11 -lm -lbsd
+LIBS    := MacroLibX/libmlx.so -lSDL2 -lm
 
 all: $(NAME)
 
@@ -45,26 +45,23 @@ $(OBJS_DIR)/%.o: %.c
 	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
 
 $(NAME): $(OBJS)
-	@make -C minilibx
+	@make -C MacroLibX
 	@make -C lib
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBS) lib/libft.a
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) lib/libft.a $(LIBS)
 	echo "Compiling\033[1m\033[32m" $@ "\033[0m"
 	echo "\033[42mSuccessfully compiled :)\033[0m"
 
-
-lib:
-	@if [ ! -d "minilibx" ]; then wget https://cdn.intra.42.fr/document/document/22379/minilibx-linux.tgz && tar -xvf minilibx-linux.tgz && rm -f minilibx-linux.tgz && mv minilibx-linux minilibx; fi
-	@if [ -d "minilibx/.git" ]; then rm -rf minilibx/.git; fi
-	
-norm:
-	@-norminette src/ includes/ lib/
+gt:    
+	@if [ ! -d "MacroLibX" ]; then git clone https://github.com/seekrs/MacroLibX.git; fi
 
 clean:
 	@make -C lib clean
+	@make -C MacroLibX clean
 	@rm -rf $(OBJS_DIR)
 
 fclean: clean
 	@make fclean -C lib
+	@make fclean -C MacroLibX
 	@rm -rf $(NAME)
 
 re:

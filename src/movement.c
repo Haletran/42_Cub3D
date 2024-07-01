@@ -17,23 +17,25 @@ int	key_hook(int key, void *param)
 	t_mlx	*mlx;
 
 	mlx = param;
-	if (key == 'w')
+	if (key == 41)
+		exit(1);
+	if (key == 26)
 	{
 		if (mlx->map->map[(int)(mlx->player->y + mlx->player->delta_y)
 			/ 32][(int)(mlx->player->x + mlx->player->delta_x) / 32] != '1')
 			basic_direction("w", mlx);
 	}
-	if (key == 's')
+	if (key == 22)
 	{
 		if (mlx->map->map[(int)(mlx->player->y + mlx->player->delta_y)
 			/ 32][(int)(mlx->player->x + mlx->player->delta_x) / 32] != '1')
 			basic_direction("s", mlx);
 	}
-	if (key == LEFT_ARROW)
+	if (key == 80)
 		rotation_direction("left", mlx);
-	if (key == RIGHT_ARROW)
+	if (key == 79)
 		rotation_direction("right", mlx);
-	if (key == 'a' && mlx->map->map[(int)(mlx->player->y - mlx->player->delta_y)
+	if (key == 4 && mlx->map->map[(int)(mlx->player->y - mlx->player->delta_y)
 		/ 32][(int)(mlx->player->x - mlx->player->delta_x) / 32] != '1')
 	{
 		if (mlx->player->angle > PI / 2 && mlx->player->angle < 3 * PI / 2)
@@ -51,7 +53,7 @@ int	key_hook(int key, void *param)
 			mlx->player->y -= mlx->player->delta_y;
 		}
 	}
-	if (key == 'd' && mlx->map->map[(int)(mlx->player->y - mlx->player->delta_y)
+	if (key == 7 && mlx->map->map[(int)(mlx->player->y - mlx->player->delta_y)
 		/ 32][(int)(mlx->player->x - mlx->player->delta_x) / 32] != '1')
 	{
 		if (mlx->player->angle > PI / 2 && mlx->player->angle < 3 * PI / 2)

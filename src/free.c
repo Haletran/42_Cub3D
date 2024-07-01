@@ -34,11 +34,11 @@ void	free_tab(char **tab)
 
 void	free_all(t_mlx **mlx)
 {
-	mlx_destroy_image((*mlx)->mlx, (*mlx)->floor);
-	mlx_destroy_image((*mlx)->mlx, (*mlx)->wall);
-	mlx_destroy_window((*mlx)->mlx, (*mlx)->win);
-	mlx_destroy_display((*mlx)->mlx);
-	(*mlx)->map->path = free_char((*mlx)->map->path);
+	//mlx_destroy_image((*mlx)->mlx, (*mlx)->floor);
+	//mlx_destroy_image((*mlx)->mlx, (*mlx)->wall);
+	//mlx_destroy_window((*mlx)->mlx, (*mlx)->win);
+	//mlx_destroy_display((*mlx)->mlx);
+	//(*mlx)->map->path = free_char((*mlx)->map->path);
 	free_tab((*mlx)->map->map);
 	free((*mlx)->map->data_map->no);
 	free((*mlx)->map->data_map->so);

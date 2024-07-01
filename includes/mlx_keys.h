@@ -17,7 +17,7 @@
 # define KEY_ESC 65307
 
 // Arrows
-# define LEFT_ARROW 65361
-# define RIGHT_ARROW 65363
+# define LEFT_ARROW 80
+# define RIGHT_ARROW 79
 
 #endif

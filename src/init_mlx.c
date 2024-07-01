@@ -15,8 +15,7 @@
 void	init_textures(t_mlx **mlx)
 {
 	(*mlx)->img_n = ft_calloc(1, sizeof(t_img));
-	(*mlx)->img_n->img = mlx_xpm_file_to_image((*mlx)->mlx, "textures/1.xpm", &(*mlx)->img_n->t_wid, &(*mlx)->img_n->t_hei);
-	(*mlx)->img_n->pix_map = (int *)mlx_get_data_addr((*mlx)->img_n->img ,&(*mlx)->img_n->bpp ,&(*mlx)->img_n->size_line, &(*mlx)->img_n->endian);
+	(*mlx)->img_n->img = mlx_png_file_to_image((*mlx)->mlx, "textures/1.png", &(*mlx)->img_n->t_wid, &(*mlx)->img_n->t_hei);
 }
 
 int	init_images(t_mlx **mlx)
@@ -26,7 +25,7 @@ int	init_images(t_mlx **mlx)
 
 	img_width = 32;
 	img_height = 32;
-	(*mlx)->wall = mlx_xpm_file_to_image((*mlx)->mlx, "images/floor.xpm", &img_width, &img_height);
+	(*mlx)->wall = mlx_png_file_to_image((*mlx)->mlx, "images/floor.png", &img_width, &img_height);
 	init_textures(mlx);
 	return (SUCCESS);
 }

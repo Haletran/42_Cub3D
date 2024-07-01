@@ -50,7 +50,7 @@ void	draw_other(t_mlx *mlx, int ray_index, float start, float end)
 	}
 }
 
-int select_color(t_mlx *mlx, int pos)
+int select_color(t_mlx *mlx, int x, int y)
 {
     int color;
 
@@ -59,7 +59,7 @@ int select_color(t_mlx *mlx, int pos)
 		if(mlx->ray->ray_angle > 0 && mlx->ray->ray_angle < PI)
             color = 0xFFd0d3d4;//south
 		else
-            color = mlx->img_n->pix_map[pos];//north
+            color = mlx_get_image_pixel(mlx->mlx, mlx->img_n->img, x, y);//north
     }
     else
     {
@@ -71,26 +71,22 @@ int select_color(t_mlx *mlx, int pos)
     return color;
 }
 
-
 void	draw_in_color(t_mlx *mlx, int ray_index, float start, float end)
 {
 	int color;
-	int	pos;
 	float wall_x;
 	int tex_x;
 	int tex_y;
 	float step;
 
-	wall_x = fmod(mlx->ray->x, 32);
+	wall_x = (int)mlx->ray->x % 32;
 	tex_x = (wall_x * mlx->img_n->t_wid) / mlx->ray->h_height;
 	step = mlx->img_n->t_hei / mlx->ray->h_height;
 	tex_y = 0;
 	while(start < end)
 	{
-		pos = tex_y * (mlx->img_n->size_line / 4) + tex_x * (mlx->img_n->bpp / 8);
-		//int pos = (y * size_line + x * (bits_per_pixel / 8));
+		color = select_color(mlx, tex_x, tex_y);
 		tex_y += step;
-		color = select_color(mlx, pos);
 		mlx_pixel_put(mlx->mlx, mlx->win, ray_index, start, color);
 		start++;
 	}

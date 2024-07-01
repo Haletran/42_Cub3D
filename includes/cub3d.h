@@ -14,7 +14,7 @@
 # define CUB3D_H
 
 # include "../lib/libft.h"
-# include "../minilibx/mlx.h"
+# include "../MacroLibX/includes/mlx.h"
 # include "colors.h"
 # include "mlx_keys.h"
 # include <errno.h>

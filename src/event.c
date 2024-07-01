@@ -14,9 +14,11 @@
 
 void	get_user_input(t_mlx *mlx)
 {
-	mlx_key_hook(mlx->win, key_hook, mlx);
-	mlx_hook(mlx->win, 2, 1L << 0, window_hook, mlx);
-	mlx_hook(mlx->win, 17, 0, ft_close, mlx);
+	mlx_on_event(mlx->mlx, mlx->win, MLX_KEYDOWN, key_hook, mlx);
+	mlx_on_event(mlx->mlx, mlx->win, MLX_WINDOW_EVENT, ft_close, mlx);
+	//mlx_key_hook(mlx->win, key_hook, mlx);
+	//mlx_hook(mlx->win, 2, 1L << 0, window_hook, mlx);
+	//mlx_hook(mlx->win, 17, 0, ft_close, mlx);
 }
 
 int	window_hook(int event, void *param)
@@ -35,6 +37,8 @@ int	ft_close(int event, void *param)
 
 	(void)event;
 	mlx = param;
-	mlx_loop_end(mlx->mlx);
+	if (event == 0)
+		mlx_loop_end(mlx->mlx);
 	return (0);
 }
+
