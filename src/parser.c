@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 22:21:15 by baptiste          #+#    #+#             */
-/*   Updated: 2024/06/18 23:23:27 by baptiste         ###   ########.fr       */
+/*   Updated: 2024/07/07 21:02:31 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,20 @@
 
 int check_data_map(t_data_map *data_map)
 {
+    data_map->we = ft_strtrim(data_map->we, " ");
+    data_map->ea = ft_strtrim(data_map->ea, " ");
+    data_map->so = ft_strtrim(data_map->so, " ");
+    data_map->no = ft_strtrim(data_map->no, " ");
+    data_map->we = ft_strtrim(data_map->we, "\n");
+    data_map->ea = ft_strtrim(data_map->ea, "\n");
+    data_map->so = ft_strtrim(data_map->so, "\n");
+    data_map->no = ft_strtrim(data_map->no, "\n");
     if (!data_map->no || !data_map->so || !data_map->we
         || !data_map->ea || !data_map->floor_char || !data_map->sky_char)
         return (ft_error(DATA_ERROR));
-/*     if (access(data_map->no, F_OK) == -1 || access(data_map->so, F_OK) == -1
+    if (access(data_map->no, F_OK) == -1 || access(data_map->so, F_OK) == -1
         || access(data_map->we, F_OK) == -1 || access(data_map->ea, F_OK) == -1)
-        return (ft_error(PATH_ERROR)); */
+        return (ft_error(PATH_ERROR));
     return (SUCCESS);
 }
 
@@ -46,6 +54,7 @@ int init_map(t_mlx *mlx)
 
 int convert_rgb_to_hex(char *color)
 {
+    int a = 255; // Alpha value
     int r;
     int g;
     int b;
@@ -59,5 +68,5 @@ int convert_rgb_to_hex(char *color)
         color++;
     color++;
     b = ft_atoi(color);
-    return (r << 16 | g << 8 | b);
+    return (a << 24 | r << 16 | g << 8 | b);
 }

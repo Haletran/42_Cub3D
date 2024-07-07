@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:37:15 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/05 23:07:59 by baptiste         ###   ########.fr       */
+/*   Updated: 2024/07/07 20:57:54 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@ void	init_textures(t_mlx **mlx)
 	(*mlx)->img_s = ft_calloc(1, sizeof(t_img));
 	(*mlx)->img_e = ft_calloc(1, sizeof(t_img));
 	(*mlx)->img_w = ft_calloc(1, sizeof(t_img));
-	(*mlx)->img_n->img = mlx_png_file_to_image((*mlx)->mlx, "images/north.png", &(*mlx)->img_n->t_wid, &(*mlx)->img_n->t_hei);
-	(*mlx)->img_s->img = mlx_png_file_to_image((*mlx)->mlx, "images/south.png", &(*mlx)->img_n->t_wid, &(*mlx)->img_n->t_hei);
-	(*mlx)->img_e->img = mlx_png_file_to_image((*mlx)->mlx, "images/east.png", &(*mlx)->img_n->t_wid, &(*mlx)->img_n->t_hei);
-	(*mlx)->img_w->img = mlx_png_file_to_image((*mlx)->mlx, "images/west.png", &(*mlx)->img_n->t_wid, &(*mlx)->img_n->t_hei);
+
+	(*mlx)->img_n->img = mlx_png_file_to_image((*mlx)->mlx, (*mlx)->map->data_map->no, &(*mlx)->img_n->t_wid, &(*mlx)->img_n->t_hei);
+    (*mlx)->img_s->img = mlx_png_file_to_image((*mlx)->mlx, (*mlx)->map->data_map->so, &(*mlx)->img_s->t_wid, &(*mlx)->img_s->t_hei);
+    (*mlx)->img_e->img = mlx_png_file_to_image((*mlx)->mlx, (*mlx)->map->data_map->ea, &(*mlx)->img_e->t_wid, &(*mlx)->img_e->t_hei);
+    (*mlx)->img_w->img = mlx_png_file_to_image((*mlx)->mlx, (*mlx)->map->data_map->we, &(*mlx)->img_w->t_wid, &(*mlx)->img_w->t_hei);
 }
 
 int	init_images(t_mlx **mlx)

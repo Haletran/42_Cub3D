@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_wall.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:25:19 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/05 23:07:26 by baptiste         ###   ########.fr       */
+/*   Updated: 2024/07/07 20:52:34 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,13 @@ void	draw_other(t_mlx *mlx, int ray_index, float start, float end)
 	origin = 0;
 	while (origin < start)
 	{
-		mlx_pixel_put(mlx->mlx, mlx->win, ray_index, origin, 0xFF5dade2);
+        
+		mlx_pixel_put(mlx->mlx, mlx->win, ray_index, origin, mlx->map->data_map->sky_c);
 		origin++;
 	}
 	while (end < WINDOW_HEIGHT)
 	{
-		mlx_pixel_put(mlx->mlx, mlx->win, ray_index, end, 0xFFe5e8e8);
+		mlx_pixel_put(mlx->mlx, mlx->win, ray_index, end, mlx->map->data_map->floor_c);
 		end++;
 	}
 }
@@ -71,6 +72,43 @@ int select_color(t_mlx *mlx, int x, int y)
     return color;
 }
 
+float calculate_step(t_mlx *mlx)
+{
+    if (mlx->ray->h_hit)
+    {
+        if(mlx->ray->ray_angle > 0 && mlx->ray->ray_angle < PI)
+            return (mlx->img_s->t_hei / mlx->ray->h_height);
+        else
+            return (mlx->img_n->t_hei / mlx->ray->h_height);
+    }
+    else
+    {
+        if(mlx->ray->ray_angle > (PI / 2) && mlx->ray->ray_angle < (3 * PI / 2))
+            return (mlx->img_e->t_hei / mlx->ray->h_height);
+        else
+            return (mlx->img_w->t_hei / mlx->ray->h_height);
+    }
+}
+
+int calculate_tex_x(t_mlx *mlx, float wall_x)
+{
+    if (mlx->ray->h_hit)
+    {
+        if(mlx->ray->ray_angle > 0 && mlx->ray->ray_angle < PI)
+            return (wall_x * mlx->img_s->t_wid);
+        else
+            return (wall_x * mlx->img_n->t_wid);
+    }
+    else
+    {
+        if(mlx->ray->ray_angle > (PI / 2) && mlx->ray->ray_angle < (3 * PI / 2))
+            return (wall_x * mlx->img_e->t_wid);
+        else
+            return (wall_x * mlx->img_e->t_wid);
+    }
+}
+
+
 void draw_in_color(t_mlx *mlx, int ray_index, float start, float end)
 {
     int color;
@@ -85,8 +123,8 @@ void draw_in_color(t_mlx *mlx, int ray_index, float start, float end)
 	{
     	wall_x = (fmod(mlx->ray->y, 32) * 100 / 32) / 100;
 	}
-	tex_x = (wall_x * mlx->img_n->t_wid);
-    step = (mlx->img_n->t_hei / mlx->ray->h_height);
+	tex_x = calculate_tex_x(mlx, wall_x);
+    step = calculate_step(mlx);
     tex_y = (start - WINDOW_HEIGHT / 2 + mlx->ray->h_height / 2) / step;
     while(start < end)
     {
