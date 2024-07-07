@@ -131,10 +131,6 @@ typedef struct s_img
 	void			*img;
 	int				t_wid;
 	int				t_hei;
-	int				*pix_map;
-	int				bpp;
-	int				size_line;
-	int				endian;
 
 }					t_img;
 

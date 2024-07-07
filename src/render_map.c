@@ -99,9 +99,9 @@ void	draw_map(t_mlx *mlx)
 		j = 0;
 		while (mlx->map->map[i][j])
 		{
-			if (mlx->map->map[i][j] == '1')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->wall, j * 32, i
-					* 32);
+			//if (mlx->map->map[i][j] == '1')
+			//	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->wall, j * 9, i
+			//		* 9);
 			j++;
 		}
 		i++;

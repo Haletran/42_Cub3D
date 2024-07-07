@@ -71,25 +71,31 @@ int select_color(t_mlx *mlx, int x, int y)
     return color;
 }
 
-void	draw_in_color(t_mlx *mlx, int ray_index, float start, float end)
+void draw_in_color(t_mlx *mlx, int ray_index, float start, float end)
 {
-	int color;
-	float wall_x;
-	int tex_x;
-	int tex_y;
-	float step;
+    int color;
+    float wall_x;
+    int tex_x;
+    int tex_y;
+    float step;
+	float factor;
 
-	wall_x = (int)mlx->ray->x % 32;
-	tex_x = (wall_x * mlx->img_n->t_wid) / mlx->ray->h_height;
-	step = mlx->img_n->t_hei / mlx->ray->h_height;
-	tex_y = 0;
-	while(start < end)
-	{
-		color = select_color(mlx, tex_x, tex_y);
-		tex_y += step;
-		mlx_pixel_put(mlx->mlx, mlx->win, ray_index, start, color);
-		start++;
-	}
+	factor = 1;
+	if (mlx->ray->dist < 200)
+		factor = mlx->ray->dist / 200;
+    wall_x = (fmod(mlx->ray->x, 32) * 100 / 32) / 100;
+    tex_x = (wall_x * mlx->img_n->t_wid);
+    step = (mlx->img_n->t_hei / mlx->ray->h_height) * factor;
+    tex_y = (start - WINDOW_HEIGHT / 2 + mlx->ray->h_height / 2) / step;
+    while(start < end)
+    {
+        color = select_color(mlx, tex_x, tex_y);
+        tex_y += step;
+		if (tex_x > 124)
+			color = 0xFF2bff00;
+        mlx_pixel_put(mlx->mlx, mlx->win, ray_index, start, color);
+        start++;
+    }
 }
 
 void	draw_wall(t_mlx *mlx, int ray_index)
@@ -107,7 +113,7 @@ void	draw_wall(t_mlx *mlx, int ray_index)
 		start = 0;
 	end = mlx->player->eye_h + mlx->ray->h_height / 2;
 	if (end >= WINDOW_HEIGHT)
-		end = WINDOW_HEIGHT;
+		end = WINDOW_HEIGHT - 1;
 	draw_in_color(mlx, screen_x, start, end);
 	draw_other(mlx, screen_x, start, end);
 }
