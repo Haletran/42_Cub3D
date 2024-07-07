@@ -15,7 +15,13 @@
 void	init_textures(t_mlx **mlx)
 {
 	(*mlx)->img_n = ft_calloc(1, sizeof(t_img));
-	(*mlx)->img_n->img = mlx_png_file_to_image((*mlx)->mlx, "textures/1.png", &(*mlx)->img_n->t_wid, &(*mlx)->img_n->t_hei);
+	(*mlx)->img_s = ft_calloc(1, sizeof(t_img));
+	(*mlx)->img_e = ft_calloc(1, sizeof(t_img));
+	(*mlx)->img_w = ft_calloc(1, sizeof(t_img));
+	(*mlx)->img_n->img = mlx_png_file_to_image((*mlx)->mlx, "images/north.png", &(*mlx)->img_n->t_wid, &(*mlx)->img_n->t_hei);
+	(*mlx)->img_s->img = mlx_png_file_to_image((*mlx)->mlx, "images/south.png", &(*mlx)->img_n->t_wid, &(*mlx)->img_n->t_hei);
+	(*mlx)->img_e->img = mlx_png_file_to_image((*mlx)->mlx, "images/east.png", &(*mlx)->img_n->t_wid, &(*mlx)->img_n->t_hei);
+	(*mlx)->img_w->img = mlx_png_file_to_image((*mlx)->mlx, "images/west.png", &(*mlx)->img_n->t_wid, &(*mlx)->img_n->t_hei);
 }
 
 int	init_images(t_mlx **mlx)

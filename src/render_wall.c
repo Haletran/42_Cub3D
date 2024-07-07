@@ -57,16 +57,16 @@ int select_color(t_mlx *mlx, int x, int y)
     if (mlx->ray->h_hit)
     {
 		if(mlx->ray->ray_angle > 0 && mlx->ray->ray_angle < PI)
-            color = 0xFFd0d3d4;//south
+            color = mlx_get_image_pixel(mlx->mlx, mlx->img_s->img, x, y);//south
 		else
             color = mlx_get_image_pixel(mlx->mlx, mlx->img_n->img, x, y);//north
     }
     else
     {
         if(mlx->ray->ray_angle > (PI / 2) && mlx->ray->ray_angle < (3 * PI / 2))
-            color = 0xFF2874a6;//east
+            color = mlx_get_image_pixel(mlx->mlx, mlx->img_e->img, x, y);//east
         else
-            color = 0xFF34495e;//west
+            color = mlx_get_image_pixel(mlx->mlx, mlx->img_w->img, x, y);//west
     }
     return color;
 }
@@ -76,44 +76,39 @@ void draw_in_color(t_mlx *mlx, int ray_index, float start, float end)
     int color;
     float wall_x;
     int tex_x;
-    int tex_y;
+    float tex_y;
     float step;
-	float factor;
 
-	factor = 1;
-	if (mlx->ray->dist < 200)
-		factor = mlx->ray->dist / 200;
-    wall_x = (fmod(mlx->ray->x, 32) * 100 / 32) / 100;
-    tex_x = (wall_x * mlx->img_n->t_wid);
-    step = (mlx->img_n->t_hei / mlx->ray->h_height) * factor;
+	if(mlx->ray->h_hit)
+    	wall_x = (fmod(mlx->ray->x, 32) * 100 / 32) / 100;
+    else
+	{
+    	wall_x = (fmod(mlx->ray->y, 32) * 100 / 32) / 100;
+	}
+	tex_x = (wall_x * mlx->img_n->t_wid);
+    step = (mlx->img_n->t_hei / mlx->ray->h_height);
     tex_y = (start - WINDOW_HEIGHT / 2 + mlx->ray->h_height / 2) / step;
     while(start < end)
     {
-        color = select_color(mlx, tex_x, tex_y);
+        color = select_color(mlx, tex_x, (int)tex_y);
         tex_y += step;
-		if (tex_x > 124)
-			color = 0xFF2bff00;
         mlx_pixel_put(mlx->mlx, mlx->win, ray_index, start, color);
         start++;
     }
 }
 
-void	draw_wall(t_mlx *mlx, int ray_index)
+void    draw_wall(t_mlx *mlx, int ray_index)
 {
-	float	start;
-	float	end;
-	float	screen_x;
+    float    start;
+    float    end;
+    float    screen_x;
 
-	mlx->player->eye_h = WINDOW_HEIGHT / 2;
-	mlx->ray->dist *= cos(keep_circle(mlx->ray->ray_angle - mlx->player->angle));
-	screen_x = (ray_index * WINDOW_WIDTH) / RAYS;
-	mlx->ray->h_height = (32 / mlx->ray->dist) * ((WINDOW_WIDTH / 2) / tan(((FOV / 2) * PI) / 180));
-	start = mlx->player->eye_h - mlx->ray->h_height / 2;
-	if (start < 0)
-		start = 0;
-	end = mlx->player->eye_h + mlx->ray->h_height / 2;
-	if (end >= WINDOW_HEIGHT)
-		end = WINDOW_HEIGHT - 1;
-	draw_in_color(mlx, screen_x, start, end);
-	draw_other(mlx, screen_x, start, end);
+    mlx->player->eye_h = WINDOW_HEIGHT / 2;
+    mlx->ray->dist *= cos(keep_circle(mlx->ray->ray_angle - mlx->player->angle));
+    screen_x = (ray_index * WINDOW_WIDTH) / RAYS;
+    mlx->ray->h_height = (32 / mlx->ray->dist) * ((WINDOW_WIDTH / 2) / tan(((FOV / 2) * PI) / 180));
+    start = mlx->player->eye_h - mlx->ray->h_height / 2;
+    end = mlx->player->eye_h + mlx->ray->h_height / 2;
+    draw_in_color(mlx, screen_x, start, end);
+    draw_other(mlx, screen_x, start, end);
 }
