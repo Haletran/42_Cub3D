@@ -35,10 +35,10 @@ void	print_data(t_mlx *mlx, float x, float y, int h)
 
 void	draw_ray(t_mlx *mlx)
 {
-	int		x;
-	int		y;
-	int		j;
-	int		color;
+	int	x;
+	int	y;
+	int	j;
+	int	color;
 
 	x = mlx->player->x;
 	y = mlx->player->y;
@@ -47,8 +47,9 @@ void	draw_ray(t_mlx *mlx)
 	{
 		x = mlx->player->x + j * cos(mlx->ray->ray_angle);
 		y = mlx->player->y + j * sin(mlx->ray->ray_angle);
-		if (x < 0 || y < 0 || x > mlx->map->data_map->width * 32 || y > mlx->map->data_map->height * 32)
-			break;
+		if (x < 0 || y < 0 || x > mlx->map->data_map->width * 32
+			|| y > mlx->map->data_map->height * 32)
+			break ;
 		color = 0x00FF00;
 		mlx_pixel_put(mlx->mlx, mlx->win, x, y, color);
 		j++;
@@ -59,12 +60,13 @@ int	check_neg_step(t_mlx *mlx, int h)
 {
 	if (h)
 	{
-		if(mlx->ray->ray_angle > (PI / 2) && mlx->ray->ray_angle < ((3 * PI) / 2))
+		if (mlx->ray->ray_angle > (PI / 2) && mlx->ray->ray_angle < ((3 * PI)
+				/ 2))
 			return (1);
 	}
 	else
 	{
-		if(mlx->ray->ray_angle > 0 && mlx->ray->ray_angle < PI)
+		if (mlx->ray->ray_angle > 0 && mlx->ray->ray_angle < PI)
 			return (1);
 	}
 	return (0);
@@ -89,7 +91,7 @@ void	init_step(t_mlx *mlx, float *inter, char c)
 	{
 		mlx->ray->step_x = 32;
 		mlx->ray->step_y = 32 * tan(mlx->ray->ray_angle);
-		if (!(mlx->ray->ray_angle >  PI / 2 && mlx->ray->ray_angle < 3 * PI / 2))
+		if (!(mlx->ray->ray_angle > PI / 2 && mlx->ray->ray_angle < 3 * PI / 2))
 		{
 			*inter += 32;
 			mlx->ray->pix = -1;
@@ -102,13 +104,14 @@ void	init_step(t_mlx *mlx, float *inter, char c)
 int	hit_wall(t_mlx *mlx, float x, float y)
 {
 	int	pos_x;
-	int pos_y;
+	int	pos_y;
 
 	if (x < 0 || y < 0)
 		return (0);
 	pos_x = (int)x / 32;
 	pos_y = (int)y / 32;
-	if (pos_y >= mlx->map->data_map->height || pos_x >= mlx->map->data_map->width)
+	if (pos_y >= mlx->map->data_map->height
+		|| pos_x >= mlx->map->data_map->width)
 		return (0);
 	if (mlx->map->map[pos_y] && mlx->map->map[pos_y][pos_x])
 	{
@@ -126,7 +129,8 @@ float	get_horizontal_hit(t_mlx *mlx)
 	h_y = ((int)mlx->player->y / 32) * 32;
 	init_step(mlx, &h_y, 'h');
 	h_x = mlx->player->x + (h_y - mlx->player->y) / tan(mlx->ray->ray_angle);
-	if((check_neg_step(mlx, 1) && mlx->ray->step_x > 0) || (!check_neg_step(mlx, 1) && mlx->ray->step_x < 0))
+	if ((check_neg_step(mlx, 1) && mlx->ray->step_x > 0)
+		|| (!check_neg_step(mlx, 1) && mlx->ray->step_x < 0))
 		mlx->ray->step_x *= -1;
 	while (hit_wall(mlx, h_x, h_y - mlx->ray->pix))
 	{
@@ -135,7 +139,7 @@ float	get_horizontal_hit(t_mlx *mlx)
 	}
 	mlx->ray->x = h_x;
 	mlx->ray->y = h_y;
-	return(pythagoras(mlx, mlx->ray->x, mlx->ray->y));
+	return (pythagoras(mlx, mlx->ray->x, mlx->ray->y));
 }
 
 float	get_vertical_hit(t_mlx *mlx)
@@ -146,7 +150,8 @@ float	get_vertical_hit(t_mlx *mlx)
 	v_x = ((int)mlx->player->x / 32) * 32;
 	init_step(mlx, &v_x, 'v');
 	v_y = mlx->player->y + (v_x - mlx->player->x) * tan(mlx->ray->ray_angle);
-	if((check_neg_step(mlx, 0) && mlx->ray->step_y < 0 )|| (!check_neg_step(mlx, 0) && mlx->ray->step_y > 0))
+	if ((check_neg_step(mlx, 0) && mlx->ray->step_y < 0)
+		|| (!check_neg_step(mlx, 0) && mlx->ray->step_y > 0))
 		mlx->ray->step_y *= -1;
 	while (hit_wall(mlx, v_x - mlx->ray->pix, v_y))
 	{
@@ -155,7 +160,7 @@ float	get_vertical_hit(t_mlx *mlx)
 	}
 	mlx->ray->step_x = v_x;
 	mlx->ray->step_y = v_y;
-	return(pythagoras(mlx, mlx->ray->step_x, mlx->ray->step_y));
+	return (pythagoras(mlx, mlx->ray->step_x, mlx->ray->step_y));
 }
 
 void	find_ray_lenght(t_mlx *mlx)
@@ -180,7 +185,7 @@ void	find_ray_lenght(t_mlx *mlx)
 
 void	fov_details(t_mlx *mlx)
 {
-	int		i;
+	int i;
 
 	i = 0;
 	mlx->ray->ray_angle = mlx->player->angle - (((FOV / 2) * PI) / 180);
@@ -190,7 +195,7 @@ void	fov_details(t_mlx *mlx)
 	{
 		mlx->ray->h_hit = 0;
 		find_ray_lenght(mlx);
-		//if (i % 100 == 0)
+		// if (i % 100 == 0)
 		//	draw_ray(mlx);
 		draw_wall(mlx, i);
 		mlx->ray->ray_angle += ((FOV * PI) / 180) / RAYS;
@@ -198,6 +203,6 @@ void	fov_details(t_mlx *mlx)
 			mlx->ray->ray_angle -= 2 * PI;
 		i++;
 	}
-	//if (mlx->map->print == 0)
+	// if (mlx->map->print == 0)
 	//	draw_map(mlx);
 }

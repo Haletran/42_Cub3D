@@ -6,15 +6,15 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:02:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/07 20:43:11 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/08 20:20:49 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../lib/libft.h"
 # include "../MacroLibX/includes/mlx.h"
+# include "../lib/libft.h"
 # include "colors.h"
 # include "mlx_keys.h"
 # include <errno.h>
@@ -36,7 +36,6 @@
 # define SUCCESS 0
 # define ERROR 1
 
-
 # define SUCCESS 0
 # define ERROR 1
 # define ARG_ERROR -20
@@ -55,108 +54,109 @@
 
 typedef struct s_data_map
 {
-	char *no;
-	char *so;
-	char *we;
-	char *ea;
-	char *s;
-	int floor_c;
-	int sky_c;
-	int				width;
-	int				height;
-	int map_lenght;
-	char *floor_char;
-	char *sky_char;
-}					t_data_map;
-
+	char				*no;
+	char				*so;
+	char				*we;
+	char				*ea;
+	char				*s;
+	int					floor_c;
+	int					sky_c;
+	int					width;
+	int					height;
+	int					map_lenght;
+	char				*floor_char;
+	char				*sky_char;
+}						t_data_map;
 
 typedef struct s_mlx
 {
-	void			*mlx;
-	void			*win;
-	void			*img;
-	void			*floor;
-	void			*wall;
-	int				size;
-	struct s_player	*player;
-	struct s_ray	*ray;
-	struct s_map	*map;
-	struct s_img	*img_n;
-	struct s_img	*img_s;
-	struct s_img	*img_w;
-	struct s_img	*img_e;
-}					t_mlx;
+	void				*mlx;
+	void				*win;
+	void				*img;
+	void				*floor;
+	void				*wall;
+	int					size;
+	struct s_player		*player;
+	struct s_ray		*ray;
+	struct s_map		*map;
+	struct s_img		*img_n;
+	struct s_img		*img_s;
+	struct s_img		*img_w;
+	struct s_img		*img_e;
+}						t_mlx;
 
 typedef struct s_player
 {
-	float			x;
-	float			y;
-	float			delta_x;
-	float			delta_y;
-	int				eye_h;
-	double			angle;
-	double			save;
-	double			dir;
-	double			fov;
-}					t_player;
+	float				x;
+	float				y;
+	float				delta_x;
+	float				delta_y;
+	int					eye_h;
+	double				angle;
+	double				save;
+	double				dir;
+	double				fov;
+}						t_player;
 
 typedef struct s_map
 {
-	struct s_data_map *data_map;
-	int				*map2;
-	char			**map;
-	char 			**file;
-	char			*path;
-	int				file_lenght;
-	int				backup_fd;
-	int 			print;
-	int 			start_map;
-}					t_map;
+	struct s_data_map	*data_map;
+	int					*map2;
+	char				**map;
+	char				**file;
+	char				*path;
+	int					file_lenght;
+	int					backup_fd;
+	int					print;
+	int					start_map;
+}						t_map;
 
 typedef struct s_ray
 {
-	int				pix;
-	int				h_hit;
-	float			h_height;
-	float			ray_angle;
-	float			x;
-	float			y;
-	float			step_x;
-	float			step_y;
-	float			dist;
-}					t_ray;
+	int					pix;
+	int					h_hit;
+	float				h_height;
+	float				ray_angle;
+	float				x;
+	float				y;
+	float				step_x;
+	float				step_y;
+	float				dist;
+}						t_ray;
 
 typedef struct s_img
 {
-	void			*img;
-	int				t_wid;
-	int				t_hei;
+	void				*img;
+	int					t_wid;
+	int					t_hei;
 
-}					t_img;
+}						t_img;
 
 /* FUNCTIONS */
-void				draw_map(t_mlx *mlx);
-int 				init_map(t_mlx *mlx);
-float				pythagoras(t_mlx *mlx, float x, float y);
-void				free_tab(char **tab);
-int 				init(t_mlx **mlx, char **str);
-int					window_hook(int event, void *param);
-int					key_hook(int key, void *param);
-int					ft_close(int event, void *param);
-void				free_all(t_mlx **mlx);
-void				get_user_input(t_mlx *mlx);
-int					get_map_len(char *path);
-void				basic_direction(char *key, t_mlx *mlx);
-void				rotation_direction(char *direction, t_mlx *mlx);
-void				draw_wall(t_mlx *mlx, int r);
-int					ft_error(int choice);
-void				fov_details(t_mlx *mlx);
-int					attribute_data_map(t_mlx *mlx);
-void				lst_print_data(t_map *lst);
-int					check_data_map(t_data_map *data_map);
-int					init_map(t_mlx *mlx);
-int					convert_rgb_to_hex(char *color);
-char				*free_char(char *str);
-int					read_file(t_mlx *mlx);
+void					draw_map(t_mlx *mlx);
+int						init_map(t_mlx *mlx);
+float					pythagoras(t_mlx *mlx, float x, float y);
+void					free_tab(char **tab);
+int						init(t_mlx **mlx, char **str);
+int						window_hook(int event, void *param);
+int						key_hook(int key, void *param);
+int						ft_close(int event, void *param);
+void					free_all(t_mlx **mlx);
+void					get_user_input(t_mlx *mlx);
+int						get_map_len(char *path);
+void					basic_direction(char *key, t_mlx *mlx);
+void					rotation_direction(char *direction, t_mlx *mlx);
+void					draw_wall(t_mlx *mlx, int r);
+int						ft_error(int choice);
+void					fov_details(t_mlx *mlx);
+int						attribute_data_map(t_mlx *mlx);
+void					lst_print_data(t_map *lst);
+int						check_data_map(t_data_map *data_map);
+int						init_map(t_mlx *mlx);
+int						convert_rgb_to_hex(char *color);
+char					*free_char(char *str);
+int						read_file(t_mlx *mlx);
+int						check_if_charset(char c, char *charset);
+int						check_map_validity(char **map);
 
 #endif

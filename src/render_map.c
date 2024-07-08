@@ -6,18 +6,18 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:25:15 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/08 20:01:06 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/08 20:31:22 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int attribute_data_map(t_mlx *mlx)
+int	attribute_data_map(t_mlx *mlx)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
-	while(mlx->map->file[i])
+	while (mlx->map->file[i])
 	{
 		if (!ft_strncmp(mlx->map->file[i], "NO", 2))
 			mlx->map->data_map->no = ft_strdup(mlx->map->file[i] + 2);
@@ -30,7 +30,7 @@ int attribute_data_map(t_mlx *mlx)
 		else if (!ft_strncmp(mlx->map->file[i], "F", 1))
 			mlx->map->data_map->floor_char = ft_strdup(mlx->map->file[i] + 2);
 		else if (!ft_strncmp(mlx->map->file[i], "C", 1))
-			mlx->map->data_map->sky_char = ft_strdup(mlx->map->file[i] + 2);			
+			mlx->map->data_map->sky_char = ft_strdup(mlx->map->file[i] + 2);
 		else if (mlx->map->file[i][0] == '1' || mlx->map->file[i][0] == '0')
 			break ;
 		i++;
@@ -41,7 +41,6 @@ int attribute_data_map(t_mlx *mlx)
 	return (SUCCESS);
 }
 
-
 int	get_map_len(char *path)
 {
 	char	*line;
@@ -51,7 +50,7 @@ int	get_map_len(char *path)
 	i = 0;
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-	    return (ft_error(FD_ERROR));
+		return (ft_error(FD_ERROR));
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -65,7 +64,7 @@ int	get_map_len(char *path)
 	return (i + 1);
 }
 
-int read_file(t_mlx *mlx)
+int	read_file(t_mlx *mlx)
 {
 	int	fd;
 	int	i;
@@ -88,14 +87,21 @@ int read_file(t_mlx *mlx)
 	return (SUCCESS);
 }
 
-int check_if_charset(char c)
+int	check_if_charset(char c, char *charset)
 {
-	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
-		return (1);
-	return (0);
+	int i;
+
+	i = 0;
+	while (charset[i])
+	{
+		if (c == charset[i])
+			return (SUCCESS);
+		i++;
+	}
+	return (ERROR);
 }
 
-void get_player_data(t_mlx *mlx, int i, int j, char c)
+void	get_player_data(t_mlx *mlx, int i, int j, char c)
 {
 	if (c == 'N')
 		mlx->player->angle = 3 * PI / 2;
@@ -105,7 +111,6 @@ void get_player_data(t_mlx *mlx, int i, int j, char c)
 		mlx->player->angle = 0;
 	else if (c == 'W')
 		mlx->player->angle = PI;
-	
 	mlx->player->x = j * 32 + 16;
 	mlx->player->y = i * 32 + 16;
 }
@@ -121,9 +126,9 @@ void	draw_map(t_mlx *mlx)
 		j = 0;
 		while (mlx->map->map[i][j])
 		{
-			if (check_if_charset(mlx->map->map[i][j]))
+			if (check_if_charset(mlx->map->map[i][j], "NSEW") == SUCCESS)
 				get_player_data(mlx, i, j, mlx->map->map[i][j]);
-			//if (mlx->map->map[i][j] == '1')
+			// if (mlx->map->map[i][j] == '1')
 			//	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->wall, j * 9, i
 			//		* 9);
 			j++;
