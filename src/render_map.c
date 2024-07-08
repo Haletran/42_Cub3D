@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:25:15 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/08 20:31:22 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/08 21:57:24 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,24 +117,21 @@ void	get_player_data(t_mlx *mlx, int i, int j, char c)
 
 void	draw_map(t_mlx *mlx)
 {
-	int	i;
-	int	j;
+    int	i;
+    int	j;
 
-	i = 0;
-	while (mlx->map->map[i])
-	{
-		j = 0;
-		while (mlx->map->map[i][j])
-		{
-			if (check_if_charset(mlx->map->map[i][j], "NSEW") == SUCCESS)
-				get_player_data(mlx, i, j, mlx->map->map[i][j]);
-			// if (mlx->map->map[i][j] == '1')
-			//	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->wall, j * 9, i
-			//		* 9);
-			j++;
-		}
-		i++;
-	}
-	mlx->map->data_map->width = j;
-	mlx->map->data_map->height = i;
+    i = 0;
+    while (mlx->map->map[i])
+    {
+        j = 0;
+        while (mlx->map->map[i][j])
+        {
+            //if (mlx->map->map[i][j] == '1')
+            //    mlx_pixel_put(mlx->mlx, mlx->win, j + 10, i + 10, 0xFFFFFFFF);
+            j++;
+        }
+        i++;
+    }
+    mlx->map->data_map->width = j;
+    mlx->map->data_map->height = i;
 }

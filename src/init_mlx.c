@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:37:15 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/08 20:25:44 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/08 22:18:59 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	init_images(t_mlx **mlx)
 
 	img_width = 32;
 	img_height = 32;
-	(*mlx)->wall = mlx_png_file_to_image((*mlx)->mlx, "images/floor.png",
+	(*mlx)->wall = mlx_png_file_to_image((*mlx)->mlx, "images/bar.png",
 			&img_width, &img_height);
 	init_textures(mlx);
 	return (SUCCESS);
@@ -67,8 +67,8 @@ static int	check_file_and_init(t_mlx **mlx)
 		return (ERROR);
 	if (init_map((*mlx)) != SUCCESS)
 		return (ERROR);
-    //if (check_map_validity((*mlx)->map->map) == ERROR)
-    //    return (ERROR);
+    if (check_map_validity((*mlx), (*mlx)->map->map) == ERROR)
+        return (ERROR);
     (*mlx)->map->data_map->floor_c = convert_rgb_to_hex((*mlx)->map->data_map->floor_char);
 	(*mlx)->map->data_map->sky_c = convert_rgb_to_hex((*mlx)->map->data_map->sky_char);
 	(*mlx)->map->data_map->floor_char = free_char((*mlx)->map->data_map->floor_char);

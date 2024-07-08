@@ -1,34 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   extras.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 10:49:02 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/08 22:38:38 by bapasqui         ###   ########.fr       */
+/*   Created: 2024/07/08 20:51:16 by bapasqui          #+#    #+#             */
+/*   Updated: 2024/07/08 22:38:06 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	main(int argc, char **argv)
-{
-	t_mlx	*mlx;
+void	my_put_image(t_mlx *mlx, int x, int y, void *img);
 
-	if (argc < 2)
-		return (ft_error(ARG_ERROR));
-	mlx = ft_calloc(1, sizeof(t_mlx));
-	mlx->mlx = mlx_init();
-	if (init(&mlx, argv) != SUCCESS)
-		return (ERROR);
-	mlx->win = mlx_new_window(mlx->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3D");
-	if (!mlx->win)
-		return (ERROR);
-	lst_print_data(mlx->map);
-	draw_map(mlx);
-	fov_details(mlx);
-	get_user_input(mlx);
-	mlx_loop(mlx->mlx);
-	// free_all(&mlx);
+void	print_banner(t_mlx *mlx)
+{
+	my_put_image(mlx, 0, 483, mlx->wall);
+}
+
+void	my_put_image(t_mlx *mlx, int x, int y, void *img)
+{
+	int	width;
+	int	height;
+
+	int i, j;
+	i = 0;
+	width = 920;
+	height = 100;
+	while (i < height)
+	{
+		j = 0;
+		while (j < width)
+		{
+			mlx_pixel_put(mlx->mlx, mlx->win, x + j, y + i,
+				mlx_get_image_pixel(mlx->mlx, img, j, i));
+			j++;
+		}
+		i++;
+	}
 }

@@ -6,13 +6,13 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 22:21:15 by baptiste          #+#    #+#             */
-/*   Updated: 2024/07/08 20:25:16 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/08 21:15:30 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int check_map_validity(char **map)
+int check_map_validity(t_mlx *mlx, char **map)
 {
     int i;
     int j;
@@ -24,8 +24,10 @@ int check_map_validity(char **map)
         j = 0;
         while (map[i][j])
         {
-            if (check_if_charset(map[i][j], "012NSEW") == ERROR)
-                return (ERROR);
+/*             if (check_if_charset(map[i][j], "012NSEW") == ERROR)
+                return (ERROR); */
+            if (check_if_charset(mlx->map->map[i][j], "NSEW") == SUCCESS)
+				get_player_data(mlx, i, j, mlx->map->map[i][j]);
             j++;
         }
         i++;
@@ -75,7 +77,7 @@ int	init_map(t_mlx *mlx)
 
 int	convert_rgb_to_hex(char *color)
 {
-	int a = 255; // Alpha value
+	int a = 255;
 	int r;
 	int g;
 	int b;

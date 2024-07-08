@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:02:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/08 20:20:49 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/08 21:52:23 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,8 @@ int						convert_rgb_to_hex(char *color);
 char					*free_char(char *str);
 int						read_file(t_mlx *mlx);
 int						check_if_charset(char c, char *charset);
-int						check_map_validity(char **map);
+int						check_map_validity(t_mlx *mlx, char **map);
+void					get_player_data(t_mlx *mlx, int i, int j, char c);
+void					print_banner(t_mlx *mlx);
 
 #endif

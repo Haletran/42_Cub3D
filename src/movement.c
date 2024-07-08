@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:24:46 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/08 20:08:43 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/08 22:30:27 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,6 @@ int	key_hook(int key, void *param)
 			mlx->player->x += mlx->player->delta_x;
 			mlx->player->y += mlx->player->delta_y;
 		}
-	}
-	if (key == 'm')
-	{
-		if (mlx->map->print == 0)
-			mlx->map->print = 1;
-		else
-			mlx->map->print = 0;
 	}
 	fov_details(mlx);
 	return (0);
