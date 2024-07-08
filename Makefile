@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/17 10:49:06 by bapasqui          #+#    #+#              #
-#    Updated: 2024/07/08 21:33:26 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/07/08 22:41:17 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ $(NAME): $(OBJS)
 	echo "\033[42mSuccessfully compiled :)\033[0m"
 
 gt:    
-	@if [ ! -d "MacroLibX" ]; then git clone https://github.com/seekrs/MacroLibX.git; fi
+	@if [ ! -d "MacroLibX" ]; then git clone https://github.com/seekrs/MacroLibX.git; else rm -rf MacroLibX && git clone https://github.com/seekrs/MacroLibX.git; fi
 
 norm:
 	@norminette $(SRCS)
