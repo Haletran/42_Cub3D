@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:25:15 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/07 20:38:50 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/08 20:01:06 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,28 @@ int read_file(t_mlx *mlx)
 	return (SUCCESS);
 }
 
+int check_if_charset(char c)
+{
+	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+		return (1);
+	return (0);
+}
+
+void get_player_data(t_mlx *mlx, int i, int j, char c)
+{
+	if (c == 'N')
+		mlx->player->angle = 3 * PI / 2;
+	else if (c == 'S')
+		mlx->player->angle = PI / 2;
+	else if (c == 'E')
+		mlx->player->angle = 0;
+	else if (c == 'W')
+		mlx->player->angle = PI;
+	
+	mlx->player->x = j * 32 + 16;
+	mlx->player->y = i * 32 + 16;
+}
+
 void	draw_map(t_mlx *mlx)
 {
 	int	i;
@@ -99,6 +121,8 @@ void	draw_map(t_mlx *mlx)
 		j = 0;
 		while (mlx->map->map[i][j])
 		{
+			if (check_if_charset(mlx->map->map[i][j]))
+				get_player_data(mlx, i, j, mlx->map->map[i][j]);
 			//if (mlx->map->map[i][j] == '1')
 			//	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->wall, j * 9, i
 			//		* 9);
