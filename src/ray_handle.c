@@ -203,6 +203,6 @@ void	fov_details(t_mlx *mlx)
 			mlx->ray->ray_angle -= 2 * PI;
 		i++;
 	}
-	print_banner(mlx);
+	//print_banner(mlx);
 	draw_map(mlx);
 }

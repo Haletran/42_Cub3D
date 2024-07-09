@@ -3,6 +3,7 @@
 		"iterator": "c",
 		"random": "c",
 		"queue": "c",
-		"stack": "c"
+		"stack": "c",
+		"algorithm": "c"
 	}
 }
