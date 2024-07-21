@@ -4,6 +4,10 @@
 		"random": "c",
 		"queue": "c",
 		"stack": "c",
-		"algorithm": "c"
+		"sdl.h": "c",
+		"cub3d.h": "c",
+		"string": "c",
+		"filesystem": "c",
+		"iosfwd": "c"
 	}
 }

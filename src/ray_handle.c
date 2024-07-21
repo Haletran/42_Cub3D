@@ -195,14 +195,11 @@ void	fov_details(t_mlx *mlx)
 	{
 		mlx->ray->h_hit = 0;
 		find_ray_lenght(mlx);
-		// if (i % 100 == 0)
-		//	draw_ray(mlx);
 		draw_wall(mlx, i);
 		mlx->ray->ray_angle += ((FOV * PI) / 180) / RAYS;
 		if (mlx->ray->ray_angle > 2 * PI)
 			mlx->ray->ray_angle -= 2 * PI;
 		i++;
 	}
-	//print_banner(mlx);
 	draw_map(mlx);
 }

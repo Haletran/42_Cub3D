@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 22:21:15 by baptiste          #+#    #+#             */
-/*   Updated: 2024/07/10 01:43:40 by baptiste         ###   ########.fr       */
+/*   Updated: 2024/07/21 17:07:14 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,11 @@ int check_map_validity(t_mlx *mlx, char **map)
         }
         i++;
     }
-	if (count != 1)
-		return (ft_error(DATA_ERROR));
-    return (SUCCESS);
+	if (map_is_closed(mlx) == ERROR)
+		return (ERROR);
+/* 	if (map_quadrillage(mlx) == ERROR)
+		return (ERROR); */
+	return (SUCCESS);
 }
 
 int	check_data_map(t_data_map *data_map)
@@ -80,6 +82,65 @@ int	init_map(t_mlx *mlx)
 	free_tab(mlx->map->file);
 	mlx->map->map[j] = NULL;
 	return (SUCCESS);
+}
+
+/* int map_quadrillage(t_mlx *mlx)
+{
+	int i;
+	int j;
+
+	i = 1;
+	j = 0;
+	while(mlx->map->map[i])
+	{
+		
+
+	}
+	
+} */
+
+int map_is_closed(t_mlx *mlx)
+{
+    int i;
+    int j;
+    int last_line;
+
+    if (!mlx || !mlx->map || !mlx->map->map)
+        return (ERROR);
+
+    i = 0;
+    j = 0;
+    last_line = mlx->map->data_map->height;
+	// check first line
+    while (mlx->map->map[0] && mlx->map->map[0][i])
+    {
+        if (mlx->map->map[0][i] != '1')
+        {
+            if (mlx->map->map[0][i] == '\n')
+                break;
+            if (mlx->map->map[0][i] == 32 && mlx->map->map[1][i] == 0)
+                return (ERROR);
+            else if (mlx->map->map[0][i] != 32)
+                return (ERROR);
+        }    
+        i++;
+    }
+    i = 0;
+	// check last line
+    while (mlx->map->map[last_line] &&  mlx->map->map[last_line][i])
+    {
+        if (mlx->map->map[last_line][i] != '1')
+        {
+            if (mlx->map->map[last_line][i] == '\n')
+                break;
+            if (mlx->map->map[last_line][i] == 32 && mlx->map->map[last_line - 1][i] == 0)
+                return (ERROR);
+            else if (mlx->map->map[last_line][i] != 32)
+                return (ERROR);
+        }    
+        i++;
+    }
+    return (SUCCESS);
 }
 
 int	convert_rgb_to_hex(char *color)
