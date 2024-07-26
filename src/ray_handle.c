@@ -191,7 +191,7 @@ void	fov_details(t_mlx *mlx)
 	mlx->ray->ray_angle = mlx->player->angle - (((FOV / 2) * PI) / 180);
 	if (mlx->ray->ray_angle < 0)
 		mlx->ray->ray_angle += 2 * PI;
-	while (i <= RAYS)
+	while (i < RAYS)
 	{
 		mlx->ray->h_hit = 0;
 		find_ray_lenght(mlx);

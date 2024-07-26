@@ -41,6 +41,8 @@ int check_map_validity(t_mlx *mlx, char **map)
 		return (ERROR);
 /* 	if (map_quadrillage(mlx) == ERROR)
 		return (ERROR); */
+	mlx->map->data_map->width = j;
+    mlx->map->data_map->height = i;
 	return (SUCCESS);
 }
 

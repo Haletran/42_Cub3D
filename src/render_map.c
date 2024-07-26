@@ -112,7 +112,36 @@ void	get_player_data(t_mlx *mlx, int i, int j, char c)
 	else if (c == 'W')
 		mlx->player->angle = PI;
 	mlx->player->x = j * 32 + 16;
-	mlx->player->y = i * 32 + 16;
+	mlx->player->y = i * 32 + 16; 
+}
+
+void	draw_wallmap(t_mlx *mlx, int i, int j, int color)
+{
+	int	x;
+	int	y;
+
+	x = j * 10;
+	y = i * 10;
+	while(x < (((j + 1) * 10)))
+	{
+		mlx_pixel_put(mlx->mlx, mlx->win, x + 5, (i * 10) + 5, color);
+		x++;
+	}
+	while(y < (((i + 1) * 10)))
+	{
+		mlx_pixel_put(mlx->mlx, mlx->win, x + 5, y + 5, color);
+		y++;
+	}
+	while(x > (j * 10))
+	{
+		mlx_pixel_put(mlx->mlx, mlx->win, x + 5, y + 5, color);
+		x--;
+	}
+	while(y > (i * 10))
+	{
+		mlx_pixel_put(mlx->mlx, mlx->win, (j * 10) + 5, y + 5, color);
+		y--;
+	}
 }
 
 void	draw_map(t_mlx *mlx)
@@ -126,12 +155,11 @@ void	draw_map(t_mlx *mlx)
         j = 0;
         while (mlx->map->map[i][j])
         {
-            //if (mlx->map->map[i][j] == '1')
-            //    mlx_pixel_put(mlx->mlx, mlx->win, j + 10, i + 10, 0xFFFFFFFF);
-            j++;
+            if (mlx->map->map[i][j] == '1')
+				draw_wallmap(mlx, i, j, 0xffffffff);
+			j++;
         }
         i++;
     }
-    mlx->map->data_map->width = j;
-    mlx->map->data_map->height = i;
+	draw_wallmap(mlx, (int)(mlx->player->y / 32), (int)(mlx->player->x / 32), 0xff00FF00);
 }
