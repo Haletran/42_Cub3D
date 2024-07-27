@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 22:21:15 by baptiste          #+#    #+#             */
-/*   Updated: 2024/07/21 17:07:14 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/27 02:18:29 by bapt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@ int check_map_validity(t_mlx *mlx, char **map)
 {
     int i;
     int j;
-	int count;
 
     i = 0;
     j = 0;
-	count = 0;
     while (map[i])
     {
         j = 0;
@@ -29,10 +27,7 @@ int check_map_validity(t_mlx *mlx, char **map)
 /*             if (check_if_charset(map[i][j], "012NSEW") == ERROR)
                 return (ERROR); */
             if (check_if_charset(mlx->map->map[i][j], "NSEW") == SUCCESS)
-			{
 				get_player_data(mlx, i, j, mlx->map->map[i][j]);
-				count += 1;
-			}
             j++;
         }
         i++;
@@ -104,14 +99,12 @@ int	init_map(t_mlx *mlx)
 int map_is_closed(t_mlx *mlx)
 {
     int i;
-    int j;
     int last_line;
 
     if (!mlx || !mlx->map || !mlx->map->map)
         return (ERROR);
 
     i = 0;
-    j = 0;
     last_line = mlx->map->data_map->height;
 	// check first line
     while (mlx->map->map[0] && mlx->map->map[0][i])
