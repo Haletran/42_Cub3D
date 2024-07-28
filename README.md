@@ -9,8 +9,10 @@ make a dynamic view inside a maze, in which you’ll have to find your way.
 ## TODO
 
 - Collision travers murs (pas de collision)
-- Parsing map / error message
-- Minimap maybe
+- PARSING BAPTISTE!!!!!!! map / error message
+- Ajouter vitesse de marche et rotation
+- fix minimap car segfault si on recule ou descend
+- Ajouter armes et rotation avec souris
 - [..]
 
 ## RESSOURCES
