@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:02:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/28 22:37:14 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/28 22:54:55 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,7 +179,7 @@ void					print_banner(t_mlx *mlx);
 int						map_is_closed(t_mlx *mlx);
 void lr_direction(char *key, t_mlx *mlx);
 int replace_space(t_mlx *mlx);
-void	my_put_image(t_mlx *mlx, t_xy *xy, t_wh *wh, void *img);
+void	my_put_image(t_mlx *mlx, t_xy *xy, t_wh *wh, void *img, int check);
 void	draw_ray(t_mlx *mlx);
 void draw_debug(t_mlx *mlx, t_xy *xy, t_wh *wh);
 

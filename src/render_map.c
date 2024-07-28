@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:25:15 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/28 22:44:15 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/28 22:55:28 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,6 +202,6 @@ void	draw_map(t_mlx *mlx)
 		
 		draw_wallmap(mlx, px, py, 0xff00FF00, mlx->minimap->img);
 	}
-	my_put_image(mlx, &(t_xy ){10, 10}, &(t_wh){150, 150}, mlx->minimap->img);
+	my_put_image(mlx, &(t_xy ){10, 10}, &(t_wh){150, 150}, mlx->minimap->img, 1);
 	mlx_destroy_image(mlx->mlx, mlx->minimap->img);
 }
