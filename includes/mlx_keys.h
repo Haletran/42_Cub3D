@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_keys.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 14:10:54 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/28 03:06:14 by bapt             ###   ########.fr       */
+/*   Updated: 2024/07/28 21:42:49 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@
 # define D_KEY 4
 # define A_KEY 7
 # define M_KEY 16
+# define H_KEY 11
 
 #endif

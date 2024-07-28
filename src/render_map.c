@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:25:15 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/28 21:22:59 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/28 22:44:15 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,8 +153,6 @@ void	draw_wallmap(t_mlx *mlx, int i, int j, int color, void *test)
 
 void	draw_map(t_mlx *mlx)
 {
-	static int xy[2] = {10, 10};
-	static int wh[2] = {150, 150};
     int	i;
     int	j;
 	int x;
@@ -166,6 +164,7 @@ void	draw_map(t_mlx *mlx)
 	x = 0;
 	px = 7;
 	py = 7;
+
 	mlx->minimap->img = mlx_new_image(mlx->mlx, 150, 150);
     i = mlx->player->y / 32 - 7;
 	tmp = i;
@@ -203,6 +202,6 @@ void	draw_map(t_mlx *mlx)
 		
 		draw_wallmap(mlx, px, py, 0xff00FF00, mlx->minimap->img);
 	}
-	my_put_image(mlx, xy, wh, mlx->minimap->img);
+	my_put_image(mlx, &(t_xy ){10, 10}, &(t_wh){150, 150}, mlx->minimap->img);
 	mlx_destroy_image(mlx->mlx, mlx->minimap->img);
 }

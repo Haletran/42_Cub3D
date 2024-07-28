@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/17 10:49:06 by bapasqui          #+#    #+#              #
-#    Updated: 2024/07/28 21:20:48 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/07/28 21:56:37 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRCS    := src/main.c \
 		   src/ray_handle.c \
 		   src/error.c \
 		   src/utils.c \
+		   src/draw_on_screen.c \
 
 
 OBJS_DIR := obj

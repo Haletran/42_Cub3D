@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:02:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/28 18:58:21 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/28 22:37:14 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,16 @@
 # define ERROR 1
 
 /*STRUCTURES*/
+
+typedef struct s_xy {
+	int x;
+	int y;
+} t_xy;
+
+typedef struct s_wh {
+	int w;
+	int h;
+} t_wh;
 
 typedef enum s_key 
 {
@@ -83,7 +93,9 @@ typedef struct s_mlx
 	struct s_img		*img_s;
 	struct s_img		*img_w;
 	struct s_img		*img_e;
+	struct s_img 		*debug_box;
 	struct s_img 		*minimap;
+	struct s_img		*cadre;
 }						t_mlx;
 
 typedef struct s_player
@@ -98,6 +110,7 @@ typedef struct s_player
 	double				dir;
 	double				fov;
 	int 				minimap;
+	int 				debug;
 	t_key				key;
 }						t_player;
 
@@ -166,7 +179,8 @@ void					print_banner(t_mlx *mlx);
 int						map_is_closed(t_mlx *mlx);
 void lr_direction(char *key, t_mlx *mlx);
 int replace_space(t_mlx *mlx);
-void	my_put_image(t_mlx *mlx, int *xy, int *size, void *img);
+void	my_put_image(t_mlx *mlx, t_xy *xy, t_wh *wh, void *img);
 void	draw_ray(t_mlx *mlx);
+void draw_debug(t_mlx *mlx, t_xy *xy, t_wh *wh);
 
 #endif

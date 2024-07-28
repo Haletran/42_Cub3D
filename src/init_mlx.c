@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:37:15 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/28 20:16:39 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/28 22:40:35 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,12 @@ int	init_images(t_mlx **mlx)
 
 	img_width = 32;
 	img_height = 32;
+	(*mlx)->minimap = ft_calloc(1, sizeof(t_img));
+	(*mlx)->cadre = ft_calloc(1, sizeof(t_img));
+	(*mlx)->cadre->img = mlx_png_file_to_image((*mlx)->mlx, "images/cadre.png", &img_width, &img_height);
 	(*mlx)->wall = mlx_png_file_to_image((*mlx)->mlx, "images/asd.png",
 			&img_width, &img_height);
 	init_textures(mlx);
-	(*mlx)->minimap = ft_calloc(1, sizeof(t_img));
 	return (SUCCESS);
 }
 
@@ -55,7 +57,8 @@ static int	init_values(t_mlx **mlx, char **str)
 	(*mlx)->player->x = 40;
 	(*mlx)->player->y = 40;
 	(*mlx)->player->angle = 0;
-	(*mlx)->player->minimap = 1;
+	(*mlx)->player->minimap = 0;
+	(*mlx)->player->debug = 0;
 	(*mlx)->player->delta_x = cos((*mlx)->player->angle) * 5;
 	(*mlx)->player->delta_y = sin((*mlx)->player->angle) * 5;
 	(*mlx)->map->file_lenght = get_map_len((*mlx)->map->path);

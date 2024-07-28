@@ -168,6 +168,8 @@ void	fov_details(t_mlx *mlx)
 	int i;
 
 	i = 0;
+	if (mlx->player->debug == 1)
+		mlx_clear_window(mlx->mlx, mlx->win);
 	mlx->ray->ray_angle = mlx->player->angle - (((FOV / 2) * PI) / 180);
 	if (mlx->ray->ray_angle < 0)
 		mlx->ray->ray_angle += 2 * PI;
@@ -181,6 +183,8 @@ void	fov_details(t_mlx *mlx)
 			mlx->ray->ray_angle -= 2 * PI;
 		i++;
 	}
+	if (mlx->player->debug == 1)
+		draw_debug(mlx, &(t_xy){300, 750}, &(t_wh){150, 140});
 	if (mlx->player->minimap == 1)
 		draw_map(mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:24:46 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/28 18:55:50 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/28 21:45:12 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,17 @@ void activate_minimap(t_mlx *mlx)
 		mlx->player->minimap = 1;
 	else
 		mlx->player->minimap = 0;
+}
+
+void others_actions(int key, t_mlx *mlx)
+{
+	if (key == H_KEY)
+	{
+		if (mlx->player->debug == 0)
+			mlx->player->debug = 1;
+		else
+			mlx->player->debug = 0;
+	}
 }
 
 
@@ -45,7 +56,7 @@ int	key_hook(int key, void *param)
 		lr_direction("a", mlx);
 	if (key == M_KEY)
 		activate_minimap(mlx);
-	//others_actions(key, mlx);
+	others_actions(key, mlx);
 	fov_details(mlx);
 	return (0);
 }
