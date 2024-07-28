@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:02:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/28 03:04:38 by bapt             ###   ########.fr       */
+/*   Updated: 2024/07/28 18:58:21 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct s_mlx
 	struct s_img		*img_s;
 	struct s_img		*img_w;
 	struct s_img		*img_e;
+	struct s_img 		*minimap;
 }						t_mlx;
 
 typedef struct s_player
@@ -164,5 +165,8 @@ void					get_player_data(t_mlx *mlx, int i, int j, char c);
 void					print_banner(t_mlx *mlx);
 int						map_is_closed(t_mlx *mlx);
 void lr_direction(char *key, t_mlx *mlx);
+int replace_space(t_mlx *mlx);
+void	my_put_image(t_mlx *mlx, int *xy, int *size, void *img);
+void	draw_ray(t_mlx *mlx);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 22:21:15 by baptiste          #+#    #+#             */
-/*   Updated: 2024/07/28 03:24:50 by bapt             ###   ########.fr       */
+/*   Updated: 2024/07/28 18:44:15 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int check_map_validity(t_mlx *mlx, char **map)
         }
         i++;
     }
-	if (map_is_closed(mlx) == ERROR)
-		return (ERROR);
+	//if (map_is_closed(mlx) == ERROR)
+	//	return (ERROR);
 	mlx->map->data_map->width = j;
     mlx->map->data_map->height = i;
 	return (SUCCESS);
@@ -58,6 +58,65 @@ int	check_data_map(t_data_map *data_map)
 	return (SUCCESS);
 }
 
+int get_maxlenght(char **str)
+{
+	int i;
+	int j;
+	int max;
+
+	i = 0;
+	max = 0;
+	while (str[i])
+	{
+		j = 0;
+		while (str[i][j])
+			j++;
+		if (j > max)
+			max = j;
+		i++;
+	}
+	return (max + 1);
+}
+
+int replace_space(t_mlx *mlx)
+{
+    int i;
+    int j;
+    char *tmp;
+	int max;
+	
+	max = get_maxlenght(mlx->map->map);
+    i = 0;
+	j = 0;
+    while (mlx->map->map[i])
+    {
+		j = 0;
+        tmp = malloc(sizeof(char) * max);
+		while (j < max)
+			tmp[j++] = '3';
+		tmp[j] = '\0';
+		j = 0;
+		while (j < max)
+        {
+			if (mlx->map->map[i][j] && mlx->map->map[i][j] == '0')
+				tmp[j] = '0';
+			else if (mlx->map->map[i][j] == '1')
+				tmp[j] = '1';
+			else if (mlx->map->map[i][j] && mlx->map->map[i][j] == 'N')
+				tmp[j] = 'N';
+            j++;
+        }
+        free(mlx->map->map[i]);
+		mlx->map->map[i] = NULL;
+        mlx->map->map[i] = ft_strdup(tmp);
+		mlx->map->map[i][j] = '\n';
+        free(tmp);
+		tmp = NULL;
+        i++;
+    }
+    return (SUCCESS);
+}
+
 int	init_map(t_mlx *mlx)
 {
 	int	i;
@@ -76,6 +135,7 @@ int	init_map(t_mlx *mlx)
 	}
 	free_tab(mlx->map->file);
 	mlx->map->map[j] = NULL;
+	replace_space(mlx);
 	return (SUCCESS);
 }
 

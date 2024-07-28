@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+         #
+#    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/17 10:49:06 by bapasqui          #+#    #+#              #
-#    Updated: 2024/07/28 03:07:49 by bapt             ###   ########.fr        #
+#    Updated: 2024/07/28 21:20:48 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRCS    := src/main.c \
 		   src/parser.c \
 		   src/ray_handle.c \
 		   src/error.c \
+		   src/utils.c \
 
 
 OBJS_DIR := obj

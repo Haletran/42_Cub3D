@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 10:49:02 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/28 18:55:13 by bapasqui         ###   ########.fr       */
+/*   Created: 2024/07/28 17:52:00 by bapasqui          #+#    #+#             */
+/*   Updated: 2024/07/28 21:19:52 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	main(int argc, char **argv)
+void	my_put_image(t_mlx *mlx, int *xy, int *wh, void *img)
 {
-	t_mlx	*mlx;
+	int	width;
+	int	height;
 
-	if (argc < 2)
-		return (ft_error(ARG_ERROR));
-	mlx = ft_calloc(1, sizeof(t_mlx));
-	mlx->mlx = mlx_init();
-	if (init(&mlx, argv) != SUCCESS)
-		return (ERROR);
-	mlx->win = mlx_new_window(mlx->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3D");
-	if (!mlx->win)
-		return (ERROR);
-	lst_print_data(mlx->map);
-	fov_details(mlx);
-	get_user_input(mlx);
-	mlx_loop(mlx->mlx);
-	//free_all(&mlx);
+	int i, j;
+	i = 0;
+	width = wh[0];
+	height = wh[1];
+	while (i < height)
+	{
+		j = 0;
+		while (j < width)
+		{
+			mlx_pixel_put(mlx->mlx, mlx->win, xy[1] + j, xy[0] + i,
+				mlx_get_image_pixel(mlx->mlx, img, j, i));
+			j++;
+		}
+		i++;
+	}
 }

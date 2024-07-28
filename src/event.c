@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:13:14 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/28 02:23:27 by bapt             ###   ########.fr       */
+/*   Updated: 2024/07/28 19:10:33 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	get_user_input(t_mlx *mlx)
 {
-	mlx_mouse_hide();
 	mlx_on_event(mlx->mlx, mlx->win, MLX_KEYDOWN, key_hook, mlx);
 	mlx_on_event(mlx->mlx, mlx->win, MLX_WINDOW_EVENT, ft_close, mlx);
 	// mlx_key_hook(mlx->win, key_hook, mlx);

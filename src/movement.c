@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:24:46 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/28 03:06:54 by bapt             ###   ########.fr       */
+/*   Updated: 2024/07/28 18:55:50 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	key_hook(int key, void *param)
 	if (key == ECHAP_KEY)
 	{
 		mlx->player->key = ECHAP;
-		exit(1);
+		mlx_loop_end(mlx->mlx);
 	}
 	if (key == W_KEY)
 		basic_direction("w", mlx);
