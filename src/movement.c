@@ -6,11 +6,20 @@
 /*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:24:46 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/28 02:42:51 by bapt             ###   ########.fr       */
+/*   Updated: 2024/07/28 03:06:54 by bapt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+void activate_minimap(t_mlx *mlx)
+{
+	if (mlx->player->minimap == 0)
+		mlx->player->minimap = 1;
+	else
+		mlx->player->minimap = 0;
+}
+
 
 int	key_hook(int key, void *param)
 {
@@ -34,6 +43,9 @@ int	key_hook(int key, void *param)
 		lr_direction("d", mlx);
 	if (key == A_KEY)
 		lr_direction("a", mlx);
+	if (key == M_KEY)
+		activate_minimap(mlx);
+	//others_actions(key, mlx);
 	fov_details(mlx);
 	return (0);
 }

@@ -1,6 +1,8 @@
 {
 	"files.associations": {
 		"iterator": "c",
-		"algorithm": "c"
+		"algorithm": "c",
+		"mlx.h": "c",
+		"cub3d.h": "c"
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:37:15 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/28 02:15:45 by bapt             ###   ########.fr       */
+/*   Updated: 2024/07/28 03:05:31 by bapt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,18 @@ int	init_images(t_mlx **mlx)
 static int	init_values(t_mlx **mlx, char **str)
 {
 	(*mlx)->map->path = ft_strdup(str[1]);
+	if (ft_strncmp((*mlx)->map->path + ft_strlen((*mlx)->map->path) - 4, ".cub",
+			4))
+		return (ft_error(NOT_CUB_ERROR));
 	(*mlx)->player->x = 40;
 	(*mlx)->player->y = 40;
 	(*mlx)->player->angle = 0;
+	(*mlx)->player->minimap = 0;
 	(*mlx)->player->delta_x = cos((*mlx)->player->angle) * 5;
 	(*mlx)->player->delta_y = sin((*mlx)->player->angle) * 5;
 	(*mlx)->map->file_lenght = get_map_len((*mlx)->map->path);
 	if ((*mlx)->map->file_lenght <= 0)
-		return (ft_error(NOTHING));
+		return (ft_error(NOTHING_ERROR));
 	return (SUCCESS);
 }
 
@@ -89,9 +93,6 @@ int	init(t_mlx **mlx, char **str)
 		return (ft_error(MALLOC_ERROR));
 	if (init_values(mlx, str) != SUCCESS)
 		return (ERROR);
-	if (ft_strncmp((*mlx)->map->path + ft_strlen((*mlx)->map->path) - 4, ".cub",
-			4))
-		return (ft_error(NOT_CUB));
 	if (check_file_and_init(mlx) != SUCCESS)
 		return (ERROR);
 	return (SUCCESS);

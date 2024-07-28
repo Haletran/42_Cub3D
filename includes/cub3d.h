@@ -6,7 +6,7 @@
 /*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:02:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/28 02:15:12 by bapt             ###   ########.fr       */
+/*   Updated: 2024/07/28 03:04:38 by bapt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB3D_H
 
 # include "../MacroLibX/includes/mlx.h"
+# include "error_msg.h"
 # include "../lib/libft.h"
 # include "colors.h"
 # include "mlx_keys.h"
@@ -35,20 +36,6 @@
 
 # define SUCCESS 0
 # define ERROR 1
-
-# define SUCCESS 0
-# define ERROR 1
-# define ARG_ERROR -20
-# define NO_FILE -30
-# define NOT_CUB -90
-# define NOT_VALID -40
-# define UNKNOWN -50
-# define MALLOC_ERROR -70
-# define ERROR_IMAGE -80
-# define FD_ERROR -100
-# define NOTHING -110
-# define DATA_ERROR -120
-# define PATH_ERROR -130
 
 /*STRUCTURES*/
 
@@ -109,6 +96,7 @@ typedef struct s_player
 	double				save;
 	double				dir;
 	double				fov;
+	int 				minimap;
 	t_key				key;
 }						t_player;
 
@@ -161,7 +149,7 @@ int						get_map_len(char *path);
 void					basic_direction(char *key, t_mlx *mlx);
 void					rotation_direction(char *direction, t_mlx *mlx);
 void					draw_wall(t_mlx *mlx, int r);
-int						ft_error(int choice);
+int						ft_error(char *error);
 void					fov_details(t_mlx *mlx);
 int						attribute_data_map(t_mlx *mlx);
 void					lst_print_data(t_map *lst);

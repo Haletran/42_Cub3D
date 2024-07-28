@@ -1,25 +1,5 @@
 #include "../includes/cub3d.h"
 
-/*
-horizontale
-si vers le bas, y + 32 et pixel = -1
-sinon step_y *= -1 et pixel = 1
-
-verticale
-si pas vers la gauche x + 32 et pixel = -1
-sinon step_x *= -1 et pixel = 1
- */
-
-/*
-horizontale
-si vers le bas et step_x > 0 || si pas vers le bas et step_x < 0
-	step_x *= -1;
-
-verticale
-si vers la gauche et step_y < 0 || si pas vers la gauche et step_y > 0
-	step_y *= -1;
- */
-
 void	print_data(t_mlx *mlx, float x, float y, int h)
 {
 	if (h)
@@ -201,5 +181,6 @@ void	fov_details(t_mlx *mlx)
 			mlx->ray->ray_angle -= 2 * PI;
 		i++;
 	}
-	draw_map(mlx);
+	if (mlx->player->minimap == 1)
+		draw_map(mlx);
 }
