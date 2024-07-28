@@ -6,7 +6,7 @@
 /*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 22:21:15 by baptiste          #+#    #+#             */
-/*   Updated: 2024/07/27 02:18:29 by bapt             ###   ########.fr       */
+/*   Updated: 2024/07/28 03:24:50 by bapt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ int check_map_validity(t_mlx *mlx, char **map)
     }
 	if (map_is_closed(mlx) == ERROR)
 		return (ERROR);
-/* 	if (map_quadrillage(mlx) == ERROR)
-		return (ERROR); */
 	mlx->map->data_map->width = j;
     mlx->map->data_map->height = i;
 	return (SUCCESS);
@@ -80,21 +78,6 @@ int	init_map(t_mlx *mlx)
 	mlx->map->map[j] = NULL;
 	return (SUCCESS);
 }
-
-/* int map_quadrillage(t_mlx *mlx)
-{
-	int i;
-	int j;
-
-	i = 1;
-	j = 0;
-	while(mlx->map->map[i])
-	{
-		
-
-	}
-	
-} */
 
 int map_is_closed(t_mlx *mlx)
 {
