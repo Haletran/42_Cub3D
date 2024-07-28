@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:02:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/21 14:28:56 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/28 02:15:12 by bapt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,19 @@
 
 /*STRUCTURES*/
 
+typedef enum s_key 
+{
+	RIGHT,
+	LEFT,
+	W,
+	A,
+	S,
+	D,
+	M,
+	ECHAP,
+}	t_key;
+
+
 typedef struct s_data_map
 {
 	char				*no;
@@ -96,6 +109,7 @@ typedef struct s_player
 	double				save;
 	double				dir;
 	double				fov;
+	t_key				key;
 }						t_player;
 
 typedef struct s_map
@@ -161,5 +175,6 @@ int						check_map_validity(t_mlx *mlx, char **map);
 void					get_player_data(t_mlx *mlx, int i, int j, char c);
 void					print_banner(t_mlx *mlx);
 int						map_is_closed(t_mlx *mlx);
+void lr_direction(char *key, t_mlx *mlx);
 
 #endif
