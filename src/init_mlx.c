@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:37:15 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/28 22:40:35 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/29 21:04:12 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ static int	init_values(t_mlx **mlx, char **str)
 	(*mlx)->player->angle = 0;
 	(*mlx)->player->minimap = 0;
 	(*mlx)->player->debug = 0;
+	(*mlx)->flood_error = false;
 	(*mlx)->player->delta_x = cos((*mlx)->player->angle) * 5;
 	(*mlx)->player->delta_y = sin((*mlx)->player->angle) * 5;
 	(*mlx)->map->file_lenght = get_map_len((*mlx)->map->path);
@@ -99,5 +100,9 @@ int	init(t_mlx **mlx, char **str)
 		return (ERROR);
 	if (check_file_and_init(mlx) != SUCCESS)
 		return (ERROR);
+	(*mlx)->map->file = ft_copy_tab((*mlx)->map->map, (*mlx)->map->file);
+	flood_fill((*mlx)->map->file, (*mlx), (int)(*mlx)->player->x / 32, (int)(*mlx)->player->y / 32);
+	if ((*mlx)->flood_error == true)
+		return (ft_error(MAP_ERROR));
 	return (SUCCESS);
 }

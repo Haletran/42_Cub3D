@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 22:21:15 by baptiste          #+#    #+#             */
-/*   Updated: 2024/07/28 21:32:19 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/29 20:22:45 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,62 +58,76 @@ int	check_data_map(t_data_map *data_map)
 	return (SUCCESS);
 }
 
-int get_maxlenght(char **str)
+char **create_tmp_map(char **map)
 {
-	int i;
-	int j;
-	int max;
+    int i;
+    int max;
+    int j;
+    int width;
 
-	i = 0;
-	max = 0;
-	while (str[i])
-	{
-		j = 0;
-		while (str[i][j])
-			j++;
-		if (j > max)
-			max = j;
-		i++;
-	}
-	return (max + 1);
+    i = 0;
+    char **tmp;
+    width = get_width(map);
+    max = get_maxlenght(map);
+    tmp = ft_calloc(sizeof(char *), width + 2);
+    if (!tmp)
+        return (NULL);
+    while (i < width + 1)
+    {
+        tmp[i] = ft_calloc(sizeof(char), max + 1);
+        j = 0;
+        while (j < max - 1)
+        {
+            tmp[i][j] = '3';
+            j++;
+        }
+        tmp[i][j] = '\n';
+        i++;
+    }
+    tmp[i] = NULL;
+    return (tmp);
 }
 
 int replace_space(t_mlx *mlx)
 {
     int i;
     int j;
-    char *tmp;
 	int max;
+	bool find_zero;
+	char **tmp;
+	int width;
 	
-	max = get_maxlenght(mlx->map->map);
     i = 0;
 	j = 0;
-    while (mlx->map->map[i])
-    {
+	find_zero = false;
+	width = get_width(mlx->map->map);
+	tmp = create_tmp_map(mlx->map->map);
+	max = get_maxlenght(mlx->map->map);
+	while (mlx->map->map[i])
+	{
 		j = 0;
-        tmp = malloc(sizeof(char) * max);
-		while (j < max)
-			tmp[j++] = '3';
-		tmp[j] = '\0';
-		j = 0;
-		while (j < max)
-        {
-			if (mlx->map->map[i][j] && mlx->map->map[i][j] == '0')
-				tmp[j] = '0';
-			else if (mlx->map->map[i][j] == '1')
-				tmp[j] = '1';
-			else if (mlx->map->map[i][j] && mlx->map->map[i][j] == 'N')
-				tmp[j] = 'N';
-            j++;
-        }
-        free(mlx->map->map[i]);
-		mlx->map->map[i] = NULL;
-        mlx->map->map[i] = ft_strdup(tmp);
-		mlx->map->map[i][j] = '\n';
-        free(tmp);
-		tmp = NULL;
-        i++;
-    }
+		while (mlx->map->map[i][j])
+		{
+			if (mlx->map->map[i][j] == '1')
+				tmp[i][j] = '1';
+			else if (mlx->map->map[i][j] == '0')
+			{
+				find_zero = true;
+				tmp[i][j] = '0';
+			}
+			else if (mlx->map->map[i][j] == 'N' || mlx->map->map[i][j] == 'S'
+				|| mlx->map->map[i][j] == 'E' || mlx->map->map[i][j] == 'W')
+				tmp[i][j] = mlx->map->map[i][j];
+			else if (mlx->map->map[i][j] == 32 && find_zero == true)
+				tmp[i][j] = '1';
+			j++;
+		}
+		find_zero = false;
+		i++;
+	}
+	free_tab(mlx->map->map);
+	mlx->map->map = ft_copy_tab(tmp, mlx->map->map);
+	free_tab(tmp);
     return (SUCCESS);
 }
 
@@ -137,48 +151,6 @@ int	init_map(t_mlx *mlx)
 	mlx->map->map[j] = NULL;
 	replace_space(mlx);
 	return (SUCCESS);
-}
-
-int map_is_closed(t_mlx *mlx)
-{
-    int i;
-    int last_line;
-
-    if (!mlx || !mlx->map || !mlx->map->map)
-        return (ERROR);
-
-    i = 0;
-    last_line = mlx->map->data_map->height;
-	// check first line
-    while (mlx->map->map[0] && mlx->map->map[0][i])
-    {
-        if (mlx->map->map[0][i] != '1')
-        {
-            if (mlx->map->map[0][i] == '\n')
-                break;
-            if (mlx->map->map[0][i] == 32 && mlx->map->map[1][i] == 0)
-                return (ERROR);
-            else if (mlx->map->map[0][i] != 32)
-                return (ERROR);
-        }    
-        i++;
-    }
-    i = 0;
-	// check last line
-    while (mlx->map->map[last_line] &&  mlx->map->map[last_line][i])
-    {
-        if (mlx->map->map[last_line][i] != '1')
-        {
-            if (mlx->map->map[last_line][i] == '\n')
-                break;
-            if (mlx->map->map[last_line][i] == 32 && mlx->map->map[last_line - 1][i] == 0)
-                return (ERROR);
-            else if (mlx->map->map[last_line][i] != 32)
-                return (ERROR);
-        }    
-        i++;
-    }
-    return (SUCCESS);
 }
 
 int	convert_rgb_to_hex(char *color)

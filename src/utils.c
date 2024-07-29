@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 17:52:00 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/28 22:58:55 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/29 20:09:32 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,50 @@ void	my_put_image(t_mlx *mlx, t_xy *xy, t_wh *wh, void *img, int check)
         }
         i++;
     }
+}
+
+char **ft_copy_tab(char **src, char **dest)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+    dest = ft_calloc(get_width(src) + 1, sizeof(char *));
+	while (src[i])
+	{
+		dest[i] = ft_strdup(src[i]);
+		i++;
+	}
+	return (dest);
+}
+
+int get_width(char **str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+int get_maxlenght(char **str)
+{
+	int i;
+	int j;
+	int max;
+
+	i = 0;
+	max = 0;
+	while (str[i])
+	{
+		j = 0;
+		while (str[i][j])
+			j++;
+		if (j > max)
+			max = j;
+		i++;
+	}
+	return (max + 1);
 }

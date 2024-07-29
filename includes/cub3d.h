@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:02:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/28 22:54:55 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/29 20:40:41 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 # define CUB3D_H
 
 # include "../MacroLibX/includes/mlx.h"
-# include "error_msg.h"
 # include "../lib/libft.h"
 # include "colors.h"
+# include "error_msg.h"
 # include "mlx_keys.h"
 # include <errno.h>
 # include <fcntl.h>
 # include <math.h>
+# include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -39,17 +40,19 @@
 
 /*STRUCTURES*/
 
-typedef struct s_xy {
-	int x;
-	int y;
-} t_xy;
+typedef struct s_xy
+{
+	int					x;
+	int					y;
+}						t_xy;
 
-typedef struct s_wh {
-	int w;
-	int h;
-} t_wh;
+typedef struct s_wh
+{
+	int					w;
+	int					h;
+}						t_wh;
 
-typedef enum s_key 
+typedef enum s_key
 {
 	RIGHT,
 	LEFT,
@@ -59,8 +62,7 @@ typedef enum s_key
 	D,
 	M,
 	ECHAP,
-}	t_key;
-
+}						t_key;
 
 typedef struct s_data_map
 {
@@ -86,6 +88,7 @@ typedef struct s_mlx
 	void				*floor;
 	void				*wall;
 	int					size;
+	bool flood_error;
 	struct s_player		*player;
 	struct s_ray		*ray;
 	struct s_map		*map;
@@ -93,8 +96,8 @@ typedef struct s_mlx
 	struct s_img		*img_s;
 	struct s_img		*img_w;
 	struct s_img		*img_e;
-	struct s_img 		*debug_box;
-	struct s_img 		*minimap;
+	struct s_img		*debug_box;
+	struct s_img		*minimap;
 	struct s_img		*cadre;
 }						t_mlx;
 
@@ -109,8 +112,8 @@ typedef struct s_player
 	double				save;
 	double				dir;
 	double				fov;
-	int 				minimap;
-	int 				debug;
+	int					minimap;
+	int					debug;
 	t_key				key;
 }						t_player;
 
@@ -177,10 +180,15 @@ int						check_map_validity(t_mlx *mlx, char **map);
 void					get_player_data(t_mlx *mlx, int i, int j, char c);
 void					print_banner(t_mlx *mlx);
 int						map_is_closed(t_mlx *mlx);
-void lr_direction(char *key, t_mlx *mlx);
-int replace_space(t_mlx *mlx);
-void	my_put_image(t_mlx *mlx, t_xy *xy, t_wh *wh, void *img, int check);
-void	draw_ray(t_mlx *mlx);
-void draw_debug(t_mlx *mlx, t_xy *xy, t_wh *wh);
+void					lr_direction(char *key, t_mlx *mlx);
+int						replace_space(t_mlx *mlx);
+void					my_put_image(t_mlx *mlx, t_xy *xy, t_wh *wh, void *img,
+							int check);
+void					draw_ray(t_mlx *mlx);
+void					draw_debug(t_mlx *mlx, t_xy *xy, t_wh *wh);
+int						get_width(char **str);
+char					**ft_copy_tab(char **src, char **dest);
+int						get_maxlenght(char **str);
+void   flood_fill(char **map, t_mlx *mlx, int x, int y);
 
 #endif

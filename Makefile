@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/17 10:49:06 by bapasqui          #+#    #+#              #
-#    Updated: 2024/07/28 21:56:37 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/07/29 20:12:45 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,13 +34,14 @@ SRCS    := src/main.c \
 		   src/error.c \
 		   src/utils.c \
 		   src/draw_on_screen.c \
+		   src/flood_fill.c \
 
 
 OBJS_DIR := obj
 OBJS    := $(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
 LIBS    := MacroLibX/libmlx.so -lSDL2 -lm
 
-all: $(NAME)
+all: gt $(NAME)
 
 $(OBJS_DIR)/%.o: %.c
 	@mkdir -p $(@D)
@@ -54,7 +55,7 @@ $(NAME): $(OBJS)
 	echo "\033[42mSuccessfully compiled :)\033[0m"
 
 gt:    
-	@if [ ! -d "MacroLibX" ]; then git clone https://github.com/seekrs/MacroLibX.git; else rm -rf MacroLibX && git clone https://github.com/seekrs/MacroLibX.git; fi
+	@if [ ! -d "MacroLibX" ]; then git clone https://github.com/seekrs/MacroLibX.git; fi
 
 norm:
 	@norminette $(SRCS)
