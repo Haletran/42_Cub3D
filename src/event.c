@@ -6,7 +6,7 @@
 /*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:13:14 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/31 01:34:36 by bapt             ###   ########.fr       */
+/*   Updated: 2024/07/31 01:38:07 by bapt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,6 @@ void	get_user_input(t_mlx *mlx)
 	mlx_on_event(mlx->mlx, mlx->win, MLX_KEYDOWN, keydown_keys, mlx);
 	mlx_on_event(mlx->mlx, mlx->win, MLX_KEYUP, reset_keys, mlx);
 	mlx_on_event(mlx->mlx, mlx->win, MLX_WINDOW_EVENT, ft_close, mlx);
-	// mlx_key_hook(mlx->win, key_hook, mlx);
-	// mlx_hook(mlx->win, 2, 1L << 0, window_hook, mlx);
-	// mlx_hook(mlx->win, 17, 0, ft_close, mlx);
 }
 
 int	window_hook(int event, void *param)

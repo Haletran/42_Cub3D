@@ -6,32 +6,11 @@
 /*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 21:45:33 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/31 01:30:06 by bapt             ###   ########.fr       */
+/*   Updated: 2024/07/31 01:40:29 by bapt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-#include <time.h>
-
-double calculate_fps()
-{
-    static clock_t last_time = 0;
-    clock_t current_time;
-    double elapsed_time;
-    double fps = 0.0;
-
-    current_time = clock();
-    if (last_time != 0)
-    {
-        elapsed_time = (double)(current_time - last_time) / CLOCKS_PER_SEC;
-        if (elapsed_time > 0.0)
-        {
-            fps = 1.0 / elapsed_time;
-        }
-    }
-    last_time = current_time;
-    return fps;
-}
 
 void draw_debug(t_mlx *mlx, t_xy *xy, t_wh *wh)
 {
@@ -62,6 +41,5 @@ void draw_debug(t_mlx *mlx, t_xy *xy, t_wh *wh)
     mlx_string_put(mlx->mlx, mlx->win, xy->y + 10, xy->x + 80, 0x00FFFFFFFF, ft_strjoin("angle = ", ft_itoa(mlx->player->angle)));
     mlx_string_put(mlx->mlx, mlx->win, xy->y + 10, xy->x + 100, 0x00FFFFFFFF, ft_strjoin("delta_x = ", ft_itoa(mlx->player->delta_x)));
     mlx_string_put(mlx->mlx, mlx->win, xy->y + 10, xy->x + 120, 0x00FFFFFFFF, ft_strjoin("delta_y = ", ft_itoa(mlx->player->delta_y)));
-    mlx_string_put(mlx->mlx, mlx->win, xy->y + 10, xy->x + 140, 0x00FFFFFFFF, ft_strjoin("fps = ", ft_itoa(calculate_fps())));
     mlx_destroy_image(mlx->mlx, mlx->debug_box);
 }
