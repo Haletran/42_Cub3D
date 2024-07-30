@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:24:46 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/29 23:26:03 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/31 01:36:55 by bapt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,32 +31,45 @@ void others_actions(int key, t_mlx *mlx)
 	}
 }
 
-
-int	key_hook(int key, void *param)
+int move_player(void *param)
 {
 	t_mlx	*mlx;
 
 	mlx = param;
-	if (key == ECHAP_KEY)
-	{
-		mlx->player->key = ECHAP;
-		mlx_loop_end(mlx->mlx);
-	}
-	if (key == W_KEY)
+	if (mlx->player->keys->w)
 		basic_direction("w", mlx);
-	if (key == S_KEY)
+	if (mlx->player->keys->s)
 		basic_direction("s", mlx);
+	if (mlx->player->keys->d)
+		lr_direction("d", mlx);
+	if (mlx->player->keys->a)
+		lr_direction("a", mlx);
+	return (0);
+}
+
+int keydown_keys(int key, void *params)
+{
+	t_mlx	*mlx;
+
+	mlx = params;
+	if (key == ECHAP_KEY)
+		mlx_loop_end(mlx->mlx);
+	if (key == W_KEY)
+		mlx->player->keys->w = 1;
+	if (key == S_KEY)
+		mlx->player->keys->s = 1;
 	if (key == LEFT_ARROW)
 		rotation_direction("left", mlx);
 	if (key == RIGHT_ARROW)
 		rotation_direction("right", mlx);
 	if (key == D_KEY)
-		lr_direction("d", mlx);
+		mlx->player->keys->d = 1;
 	if (key == A_KEY)
-		lr_direction("a", mlx);
+		mlx->player->keys->a = 1;
 	if (key == M_KEY)
 		activate_minimap(mlx);
 	others_actions(key, mlx);
 	fov_details(mlx);
+	move_player(mlx);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:37:15 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/29 21:36:22 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/31 01:15:07 by bapt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,15 @@ static int	init_values(t_mlx **mlx, char **str)
 	(*mlx)->player->delta_x = cos((*mlx)->player->angle) * 5;
 	(*mlx)->player->delta_y = sin((*mlx)->player->angle) * 5;
 	(*mlx)->map->file_lenght = get_map_len((*mlx)->map->path);
+	(*mlx)->player->keys = ft_calloc(1, sizeof(t_key));
+	if (!(*mlx)->player->keys)
+		return (ft_error(MALLOC_ERROR));
+	(*mlx)->player->keys->w = 0;
+	(*mlx)->player->keys->a = 0;
+	(*mlx)->player->keys->s = 0;
+	(*mlx)->player->keys->d = 0;
+	(*mlx)->player->keys->left = 0;
+	(*mlx)->player->keys->right = 0;
 	if ((*mlx)->map->file_lenght <= 0)
 		return (ft_error(NOTHING_ERROR));
 	return (SUCCESS);

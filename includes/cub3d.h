@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:02:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/29 20:40:41 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/31 01:32:49 by bapt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,14 @@ typedef struct s_wh
 	int					h;
 }						t_wh;
 
-typedef enum s_key
+typedef struct s_key
 {
-	RIGHT,
-	LEFT,
-	W,
-	A,
-	S,
-	D,
-	M,
-	ECHAP,
+	bool w;
+	bool a;
+	bool s;
+	bool d;
+	bool left;
+	bool right;
 }						t_key;
 
 typedef struct s_data_map
@@ -114,7 +112,7 @@ typedef struct s_player
 	double				fov;
 	int					minimap;
 	int					debug;
-	t_key				key;
+	struct s_key		*keys;
 }						t_player;
 
 typedef struct s_map
@@ -152,13 +150,14 @@ typedef struct s_img
 }						t_img;
 
 /* FUNCTIONS */
+int move_player(void *param);
 void					draw_map(t_mlx *mlx);
 int						init_map(t_mlx *mlx);
 float					pythagoras(t_mlx *mlx, float x, float y);
 void					free_tab(char **tab);
 int						init(t_mlx **mlx, char **str);
 int						window_hook(int event, void *param);
-int						key_hook(int key, void *param);
+int 					keydown_keys(int key, void *params);
 int						ft_close(int event, void *param);
 void					free_all(t_mlx **mlx);
 void					get_user_input(t_mlx *mlx);

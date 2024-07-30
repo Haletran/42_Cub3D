@@ -3,18 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:13:14 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/29 23:04:49 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/31 01:34:36 by bapt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
+int reset_keys(int event, void *param)
+{
+	t_mlx	*mlx;
+
+	mlx = param;
+	if (event == W_KEY)
+		mlx->player->keys->w = 0;
+	if (event == A_KEY)
+		mlx->player->keys->a = 0;
+	if (event == S_KEY)
+		mlx->player->keys->s = 0;
+	if (event == D_KEY)
+		mlx->player->keys->d = 0;
+	return (0);
+}
+
+
 void	get_user_input(t_mlx *mlx)
 {
-	mlx_on_event(mlx->mlx, mlx->win, MLX_KEYDOWN, key_hook, mlx);
+	mlx_on_event(mlx->mlx, mlx->win, MLX_KEYDOWN, keydown_keys, mlx);
+	mlx_on_event(mlx->mlx, mlx->win, MLX_KEYUP, reset_keys, mlx);
 	mlx_on_event(mlx->mlx, mlx->win, MLX_WINDOW_EVENT, ft_close, mlx);
 	// mlx_key_hook(mlx->win, key_hook, mlx);
 	// mlx_hook(mlx->win, 2, 1L << 0, window_hook, mlx);
