@@ -184,7 +184,7 @@ void	fov_details(t_mlx *mlx)
 		i++;
 	}
 	if (mlx->player->debug == 1)
-		draw_debug(mlx, &(t_xy){300, 750}, &(t_wh){150, 160});
+		draw_debug(mlx, &(t_xy){380, 750}, &(t_wh){150, 180});
 	if (mlx->player->minimap == 1)
 		draw_map(mlx);
 }

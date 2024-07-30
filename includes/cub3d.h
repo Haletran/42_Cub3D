@@ -6,7 +6,7 @@
 /*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:02:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/31 01:38:46 by bapt             ###   ########.fr       */
+/*   Updated: 2024/07/31 01:44:05 by bapt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 /* DEFINE */
 # define FOV 60
 # define GAME_NAME "Cub3D"
-# define RAYS 920
+# define RAYS 1000
 # define PI 3.14159265358979323846
 //# define RAYS_SIZE 100
 
