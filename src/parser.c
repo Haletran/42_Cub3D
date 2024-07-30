@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 22:21:15 by baptiste          #+#    #+#             */
-/*   Updated: 2024/07/29 23:20:56 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/31 01:11:28 by bapt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,17 +88,13 @@ int replace_space(t_mlx *mlx)
 {
     int i;
     int j;
-	int max;
 	bool find_zero;
 	char **tmp;
-	int width;
 	
     i = 0;
 	j = 0;
 	find_zero = false;
-	width = get_width(mlx->map->map);
 	tmp = create_tmp_map(mlx->map->map);
-	max = get_maxlenght(mlx->map->map);
 	while (mlx->map->map[i])
 	{
 		j = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:25:15 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/29 23:27:46 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/31 01:11:21 by bapt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,8 @@ int	read_file(t_mlx *mlx)
 {
 	int	fd;
 	int	i;
-	int j;
 
 	i = 0;
-	j = 0;
 	mlx->map->file = ft_calloc(sizeof(char *), mlx->map->file_lenght);
 	if (!mlx->map->file)
 		return (ft_error(MALLOC_ERROR));
@@ -82,7 +80,6 @@ int	read_file(t_mlx *mlx)
 	while (1)
 	{
 		mlx->map->file[i] = get_next_line(fd);
-		j = 0;
 		if (!mlx->map->file[i])
 			break ;
 		i++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 17:52:00 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/29 20:09:32 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/31 01:10:56 by bapt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,8 @@ void	my_put_image(t_mlx *mlx, t_xy *xy, t_wh *wh, void *img, int check)
 char **ft_copy_tab(char **src, char **dest)
 {
 	int i;
-	int j;
 
 	i = 0;
-	j = 0;
     dest = ft_calloc(get_width(src) + 1, sizeof(char *));
 	while (src[i])
 	{

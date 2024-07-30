@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 22:44:23 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/29 23:51:00 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/07/31 01:11:14 by bapt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,24 +47,12 @@ void	rotation_direction(char *direction, t_mlx *mlx)
 
 void	basic_direction(char *key, t_mlx *mlx)
 {
-    int x;
-    int y;
-    int collision;
-
-    x = (int)(mlx->player->x);
-    y = (int)(mlx->player->y);
     if (!ft_strncmp(key, "w", 1))
     {
-        if (handle_collision(mlx))
-		{
-			mlx->player->x -= mlx->player->delta_x;
-			mlx->player->y -= mlx->player->delta_y;
-		}
         mlx->player->delta_x = cos(mlx->player->angle) * 5;
         mlx->player->delta_y = sin(mlx->player->angle) * 5;
-        collision = handle_collision(mlx);
-            mlx->player->x += mlx->player->delta_x;
-            mlx->player->y += mlx->player->delta_y;
+        mlx->player->x += mlx->player->delta_x;
+        mlx->player->y += mlx->player->delta_y;
     }
     else if (!ft_strncmp(key, "s", 1))
     {
