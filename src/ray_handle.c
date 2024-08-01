@@ -27,8 +27,8 @@ void	draw_ray(t_mlx *mlx)
 	{
 		x = mlx->player->x + j * cos(mlx->ray->ray_angle);
 		y = mlx->player->y + j * sin(mlx->ray->ray_angle);
-		if (x < 0 || y < 0 || x > mlx->map->data_map->width * 32
-			|| y > mlx->map->data_map->height * 32)
+		if (x < 0 || y < 0 || x > mlx->map->data_map->width * TILL_S
+			|| y > mlx->map->data_map->height * TILL_S)
 			break ;
 		color = 0x00FF00;
 		mlx_pixel_put(mlx->mlx, mlx->win, x, y, color);
@@ -57,11 +57,11 @@ void	init_step(t_mlx *mlx, float *inter, char c)
 	mlx->ray->pix = 1;
 	if (c == 'h')
 	{
-		mlx->ray->step_x = 32 / tan(mlx->ray->ray_angle);
-		mlx->ray->step_y = 32;
+		mlx->ray->step_x = TILL_S / tan(mlx->ray->ray_angle);
+		mlx->ray->step_y = TILL_S;
 		if (mlx->ray->ray_angle > 0 && mlx->ray->ray_angle < PI)
 		{
-			*inter += 32;
+			*inter += TILL_S;
 			mlx->ray->pix = -1;
 		}
 		else
@@ -69,11 +69,11 @@ void	init_step(t_mlx *mlx, float *inter, char c)
 	}
 	else if (c == 'v')
 	{
-		mlx->ray->step_x = 32;
-		mlx->ray->step_y = 32 * tan(mlx->ray->ray_angle);
+		mlx->ray->step_x = TILL_S;
+		mlx->ray->step_y = TILL_S * tan(mlx->ray->ray_angle);
 		if (!(mlx->ray->ray_angle > PI / 2 && mlx->ray->ray_angle < 3 * PI / 2))
 		{
-			*inter += 32;
+			*inter += TILL_S;
 			mlx->ray->pix = -1;
 		}
 		else
@@ -88,8 +88,8 @@ int	hit_wall(t_mlx *mlx, float x, float y)
 
 	if (x < 0 || y < 0)
 		return (0);
-	pos_x = (int)x / 32;
-	pos_y = (int)y / 32;
+	pos_x = (int)x / TILL_S;
+	pos_y = (int)y / TILL_S;
 	if (pos_y >= mlx->map->data_map->height
 		|| pos_x >= mlx->map->data_map->width)
 		return (0);
@@ -106,7 +106,7 @@ float	get_horizontal_hit(t_mlx *mlx)
 	float	h_x;
 	float	h_y;
 
-	h_y = ((int)mlx->player->y / 32) * 32;
+	h_y = ((int)mlx->player->y / TILL_S) * TILL_S;
 	init_step(mlx, &h_y, 'h');
 	h_x = mlx->player->x + (h_y - mlx->player->y) / tan(mlx->ray->ray_angle);
 	if ((check_neg_step(mlx, 1) && mlx->ray->step_x > 0)
@@ -127,7 +127,7 @@ float	get_vertical_hit(t_mlx *mlx)
 	float	v_x;
 	float	v_y;
 
-	v_x = ((int)mlx->player->x / 32) * 32;
+	v_x = ((int)mlx->player->x / TILL_S) * TILL_S;
 	init_step(mlx, &v_x, 'v');
 	v_y = mlx->player->y + (v_x - mlx->player->x) * tan(mlx->ray->ray_angle);
 	if ((check_neg_step(mlx, 0) && mlx->ray->step_y < 0)

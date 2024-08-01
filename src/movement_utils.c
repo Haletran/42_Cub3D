@@ -17,8 +17,8 @@ int handle_collision(t_mlx *mlx)
 	int x;
 	int y;
 
-	x = (int)(mlx->player->x / 32);
-	y = (int)(mlx->player->y / 32);
+	x = (int)(mlx->player->x / TILL_S);
+	y = (int)(mlx->player->y / TILL_S);
 	if (mlx->map->map[y][x + 2] == '1')
 		return (1);
 	return (0);
@@ -29,7 +29,7 @@ void	rotation_direction(char *direction, t_mlx *mlx)
 {
 	if (!ft_strncmp(direction, "left", 4))
 	{
-		mlx->player->angle -= 0.2;
+		mlx->player->angle -= 0.1;
 		if (mlx->player->angle < 0)
 			mlx->player->angle += 2 * PI;
 		mlx->player->delta_x = cos(mlx->player->angle) * 5;
@@ -37,7 +37,7 @@ void	rotation_direction(char *direction, t_mlx *mlx)
 	}
 	else if (!ft_strncmp(direction, "right", 5))
 	{
-		mlx->player->angle += 0.2;
+		mlx->player->angle += 0.1;
 		if (mlx->player->angle > 2 * PI)
 			mlx->player->angle -= 2 * PI;
 		mlx->player->delta_x = cos(mlx->player->angle) * 5;

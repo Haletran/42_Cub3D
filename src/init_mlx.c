@@ -37,8 +37,6 @@ int	init_images(t_mlx **mlx)
 	int	img_width;
 	int	img_height;
 
-	img_width = 32;
-	img_height = 32;
 	(*mlx)->minimap = ft_calloc(1, sizeof(t_img));
 	(*mlx)->cadre = ft_calloc(1, sizeof(t_img));
 	(*mlx)->cadre->img = mlx_png_file_to_image((*mlx)->mlx, "images/cadre.png", &img_width, &img_height);
@@ -110,7 +108,7 @@ int	init(t_mlx **mlx, char **str)
 	if (check_file_and_init(mlx) != SUCCESS)
 		return (ERROR);
 	(*mlx)->map->file = ft_copy_tab((*mlx)->map->map, (*mlx)->map->file);
-	flood_fill((*mlx)->map->file, (*mlx), (int)(*mlx)->player->x / 32, (int)(*mlx)->player->y / 32);
+	flood_fill((*mlx)->map->file, (*mlx), (int)(*mlx)->player->x / TILL_S, (int)(*mlx)->player->y / TILL_S);
 	if ((*mlx)->flood_error == true)
 		return (ft_error(MAP_ERROR));
 	return (SUCCESS);

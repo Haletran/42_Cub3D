@@ -125,10 +125,10 @@ void	draw_in_color(t_mlx *mlx, int ray_index, float start, float end)
 	float	step;
 
 	if (mlx->ray->h_hit)
-		wall_x = (fmod(mlx->ray->x, 32) * 100 / 32) / 100;
+		wall_x = (fmod(mlx->ray->x, TILL_S) * 100 / TILL_S) / 100;
 	else
 	{
-		wall_x = (fmod(mlx->ray->y, 32) * 100 / 32) / 100;
+		wall_x = (fmod(mlx->ray->y, TILL_S) * 100 / TILL_S) / 100;
 	}
 	tex_x = calculate_tex_x(mlx, wall_x);
 	step = calculate_step(mlx);
@@ -152,7 +152,7 @@ void	draw_wall(t_mlx *mlx, int ray_index)
 	mlx->ray->dist *= cos(keep_circle(mlx->ray->ray_angle
 				- mlx->player->angle));
 	screen_x = (ray_index * WINDOW_WIDTH) / RAYS;
-	mlx->ray->h_height = (32 / mlx->ray->dist) * ((WINDOW_WIDTH / 2) / tan(((FOV
+	mlx->ray->h_height = (TILL_S / mlx->ray->dist) * ((WINDOW_WIDTH / 2) / tan(((FOV
 						/ 2) * PI) / 180));
 	start = mlx->player->eye_h - mlx->ray->h_height / 2;
 	end = mlx->player->eye_h + mlx->ray->h_height / 2;

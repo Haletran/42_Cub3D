@@ -62,6 +62,7 @@ void    draw_minimap(t_mlx *mlx)
         }
         i++;
     }
+	draw_square(mlx, mlx->player->x / TILL_S, mlx->player->y / TILL_S, 0xff00ff00);
     my_put_image(mlx, &(t_xy ){10, 10}, &(t_wh){mlx->minimap->t_wid, mlx->minimap->t_hei}, mlx->minimap->img, 0);
     mlx_destroy_image(mlx->mlx, mlx->minimap->img);
 }

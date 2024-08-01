@@ -112,6 +112,6 @@ void	get_player_data(t_mlx *mlx, int i, int j, char c)
 		mlx->player->angle = 0;
 	else if (c == 'W')
 		mlx->player->angle = PI;
-	mlx->player->x = j * 32 + 16;
-	mlx->player->y = i * 32 + 16; 
+	mlx->player->x = j * TILL_S + 16;
+	mlx->player->y = i * TILL_S + 16; 
 }

@@ -29,10 +29,9 @@
 /* DEFINE */
 # define FOV 60
 # define GAME_NAME "Cub3D"
-# define RAYS 1000
+# define RAYS 920
 # define PI 3.14159265358979323846
-//# define RAYS_SIZE 100
-
+# define TILL_S 64
 # define WINDOW_WIDTH 920
 # define WINDOW_HEIGHT 580
 
@@ -190,6 +189,6 @@ int						get_width(char **str);
 char					**ft_copy_tab(char **src, char **dest);
 int						get_maxlenght(char **str);
 void   					flood_fill(char **map, t_mlx *mlx, int x, int y);
-void    				draw_square(t_mlx *mlx, void *img, int x, int y, int color);
+void    				draw_square(t_mlx *mlx, int x, int y, int color);
 
 #endif
