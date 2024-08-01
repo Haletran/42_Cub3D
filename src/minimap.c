@@ -12,40 +12,34 @@
 
 #include "../includes/cub3d.h"
 
-void    draw_boy(t_mlx *mlx)
+void	draw_square(t_mlx *mlx, int j, int i, int color)
 {
-     draw_square(mlx, mlx->minimap->img, ((mlx->player->x / 32) * 12), (mlx->player->y / 32) * 12, 0xff00ff00);
-}
+	int	x;
+	int	y;
 
-void    draw_square(t_mlx *mlx, void *img, int x, int y, int color)
-{
-    int i;
+	x = j * 10;
+	y = i * 10;
 
-    i = 0;
-    while(i < 10)
-    {
-        mlx_set_image_pixel(mlx->mlx, img, x, y, color);
-        x++;
-        i++;
-    }
-    while(i > 0)
-    {
-        mlx_set_image_pixel(mlx->mlx, img, x, y, color);
-        y++;
-        i--;
-    }
-    while(i < 10)
-    {
-        mlx_set_image_pixel(mlx->mlx, img, x, y, color);
-        x--;
-        i++;
-    }
-    while(i > 0)
-    {
-        mlx_set_image_pixel(mlx->mlx, img, x, y, color);
-        y--;
-        i--;
-    }
+	while(x < (((j + 1) * 10)))
+	{
+		mlx_set_image_pixel(mlx->mlx, mlx->minimap->img, x + 5, (i * 10), color);
+		x++;
+	}
+	while(y < (((i + 1) * 10)))
+	{
+		mlx_set_image_pixel(mlx->mlx, mlx->minimap->img, x + 5, y, color);
+		y++;
+	}
+	while(x > (j * 10))
+	{
+		mlx_set_image_pixel(mlx->mlx, mlx->minimap->img, x + 5, y, color);
+		x--;
+	}
+	while(y > (i * 10))
+	{
+		mlx_set_image_pixel(mlx->mlx, mlx->minimap->img, (j * 10) + 5, y, color);
+		y--;
+	}
 }
 
 void    draw_minimap(t_mlx *mlx)
@@ -54,8 +48,8 @@ void    draw_minimap(t_mlx *mlx)
     int    j;
 
     i = 0;
-    mlx->minimap->t_wid = (int)ft_strlen(mlx->map->map[0]) * 12;
-    mlx->minimap->t_hei = get_width(mlx->map->map) * 12;
+    mlx->minimap->t_wid = (int)ft_strlen(mlx->map->map[0]) * 10;
+    mlx->minimap->t_hei = get_width(mlx->map->map) * 10;
     mlx->minimap->img = mlx_new_image(mlx->mlx, mlx->minimap->t_wid, mlx->minimap->t_hei);
     while(mlx->map->map[i])
     {
@@ -63,12 +57,11 @@ void    draw_minimap(t_mlx *mlx)
         while(mlx->map->map[i][j])
         {
             if(mlx->map->map[i][j] == '1')
-                draw_square(mlx, mlx->minimap->img, (j * 12) + 5, (i * 12) - 5, 0xffffffff);
+                draw_square(mlx, j, i, 0xffffffff);
             j++;
         }
         i++;
     }
-    draw_boy(mlx);
     my_put_image(mlx, &(t_xy ){10, 10}, &(t_wh){mlx->minimap->t_wid, mlx->minimap->t_hei}, mlx->minimap->img, 0);
     mlx_destroy_image(mlx->mlx, mlx->minimap->img);
 }
