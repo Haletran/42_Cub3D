@@ -11,7 +11,7 @@ make a dynamic view inside a maze, in which you’ll have to find your way.
 - Collision travers murs (pas de collision)
 - PARSING BAPTISTE!!!!!!! map / error message
 - Ajouter vitesse de marche et rotation
-- fix minimap car segfault si on recule ou descend
+- ajouter player sur minimap
 - Ajouter armes et rotation avec souris
 - [..]
 
