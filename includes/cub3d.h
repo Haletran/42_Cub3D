@@ -152,7 +152,7 @@ typedef struct s_img
 
 /* FUNCTIONS */
 int move_player(void *param);
-void					draw_map(t_mlx *mlx);
+void					draw_minimap(t_mlx *mlx);
 int						init_map(t_mlx *mlx);
 float					pythagoras(t_mlx *mlx, float x, float y);
 void					free_tab(char **tab);
@@ -189,6 +189,7 @@ void					draw_debug(t_mlx *mlx, t_xy *xy, t_wh *wh);
 int						get_width(char **str);
 char					**ft_copy_tab(char **src, char **dest);
 int						get_maxlenght(char **str);
-void   flood_fill(char **map, t_mlx *mlx, int x, int y);
+void   					flood_fill(char **map, t_mlx *mlx, int x, int y);
+void    				draw_square(t_mlx *mlx, void *img, int x, int y, int color);
 
 #endif

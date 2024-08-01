@@ -35,6 +35,7 @@ SRCS    := src/main.c \
 		   src/utils.c \
 		   src/draw_on_screen.c \
 		   src/flood_fill.c \
+		   src/minimap.c \
 
 
 OBJS_DIR := obj
