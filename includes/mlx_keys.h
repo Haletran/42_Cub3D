@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_keys.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 14:10:54 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/28 21:42:49 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/09 01:05:29 by bapt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@
 # define A_KEY 7
 # define M_KEY 16
 # define H_KEY 11
+# define SHIFT_KEY 225
 
 #endif

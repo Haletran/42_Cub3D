@@ -6,7 +6,7 @@
 /*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 10:49:02 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/31 01:38:56 by bapt             ###   ########.fr       */
+/*   Updated: 2024/08/09 01:35:19 by bapt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,11 @@ int	main(int argc, char **argv)
 	mlx->win = mlx_new_window(mlx->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, GAME_NAME);
 	if (!mlx->win)
 		return (ERROR);
+	print_banner();
 	lst_print_data(mlx->map);
 	fov_details(mlx);
 	get_user_input(mlx);
 	mlx_loop(mlx->mlx);
+	printf(BOLDYELLOW"\n-- Goodbye, user! Have a great day! --\n"RESET);
 	//free_all(&mlx);
 }

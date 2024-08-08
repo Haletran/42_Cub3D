@@ -6,7 +6,7 @@
 /*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:13:14 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/31 01:38:07 by bapt             ###   ########.fr       */
+/*   Updated: 2024/08/09 01:34:22 by bapt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ int reset_keys(int event, void *param)
 		mlx->player->keys->s = 0;
 	if (event == D_KEY)
 		mlx->player->keys->d = 0;
+	if (event == SHIFT_KEY)
+	{
+		mlx->player->keys->shift = 0;
+		mlx->player->speed = PLAYER_SPEED;
+	}
 	return (0);
 }
 

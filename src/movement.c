@@ -6,7 +6,7 @@
 /*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:24:46 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/31 01:36:55 by bapt             ###   ########.fr       */
+/*   Updated: 2024/08/09 01:10:24 by bapt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int move_player(void *param)
 		lr_direction("d", mlx);
 	if (mlx->player->keys->a)
 		lr_direction("a", mlx);
+	if (mlx->player->keys->shift)
+		mlx->player->speed = PLAYER_SPEED * 2;
 	return (0);
 }
 
@@ -68,6 +70,8 @@ int keydown_keys(int key, void *params)
 		mlx->player->keys->a = 1;
 	if (key == M_KEY)
 		activate_minimap(mlx);
+	if (key == SHIFT_KEY)
+		mlx->player->keys->shift = 1;
 	others_actions(key, mlx);
 	fov_details(mlx);
 	move_player(mlx);

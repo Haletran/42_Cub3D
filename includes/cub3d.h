@@ -6,7 +6,7 @@
 /*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:02:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/31 01:44:05 by bapt             ###   ########.fr       */
+/*   Updated: 2024/08/09 01:36:38 by bapt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@
 # define TILL_S 64
 # define WINDOW_WIDTH 920
 # define WINDOW_HEIGHT 580
+# define PLAYER_SPEED 5
+# define DEBUG_INFO 1
 
 # define SUCCESS 0
 # define ERROR 1
@@ -60,6 +62,7 @@ typedef struct s_key
 	bool d;
 	bool left;
 	bool right;
+	bool shift;
 }						t_key;
 
 typedef struct s_data_map
@@ -112,6 +115,7 @@ typedef struct s_player
 	double				fov;
 	int					minimap;
 	int					debug;
+	int 				speed;
 	struct s_key		*keys;
 }						t_player;
 
@@ -177,7 +181,6 @@ int						read_file(t_mlx *mlx);
 int						check_if_charset(char c, char *charset);
 int						check_map_validity(t_mlx *mlx, char **map);
 void					get_player_data(t_mlx *mlx, int i, int j, char c);
-void					print_banner(t_mlx *mlx);
 int						map_is_closed(t_mlx *mlx);
 void					lr_direction(char *key, t_mlx *mlx);
 int						replace_space(t_mlx *mlx);
@@ -190,5 +193,6 @@ char					**ft_copy_tab(char **src, char **dest);
 int						get_maxlenght(char **str);
 void   					flood_fill(char **map, t_mlx *mlx, int x, int y);
 void    				draw_square(t_mlx *mlx, int x, int y, int color);
+void	print_banner(void);
 
 #endif

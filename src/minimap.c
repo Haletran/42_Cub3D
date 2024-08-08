@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdeviann <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 13:26:40 by qdeviann          #+#    #+#             */
-/*   Updated: 2024/08/01 13:26:45 by qdeviann         ###   ########.fr       */
+/*   Updated: 2024/08/09 00:53:23 by bapt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	draw_square(t_mlx *mlx, int j, int i, int color)
 
 	x = j * 10;
 	y = i * 10;
-
 	while(x < (((j + 1) * 10)))
 	{
 		mlx_set_image_pixel(mlx->mlx, mlx->minimap->img, x + 5, (i * 10), color);
@@ -63,6 +62,6 @@ void    draw_minimap(t_mlx *mlx)
         i++;
     }
 	draw_square(mlx, mlx->player->x / TILL_S, mlx->player->y / TILL_S, 0xff00ff00);
-    my_put_image(mlx, &(t_xy ){10, 10}, &(t_wh){mlx->minimap->t_wid, mlx->minimap->t_hei}, mlx->minimap->img, 0);
+    my_put_image(mlx, &(t_xy ){10, 10}, &(t_wh){mlx->minimap->t_wid, mlx->minimap->t_hei}, mlx->minimap->img, 1);
     mlx_destroy_image(mlx->mlx, mlx->minimap->img);
 }

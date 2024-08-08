@@ -6,7 +6,7 @@
 /*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 22:44:23 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/31 01:11:14 by bapt             ###   ########.fr       */
+/*   Updated: 2024/08/09 01:11:27 by bapt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,32 +32,28 @@ void	rotation_direction(char *direction, t_mlx *mlx)
 		mlx->player->angle -= 0.1;
 		if (mlx->player->angle < 0)
 			mlx->player->angle += 2 * PI;
-		mlx->player->delta_x = cos(mlx->player->angle) * 5;
-		mlx->player->delta_y = sin(mlx->player->angle) * 5;
 	}
 	else if (!ft_strncmp(direction, "right", 5))
 	{
 		mlx->player->angle += 0.1;
 		if (mlx->player->angle > 2 * PI)
 			mlx->player->angle -= 2 * PI;
-		mlx->player->delta_x = cos(mlx->player->angle) * 5;
-		mlx->player->delta_y = sin(mlx->player->angle) * 5;
 	}
+	mlx->player->delta_x = cos(mlx->player->angle) * mlx->player->speed;
+	mlx->player->delta_y = sin(mlx->player->angle) * mlx->player->speed;
 }
 
 void	basic_direction(char *key, t_mlx *mlx)
 {
+	mlx->player->delta_x = cos(mlx->player->angle) * mlx->player->speed;
+    mlx->player->delta_y = sin(mlx->player->angle) * mlx->player->speed;
     if (!ft_strncmp(key, "w", 1))
     {
-        mlx->player->delta_x = cos(mlx->player->angle) * 5;
-        mlx->player->delta_y = sin(mlx->player->angle) * 5;
         mlx->player->x += mlx->player->delta_x;
         mlx->player->y += mlx->player->delta_y;
     }
     else if (!ft_strncmp(key, "s", 1))
     {
-        mlx->player->delta_x = cos(mlx->player->angle) * 5;
-        mlx->player->delta_y = sin(mlx->player->angle) * 5;
         mlx->player->x -= mlx->player->delta_x;
         mlx->player->y -= mlx->player->delta_y;
     }
@@ -65,17 +61,15 @@ void	basic_direction(char *key, t_mlx *mlx)
 
 void lr_direction(char *key, t_mlx *mlx)
 {
+	mlx->player->delta_x = cos(mlx->player->angle - PI / 2) * mlx->player->speed;
+	mlx->player->delta_y = sin(mlx->player->angle - PI / 2) * mlx->player->speed;
 	if (!ft_strncmp(key, "a", 1))
 	{
-		mlx->player->delta_x = cos(mlx->player->angle - PI / 2) * 5;
-		mlx->player->delta_y = sin(mlx->player->angle - PI / 2) * 5;
 		mlx->player->x -= mlx->player->delta_x;
 		mlx->player->y -= mlx->player->delta_y;
 	}
 	else if (!ft_strncmp(key, "d", 1))
 	{
-		mlx->player->delta_x = cos(mlx->player->angle - PI / 2) * 5;
-		mlx->player->delta_y = sin(mlx->player->angle - PI / 2) * 5;
 		mlx->player->x += mlx->player->delta_x;
 		mlx->player->y += mlx->player->delta_y;
 	}
