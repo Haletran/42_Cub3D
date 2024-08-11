@@ -6,28 +6,28 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 03:24:59 by bapt              #+#    #+#             */
-/*   Updated: 2024/07/29 23:17:40 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/11 18:39:39 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void   flood_fill(char **map, t_mlx *mlx, int x, int y)
+void	flood_fill(char **map, t_mlx *mlx, int x, int y)
 {
-    if (x > 300 || y > 300)
-        return ;
-    if (x < 0 || x >= get_maxlenght(map) - 1 || y < 0 || y >= get_width(map))
-        return ;
-    if (map[y][x] == '1' || map[y][x] == 'x')
-        return ;
-    if (map[y][x] == '3')
-    {
-        mlx->flood_error = true;
-        return ;
-    }
-    map[y][x] = 'x';
-    flood_fill(map, mlx, x + 1, y);
-    flood_fill(map, mlx, x - 1, y);
-    flood_fill(map, mlx, x, y + 1);
-    flood_fill(map, mlx, x, y - 1);
+	if (x > 300 || y > 300)
+		return ;
+	if (x < 0 || x >= get_maxlenght(map) - 1 || y < 0 || y >= get_width(map))
+		return ;
+	if (map[y][x] == '1' || map[y][x] == 'x')
+		return ;
+	if (map[y][x] == '3')
+	{
+		mlx->flood_error = true;
+		return ;
+	}
+	map[y][x] = 'x';
+	flood_fill(map, mlx, x + 1, y);
+	flood_fill(map, mlx, x - 1, y);
+	flood_fill(map, mlx, x, y + 1);
+	flood_fill(map, mlx, x, y - 1);
 }

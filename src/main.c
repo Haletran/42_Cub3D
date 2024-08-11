@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 10:49:02 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/09 01:35:19 by bapt             ###   ########.fr       */
+/*   Updated: 2024/08/11 21:32:44 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ int	main(int argc, char **argv)
 	mlx = ft_calloc(1, sizeof(t_mlx));
 	mlx->mlx = mlx_init();
 	if (init(&mlx, argv) != SUCCESS)
+	{
+		free_all(&mlx);
 		return (ERROR);
+	}
 	mlx->win = mlx_new_window(mlx->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, GAME_NAME);
 	if (!mlx->win)
 		return (ERROR);
@@ -30,6 +33,6 @@ int	main(int argc, char **argv)
 	fov_details(mlx);
 	get_user_input(mlx);
 	mlx_loop(mlx->mlx);
-	printf(BOLDYELLOW"\n-- Goodbye, user! Have a great day! --\n"RESET);
-	//free_all(&mlx);
+	ft_printf_message(END_OF_EXEC);
+	free_all(&mlx);
 }

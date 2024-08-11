@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   movement_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdeviann <qdeviann@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 22:44:23 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/11 16:12:39 by qdeviann         ###   ########.fr       */
+/*   Updated: 2024/08/11 21:29:23 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int handle_collision(t_mlx *mlx, int neg)
+int	handle_collision(t_mlx *mlx, int neg)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	x = mlx->player->x;
 	y = mlx->player->y;
-	if(neg)
+	if (neg)
 	{
 		x -= (mlx->player->delta_x * 5);
 		y -= (mlx->player->delta_y * 5);
@@ -29,11 +29,10 @@ int handle_collision(t_mlx *mlx, int neg)
 		x += (mlx->player->delta_x * 5);
 		y += (mlx->player->delta_y * 5);
 	}
-	if(mlx->map->map[y / TILL_S][ x / TILL_S] == '1')
+	if (mlx->map->map[y / TILL_S][x / TILL_S] == '1')
 		return (0);
 	return (1);
 }
- 
 
 void	rotation_direction(char *direction, t_mlx *mlx)
 {
@@ -53,37 +52,37 @@ void	rotation_direction(char *direction, t_mlx *mlx)
 	mlx->player->delta_y = sin(mlx->player->angle) * mlx->player->speed;
 }
 
-
 void	basic_direction(char *key, t_mlx *mlx)
 {
 	mlx->player->delta_x = cos(mlx->player->angle) * mlx->player->speed;
-    mlx->player->delta_y = sin(mlx->player->angle) * mlx->player->speed;
-    if (!ft_strncmp(key, "w", 1))
-    {
-		if(handle_collision(mlx, 0))
+	mlx->player->delta_y = sin(mlx->player->angle) * mlx->player->speed;
+	if (!ft_strncmp(key, "w", 1))
+	{
+		if (handle_collision(mlx, 0))
 		{
-        	mlx->player->x += mlx->player->delta_x;
-        	mlx->player->y += mlx->player->delta_y;
+			mlx->player->x += mlx->player->delta_x;
+			mlx->player->y += mlx->player->delta_y;
 		}
-
 	}
-    else if (!ft_strncmp(key, "s", 1))
-    {
-		if(handle_collision(mlx, 0))
+	else if (!ft_strncmp(key, "s", 1))
+	{
+		if (handle_collision(mlx, 1))
 		{
-        	mlx->player->x -= mlx->player->delta_x;
-        	mlx->player->y -= mlx->player->delta_y;
+			mlx->player->x -= mlx->player->delta_x;
+			mlx->player->y -= mlx->player->delta_y;
 		}
 	}
 }
 
-void lr_direction(char *key, t_mlx *mlx)
+void	lr_direction(char *key, t_mlx *mlx)
 {
-	mlx->player->delta_x = cos(mlx->player->angle - PI / 2) * mlx->player->speed;
-	mlx->player->delta_y = sin(mlx->player->angle - PI / 2) * mlx->player->speed;
+	mlx->player->delta_x = cos(mlx->player->angle - PI / 2)
+		* mlx->player->speed;
+	mlx->player->delta_y = sin(mlx->player->angle - PI / 2)
+		* mlx->player->speed;
 	if (!ft_strncmp(key, "a", 1))
 	{
-		if(handle_collision(mlx, 1))
+		if (handle_collision(mlx, 1))
 		{
 			mlx->player->x -= mlx->player->delta_x;
 			mlx->player->y -= mlx->player->delta_y;
@@ -91,7 +90,7 @@ void lr_direction(char *key, t_mlx *mlx)
 	}
 	else if (!ft_strncmp(key, "d", 1))
 	{
-		if(handle_collision(mlx, 0))
+		if (handle_collision(mlx, 0))
 		{
 			mlx->player->x += mlx->player->delta_x;
 			mlx->player->y += mlx->player->delta_y;

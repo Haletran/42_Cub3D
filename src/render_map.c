@@ -3,42 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   render_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:25:15 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/07/31 01:47:42 by bapt             ###   ########.fr       */
+/*   Updated: 2024/08/11 21:28:49 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
+static int	assign_data_map(char *map, char *prefix, char **target)
+{
+	if (!ft_strncmp(map, prefix, ft_strlen(prefix)))
+	{
+		*target = ft_strtrim(map + ft_strlen(prefix) + 1, " \n");
+		return (1);
+	}
+	return (0);
+}
+
 int	attribute_data_map(t_mlx *mlx)
 {
-	int	i;
+	int	assign;
 
-	i = 0;
-	while (mlx->map->file[i])
+	assign = 0;
+	mlx->counter = 0;
+	while (mlx->map->file[mlx->counter])
 	{
-		if (!ft_strncmp(mlx->map->file[i], "NO", 2))
-			mlx->map->data_map->no = ft_strdup(mlx->map->file[i] + 2);
-		else if (!ft_strncmp(mlx->map->file[i], "SO", 2))
-			mlx->map->data_map->so = ft_strdup(mlx->map->file[i] + 2);
-		else if (!ft_strncmp(mlx->map->file[i], "WE", 2))
-			mlx->map->data_map->we = ft_strdup(mlx->map->file[i] + 2);
-		else if (!ft_strncmp(mlx->map->file[i], "EA", 2))
-			mlx->map->data_map->ea = ft_strdup(mlx->map->file[i] + 2);
-		else if (!ft_strncmp(mlx->map->file[i], "F", 1))
-			mlx->map->data_map->floor_char = ft_strdup(mlx->map->file[i] + 2);
-		else if (!ft_strncmp(mlx->map->file[i], "C", 1))
-			mlx->map->data_map->sky_char = ft_strdup(mlx->map->file[i] + 2);
-		else if (mlx->map->data_map->no && mlx->map->data_map->so && mlx->map->data_map->we
-			&& mlx->map->data_map->ea && mlx->map->data_map->floor_char && mlx->map->data_map->sky_char)
+		assign += assign_data_map(mlx->map->file[mlx->counter], "NO",
+				&mlx->map->data_map->no);
+		assign += assign_data_map(mlx->map->file[mlx->counter], "SO",
+				&mlx->map->data_map->so);
+		assign += assign_data_map(mlx->map->file[mlx->counter], "WE",
+				&mlx->map->data_map->we);
+		assign += assign_data_map(mlx->map->file[mlx->counter], "EA",
+				&mlx->map->data_map->ea);
+		assign += assign_data_map(mlx->map->file[mlx->counter], "F",
+				&mlx->map->data_map->floor_char);
+		assign += assign_data_map(mlx->map->file[mlx->counter], "C",
+				&mlx->map->data_map->sky_char);
+		if (assign == 6)
 			break ;
-		i++;
+		mlx->counter++;
 	}
 	if (check_data_map(mlx->map->data_map))
 		return (ERROR);
-	mlx->map->start_map = i;
 	return (SUCCESS);
 }
 
@@ -86,32 +95,4 @@ int	read_file(t_mlx *mlx)
 	}
 	close(fd);
 	return (SUCCESS);
-}
-
-int	check_if_charset(char c, char *charset)
-{
-	int i;
-
-	i = 0;
-	while (charset[i])
-	{
-		if (c == charset[i])
-			return (SUCCESS);
-		i++;
-	}
-	return (ERROR);
-}
-
-void	get_player_data(t_mlx *mlx, int i, int j, char c)
-{
-	if (c == 'N')
-		mlx->player->angle = 3 * PI / 2;
-	else if (c == 'S')
-		mlx->player->angle = PI / 2;
-	else if (c == 'E')
-		mlx->player->angle = 0;
-	else if (c == 'W')
-		mlx->player->angle = PI;
-	mlx->player->x = j * TILL_S + 16;
-	mlx->player->y = i * TILL_S + 16; 
 }

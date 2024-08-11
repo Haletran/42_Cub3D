@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:13:14 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/09 01:34:22 by bapt             ###   ########.fr       */
+/*   Updated: 2024/08/11 16:40:54 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int reset_keys(int event, void *param)
+int	reset_keys(int event, void *param)
 {
 	t_mlx	*mlx;
 
@@ -30,9 +30,12 @@ int reset_keys(int event, void *param)
 		mlx->player->keys->shift = 0;
 		mlx->player->speed = PLAYER_SPEED;
 	}
+	if (event == LEFT_ARROW)
+		mlx->player->keys->left = 0;
+	if (event == RIGHT_ARROW)
+		mlx->player->keys->right = 0;
 	return (0);
 }
-
 
 void	get_user_input(t_mlx *mlx)
 {

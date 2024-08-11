@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   error_msg.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 02:43:54 by bapt              #+#    #+#             */
-/*   Updated: 2024/07/28 02:56:37 by bapt             ###   ########.fr       */
+/*   Updated: 2024/08/11 21:53:00 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef ERROR_MSG_H
-#  define ERROR_MSG_H
+#ifndef ERROR_MSG_H
+# define ERROR_MSG_H
 
 # define UNKNOWN_ERROR "Unknown error\n"
 # define ARG_ERROR "Invalid number of arguments\n"
@@ -32,5 +32,6 @@
 # define MALLOC_ERROR "Memory allocation failed\n"
 # define FD_ERROR "File descriptor error\n"
 # define NOT_CUB_ERROR "File is not a .cub\n"
+# define END_OF_EXEC "\n-- Goodbye, user! Have a great day! --\n"
 
-# endif
+#endif

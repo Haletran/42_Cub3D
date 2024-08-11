@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: qdeviann <qdeviann@student.42.fr>          +#+  +:+       +#+         #
+#    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/17 10:49:06 by bapasqui          #+#    #+#              #
-#    Updated: 2024/08/11 15:49:04 by qdeviann         ###   ########.fr        #
+#    Updated: 2024/08/11 21:52:45 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,9 +33,11 @@ SRCS    := src/main.c \
 		   src/ray_handle.c \
 		   src/error.c \
 		   src/utils.c \
-		   src/draw_on_screen.c \
 		   src/flood_fill.c \
 		   src/minimap.c \
+		   src/draw.c \
+		   src/utils_parsing.c \
+		   src/init_struct.c \
 
 
 OBJS_DIR := obj
@@ -59,7 +61,10 @@ gt:
 	@if [ ! -d "MacroLibX" ]; then git clone https://github.com/seekrs/MacroLibX.git; fi
 
 norm:
-	@norminette $(SRCS)
+	@norminette $(SRCS) includes/*.h
+
+valgrind:
+	valgrind --leak-check=full --show-leak-kinds=all --suppressions=MacroLibX/valgrind.supp ./$(NAME) maps/map_sujet.cub
 
 clean:
 	@make -C lib clean

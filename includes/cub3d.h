@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:02:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/09 01:36:38 by bapt             ###   ########.fr       */
+/*   Updated: 2024/08/11 21:51:33 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,18 @@ typedef struct s_wh
 {
 	int					w;
 	int					h;
+	int					check;
 }						t_wh;
 
 typedef struct s_key
 {
-	bool w;
-	bool a;
-	bool s;
-	bool d;
-	bool left;
-	bool right;
-	bool shift;
+	bool				w;
+	bool				a;
+	bool				s;
+	bool				d;
+	bool				left;
+	bool				right;
+	bool				shift;
 }						t_key;
 
 typedef struct s_data_map
@@ -86,10 +87,9 @@ typedef struct s_mlx
 	void				*mlx;
 	void				*win;
 	void				*img;
-	void				*floor;
-	void				*wall;
 	int					size;
-	bool flood_error;
+	bool				flood_error;
+	int					counter;
 	struct s_player		*player;
 	struct s_ray		*ray;
 	struct s_map		*map;
@@ -97,9 +97,7 @@ typedef struct s_mlx
 	struct s_img		*img_s;
 	struct s_img		*img_w;
 	struct s_img		*img_e;
-	struct s_img		*debug_box;
 	struct s_img		*minimap;
-	struct s_img		*cadre;
 }						t_mlx;
 
 typedef struct s_player
@@ -115,7 +113,7 @@ typedef struct s_player
 	double				fov;
 	int					minimap;
 	int					debug;
-	int 				speed;
+	int					speed;
 	struct s_key		*keys;
 }						t_player;
 
@@ -154,14 +152,14 @@ typedef struct s_img
 }						t_img;
 
 /* FUNCTIONS */
-int move_player(void *param);
+int						move_player(void *param);
 void					draw_minimap(t_mlx *mlx);
 int						init_map(t_mlx *mlx);
 float					pythagoras(t_mlx *mlx, float x, float y);
 void					free_tab(char **tab);
 int						init(t_mlx **mlx, char **str);
 int						window_hook(int event, void *param);
-int 					keydown_keys(int key, void *params);
+int						keydown_keys(int key, void *params);
 int						ft_close(int event, void *param);
 void					free_all(t_mlx **mlx);
 void					get_user_input(t_mlx *mlx);
@@ -175,7 +173,7 @@ int						attribute_data_map(t_mlx *mlx);
 void					lst_print_data(t_map *lst);
 int						check_data_map(t_data_map *data_map);
 int						init_map(t_mlx *mlx);
-int						convert_rgb_to_hex(char *color);
+int						rgb_to_hex(char *color);
 char					*free_char(char *str);
 int						read_file(t_mlx *mlx);
 int						check_if_charset(char c, char *charset);
@@ -184,15 +182,37 @@ void					get_player_data(t_mlx *mlx, int i, int j, char c);
 int						map_is_closed(t_mlx *mlx);
 void					lr_direction(char *key, t_mlx *mlx);
 int						replace_space(t_mlx *mlx);
-void					my_put_image(t_mlx *mlx, t_xy *xy, t_wh *wh, void *img,
-							int check);
+void					my_put_image(t_mlx *mlx, t_xy *xy, t_wh *whc,
+							void *img);
 void					draw_ray(t_mlx *mlx);
 void					draw_debug(t_mlx *mlx, t_xy *xy, t_wh *wh);
 int						get_width(char **str);
-char					**ft_copy_tab(char **src, char **dest);
+char					**ft_copy_tab(char **src);
 int						get_maxlenght(char **str);
-void   					flood_fill(char **map, t_mlx *mlx, int x, int y);
-void    				draw_square(t_mlx *mlx, int x, int y, int color);
-void	print_banner(void);
+void					flood_fill(char **map, t_mlx *mlx, int x, int y);
+void					draw_square(t_mlx *mlx, int x, int y, int color);
+void					print_banner(void);
+void					draw_other(t_mlx *mlx, int ray_index, float start,
+							float end);
+void					draw_wall(t_mlx *mlx, int ray_index);
+void					draw_in_color(t_mlx *mlx, int ray_index, float start,
+							float end);
+int						calculate_tex_x(t_mlx *mlx, float wall_x);
+float					calculate_step(t_mlx *mlx);
+int						select_color(t_mlx *mlx, int x, int y);
+float					keep_circle(float angle);
+float					pythagoras(t_mlx *mlx, float x, float y);
+void					ft_printf_message(char *message);
+char					**create_tmp_map(char **map);
+int						init_player(t_mlx **mlx);
+int						init_images(t_mlx **mlx);
+int						init_textures(t_mlx **mlx);
+void					draw_ray(t_mlx *mlx);
+int						check_neg_step(t_mlx *mlx, int h);
+float					get_vertical_hit(t_mlx *mlx);
+float					get_horizontal_hit(t_mlx *mlx);
+int						hit_wall(t_mlx *mlx, float x, float y);
+void					init_step(t_mlx *mlx, float *inter, char c);
 
+void					find_ray_lenght(t_mlx *mlx);
 #endif
