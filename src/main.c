@@ -6,11 +6,20 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 10:49:02 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/11 21:32:44 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/11 22:45:28 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+int rendering(void *param)
+{
+	t_mlx	*mlx;
+
+	mlx = param;
+	fov_details(mlx);
+	return (SUCCESS);
+}
 
 int	main(int argc, char **argv)
 {

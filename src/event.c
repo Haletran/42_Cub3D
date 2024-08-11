@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:13:14 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/11 16:40:54 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/11 23:15:36 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	window_hook(int event, void *param)
 
 	mlx = param;
 	if (event == KEY_ESC)
-		mlx_loop_end(mlx->mlx);
+		exit(1);
 	return (0);
 }
 

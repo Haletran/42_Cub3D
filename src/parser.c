@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 22:21:15 by baptiste          #+#    #+#             */
-/*   Updated: 2024/08/11 21:47:11 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/11 23:15:23 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	check_data_map(t_data_map *data_map)
 	return (SUCCESS);
 }
 
-int	replace_space(t_mlx *mlx)
+int	replace_space(t_mlx **mlx)
 {
 	int		i;
 	int		j;
@@ -60,53 +60,55 @@ int	replace_space(t_mlx *mlx)
 	i = 0;
 	j = 0;
 	find_zero = false;
-	tmp = create_tmp_map(mlx->map->map);
-	while (mlx->map->map[i])
+	tmp = create_tmp_map((*mlx)->map->map);
+	while ((*mlx)->map->map[i])
 	{
 		j = 0;
-		while (mlx->map->map[i][j])
+		while ((*mlx)->map->map[i][j])
 		{
-			if (mlx->map->map[i][j] == '1')
+			if ((*mlx)->map->map[i][j] == '1')
 				tmp[i][j] = '1';
-			else if (mlx->map->map[i][j] == '0')
+			else if ((*mlx)->map->map[i][j] == '0')
 			{
 				find_zero = true;
 				tmp[i][j] = '0';
 			}
-			else if (mlx->map->map[i][j] == 'N' || mlx->map->map[i][j] == 'S'
-				|| mlx->map->map[i][j] == 'E' || mlx->map->map[i][j] == 'W')
-				tmp[i][j] = mlx->map->map[i][j];
-			else if (mlx->map->map[i][j] == 32 && find_zero == true)
+			else if ((*mlx)->map->map[i][j] == 'N' || (*mlx)->map->map[i][j] == 'S'
+				|| (*mlx)->map->map[i][j] == 'E' || (*mlx)->map->map[i][j] == 'W')
+				tmp[i][j] = (*mlx)->map->map[i][j];
+			else if ((*mlx)->map->map[i][j] == 32 && find_zero == true)
 				tmp[i][j] = '1';
 			j++;
 		}
 		find_zero = false;
 		i++;
 	}
-	free_tab(mlx->map->map);
-	mlx->map->map = ft_copy_tab(tmp);
+	i = get_width((*mlx)->map->map);
+	free_tab((*mlx)->map->map);
+	(*mlx)->map->map = ft_copy_tab(tmp, i + 1);
 	free_tab(tmp);
 	return (SUCCESS);
 }
 
-int	init_map(t_mlx *mlx)
+int	init_map(t_mlx **mlx)
 {
 	int	i;
 	int	j;
 
-	i = mlx->map->start_map;
+	i = (*mlx)->map->start_map;
 	j = 0;
-	mlx->map->map = ft_calloc(sizeof(char *), mlx->map->file_lenght + 1);
-	if (!mlx->map->map)
+	(*mlx)->map->map = ft_calloc(sizeof(char *), (*mlx)->map->file_lenght);
+	if (!(*mlx)->map->map)
 		return (ft_error(MALLOC_ERROR));
-	while (mlx->map->file[i])
+	while ((*mlx)->map->file[i])
 	{
-		mlx->map->map[j] = ft_strdup(mlx->map->file[i]);
+		(*mlx)->map->map[j] = ft_strdup((*mlx)->map->file[i]);
 		j++;
 		i++;
 	}
-	free_tab(mlx->map->file);
-	mlx->map->map[j] = NULL;
+	free_tab((*mlx)->map->file);
+	(*mlx)->map->file = NULL;
+	(*mlx)->map->map[j] = NULL;
 	replace_space(mlx);
 	return (SUCCESS);
 }

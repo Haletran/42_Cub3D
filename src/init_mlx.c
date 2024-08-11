@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:37:15 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/11 21:38:54 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/11 23:05:02 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ static int	check_file_and_init(t_mlx **mlx)
 	if (attribute_data_map((*mlx)) != SUCCESS)
 		return (ERROR);
 	(*mlx)->map->start_map = (*mlx)->counter;
-	if (init_map((*mlx)) != SUCCESS)
+	if (init_map(mlx) != SUCCESS)
 		return (ERROR);
 	if (check_map_validity((*mlx), (*mlx)->map->map) == ERROR)
 		return (ft_error(MAP_ERROR));
 	if (init_images(mlx) == ERROR)
 		return (ERROR);
-	(*mlx)->map->file = ft_copy_tab((*mlx)->map->map);
+	(*mlx)->map->file = ft_copy_tab((*mlx)->map->map, get_width((*mlx)->map->map));
 	flood_fill((*mlx)->map->file, (*mlx), (int)(*mlx)->player->x / TILL_S,
 		(int)(*mlx)->player->y / TILL_S);
 	if ((*mlx)->flood_error == true)

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:24:46 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/11 21:29:18 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/11 22:23:08 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	keydown_keys(int key, void *params)
 		activate_minimap(mlx);
 	if (key == SHIFT_KEY)
 		mlx->player->keys->shift = 1;
-	fov_details(mlx);
 	move_player(mlx);
+	fov_details(mlx);
 	return (0);
 }

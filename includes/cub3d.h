@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:02:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/11 22:03:54 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/11 23:06:33 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,7 @@ typedef struct s_img
 
 // Initialization functions
 int		init(t_mlx **mlx, char **str);
-int		init_map(t_mlx *mlx);
+int	init_map(t_mlx **mlx);
 int		init_player(t_mlx **mlx);
 int		init_images(t_mlx **mlx);
 int		init_textures(t_mlx **mlx);
@@ -169,7 +169,6 @@ void	lr_direction(char *key, t_mlx *mlx);
 void	draw_minimap(t_mlx *mlx);
 void	draw_wall(t_mlx *mlx, int r);
 void	draw_ray(t_mlx *mlx);
-void	draw_debug(t_mlx *mlx, t_xy *xy, t_wh *wh);
 void	draw_square(t_mlx *mlx, int x, int y, int color);
 void	draw_other(t_mlx *mlx, int ray_index, float start, float end);
 void	draw_in_color(t_mlx *mlx, int ray_index, float start, float end);
@@ -192,11 +191,10 @@ int		get_map_len(char *path);
 int		read_file(t_mlx *mlx);
 int		check_if_charset(char c, char *charset);
 int		check_map_validity(t_mlx *mlx, char **map);
-int		map_is_closed(t_mlx *mlx);
-int		replace_space(t_mlx *mlx);
+int		replace_space(t_mlx **mlx);
 void	flood_fill(char **map, t_mlx *mlx, int x, int y);
 char	**create_tmp_map(char **map);
-char	**ft_copy_tab(char **src);
+char	**ft_copy_tab(char **src, int size);
 int		get_width(char **str);
 int		get_maxlenght(char **str);
 void	get_player_data(t_mlx *mlx, int i, int j, char c);
