@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:02:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/11 21:51:33 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/11 22:03:54 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,68 +151,77 @@ typedef struct s_img
 
 }						t_img;
 
-/* FUNCTIONS */
-int						move_player(void *param);
-void					draw_minimap(t_mlx *mlx);
-int						init_map(t_mlx *mlx);
-float					pythagoras(t_mlx *mlx, float x, float y);
-void					free_tab(char **tab);
-int						init(t_mlx **mlx, char **str);
-int						window_hook(int event, void *param);
-int						keydown_keys(int key, void *params);
-int						ft_close(int event, void *param);
-void					free_all(t_mlx **mlx);
-void					get_user_input(t_mlx *mlx);
-int						get_map_len(char *path);
-void					basic_direction(char *key, t_mlx *mlx);
-void					rotation_direction(char *direction, t_mlx *mlx);
-void					draw_wall(t_mlx *mlx, int r);
-int						ft_error(char *error);
-void					fov_details(t_mlx *mlx);
-int						attribute_data_map(t_mlx *mlx);
-void					lst_print_data(t_map *lst);
-int						check_data_map(t_data_map *data_map);
-int						init_map(t_mlx *mlx);
-int						rgb_to_hex(char *color);
-char					*free_char(char *str);
-int						read_file(t_mlx *mlx);
-int						check_if_charset(char c, char *charset);
-int						check_map_validity(t_mlx *mlx, char **map);
-void					get_player_data(t_mlx *mlx, int i, int j, char c);
-int						map_is_closed(t_mlx *mlx);
-void					lr_direction(char *key, t_mlx *mlx);
-int						replace_space(t_mlx *mlx);
-void					my_put_image(t_mlx *mlx, t_xy *xy, t_wh *whc,
-							void *img);
-void					draw_ray(t_mlx *mlx);
-void					draw_debug(t_mlx *mlx, t_xy *xy, t_wh *wh);
-int						get_width(char **str);
-char					**ft_copy_tab(char **src);
-int						get_maxlenght(char **str);
-void					flood_fill(char **map, t_mlx *mlx, int x, int y);
-void					draw_square(t_mlx *mlx, int x, int y, int color);
-void					print_banner(void);
-void					draw_other(t_mlx *mlx, int ray_index, float start,
-							float end);
-void					draw_wall(t_mlx *mlx, int ray_index);
-void					draw_in_color(t_mlx *mlx, int ray_index, float start,
-							float end);
-int						calculate_tex_x(t_mlx *mlx, float wall_x);
-float					calculate_step(t_mlx *mlx);
-int						select_color(t_mlx *mlx, int x, int y);
-float					keep_circle(float angle);
-float					pythagoras(t_mlx *mlx, float x, float y);
-void					ft_printf_message(char *message);
-char					**create_tmp_map(char **map);
-int						init_player(t_mlx **mlx);
-int						init_images(t_mlx **mlx);
-int						init_textures(t_mlx **mlx);
-void					draw_ray(t_mlx *mlx);
-int						check_neg_step(t_mlx *mlx, int h);
-float					get_vertical_hit(t_mlx *mlx);
-float					get_horizontal_hit(t_mlx *mlx);
-int						hit_wall(t_mlx *mlx, float x, float y);
-void					init_step(t_mlx *mlx, float *inter, char c);
+// Initialization functions
+int		init(t_mlx **mlx, char **str);
+int		init_map(t_mlx *mlx);
+int		init_player(t_mlx **mlx);
+int		init_images(t_mlx **mlx);
+int		init_textures(t_mlx **mlx);
 
-void					find_ray_lenght(t_mlx *mlx);
+// Player movement and input handling
+int		move_player(void *param);
+void	get_user_input(t_mlx *mlx);
+void	basic_direction(char *key, t_mlx *mlx);
+void	rotation_direction(char *direction, t_mlx *mlx);
+void	lr_direction(char *key, t_mlx *mlx);
+
+// Drawing functions
+void	draw_minimap(t_mlx *mlx);
+void	draw_wall(t_mlx *mlx, int r);
+void	draw_ray(t_mlx *mlx);
+void	draw_debug(t_mlx *mlx, t_xy *xy, t_wh *wh);
+void	draw_square(t_mlx *mlx, int x, int y, int color);
+void	draw_other(t_mlx *mlx, int ray_index, float start, float end);
+void	draw_in_color(t_mlx *mlx, int ray_index, float start, float end);
+void	my_put_image(t_mlx *mlx, t_xy *xy, t_wh *whc, void *img);
+
+// Raycasting and calculations
+float	pythagoras(t_mlx *mlx, float x, float y);
+void	fov_details(t_mlx *mlx);
+int		calculate_tex_x(t_mlx *mlx, float wall_x);
+float	calculate_step(t_mlx *mlx);
+float	keep_circle(float angle);
+float	get_vertical_hit(t_mlx *mlx);
+float	get_horizontal_hit(t_mlx *mlx);
+int		hit_wall(t_mlx *mlx, float x, float y);
+void	init_step(t_mlx *mlx, float *inter, char c);
+void	find_ray_lenght(t_mlx *mlx);
+
+// Map validation and manipulation
+int		get_map_len(char *path);
+int		read_file(t_mlx *mlx);
+int		check_if_charset(char c, char *charset);
+int		check_map_validity(t_mlx *mlx, char **map);
+int		map_is_closed(t_mlx *mlx);
+int		replace_space(t_mlx *mlx);
+void	flood_fill(char **map, t_mlx *mlx, int x, int y);
+char	**create_tmp_map(char **map);
+char	**ft_copy_tab(char **src);
+int		get_width(char **str);
+int		get_maxlenght(char **str);
+void	get_player_data(t_mlx *mlx, int i, int j, char c);
+
+// Utility functions
+int		ft_error(char *error);
+void	ft_printf_message(char *message);
+char	*free_char(char *str);
+void	free_tab(char **tab);
+void	free_all(t_mlx **mlx);
+void	print_banner(void);
+
+// Event handling
+int		window_hook(int event, void *param);
+int		keydown_keys(int key, void *params);
+int		ft_close(int event, void *param);
+
+// Map attribute functions
+int		attribute_data_map(t_mlx *mlx);
+void	lst_print_data(t_map *lst);
+int		check_data_map(t_data_map *data_map);
+int		rgb_to_hex(char *color);
+
+// Additional calculation and checking
+int		select_color(t_mlx *mlx, int x, int y);
+int		check_neg_step(t_mlx *mlx, int h);
+
 #endif
