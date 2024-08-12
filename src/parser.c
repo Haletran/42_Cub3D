@@ -3,14 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdeviann <qdeviann@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 22:21:15 by baptiste          #+#    #+#             */
-/*   Updated: 2024/08/12 10:13:14 by qdeviann         ###   ########.fr       */
+/*   Updated: 2024/08/12 19:22:15 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+int	check_color(char *color)
+{
+	int	i;
+	int	comma_count;
+	int	len;
+
+	i = 0;
+	comma_count = 0;
+	len = ft_strlen(color);
+	if (len <= 0 || len > 11)
+		return (ERROR);
+	while (color[i])
+	{
+		if (!(color[i] >= '0' && color[i] <= '9') && color[i] != ',')
+			return (ERROR);
+		if (color[i] == ',')
+		{
+			if (color[i + 1] && check_if_charset(color[i + 1],
+					"0123456789") == ERROR)
+				return (ERROR);
+			comma_count++;
+		}
+		i++;
+	}
+	if (comma_count != 2)
+		return (ERROR);
+	return (SUCCESS);
+}
 
 int	check_map_validity(t_mlx *mlx, char **map)
 {
@@ -26,12 +55,18 @@ int	check_map_validity(t_mlx *mlx, char **map)
 		{
 			if (check_if_charset(mlx->map->map[i][j], "NSEW") == SUCCESS)
 				get_player_data(mlx, i, j, mlx->map->map[i][j]);
+			if (check_if_charset(mlx->map->map[i][j], "01NSEW3 \n") == ERROR)
+				return (ERROR);
 			j++;
 		}
 		i++;
 	}
 	mlx->map->data_map->width = j;
 	mlx->map->data_map->height = i;
+	if (check_color(mlx->map->data_map->floor_char) == ERROR)
+		return (ERROR);
+	if (check_color(mlx->map->data_map->sky_char) == ERROR)
+		return (ERROR);
 	mlx->map->data_map->floor_c = rgb_to_hex(mlx->map->data_map->floor_char);
 	mlx->map->data_map->sky_c = rgb_to_hex(mlx->map->data_map->sky_char);
 	mlx->map->data_map->floor_char = free_char(mlx->map->data_map->floor_char);
@@ -73,8 +108,10 @@ int	replace_space(t_mlx **mlx)
 				find_zero = true;
 				tmp[i][j] = '0';
 			}
-			else if ((*mlx)->map->map[i][j] == 'N' || (*mlx)->map->map[i][j] == 'S'
-				|| (*mlx)->map->map[i][j] == 'E' || (*mlx)->map->map[i][j] == 'W')
+			else if ((*mlx)->map->map[i][j] == 'N'
+				|| (*mlx)->map->map[i][j] == 'S'
+				|| (*mlx)->map->map[i][j] == 'E'
+				|| (*mlx)->map->map[i][j] == 'W')
 				tmp[i][j] = (*mlx)->map->map[i][j];
 			else if ((*mlx)->map->map[i][j] == 32 && find_zero == true)
 				tmp[i][j] = '1';

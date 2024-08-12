@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:02:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/12 16:17:27 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/12 18:57:24 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ typedef struct s_mlx
 	int					size;
 	bool				flood_error;
 	int					counter;
+	int					player_check;
 	struct s_player		*player;
 	struct s_ray		*ray;
 	struct s_map		*map;

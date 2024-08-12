@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 02:43:54 by bapt              #+#    #+#             */
-/*   Updated: 2024/08/11 21:53:00 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/12 18:02:02 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@
 # define FD_ERROR "File descriptor error\n"
 # define NOT_CUB_ERROR "File is not a .cub\n"
 # define END_OF_EXEC "\n-- Goodbye, user! Have a great day! --\n"
+# define COLOR_ERROR "Invalid color\n"
 
 #endif

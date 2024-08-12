@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 03:24:59 by bapt              #+#    #+#             */
-/*   Updated: 2024/08/11 18:39:39 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/12 19:06:56 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	flood_fill(char **map, t_mlx *mlx, int x, int y)
 		return ;
 	if (map[y][x] == '1' || map[y][x] == 'x')
 		return ;
+	if (check_if_charset(map[y][x], "NSWE") == SUCCESS)
+		mlx->player_check++;
 	if (map[y][x] == '3')
 	{
 		mlx->flood_error = true;

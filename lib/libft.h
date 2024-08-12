@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 14:40:33 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/18 22:57:08 by baptiste         ###   ########.fr       */
+/*   Updated: 2024/08/12 17:32:14 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ char	*ft_free(char *buffer);
 char	*ft_strjoin_f(char *s1, char *s2);
 int		ft_printf_fd(int fd, const char *format, ...);
 void	print_tab(char **tab);
-int ft_atoi_base(const char *str, const char *base);
+int		ft_atoi_base(const char *str, const char *base);
+int		ft_strcmp(const char *s1, const char *s2);
+char	*ft_strstr(const char *haystack, const char *needle);
 
 #endif

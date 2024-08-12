@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+         #
+#    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 14:41:26 by bapasqui          #+#    #+#              #
-#    Updated: 2024/06/18 22:57:28 by baptiste         ###   ########.fr        #
+#    Updated: 2024/08/12 17:33:22 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,8 @@ SRCS =		ft_isalpha.c	\
             ft_printf_fd.c	\
             ft_atoi_base.c	\
             print_tab.c \
+            ft_strcmp.c \
+            ft_strstr.c \
             get_next_line.c	\
             get_next_line_utils.c	\
             ft_putnbr_fd.c

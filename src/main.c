@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 10:49:02 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/12 16:35:36 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/12 17:22:54 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,17 @@ int move_render(void *param)
     static clock_t last_time = 0;
     clock_t current_time;
     double fps;
-
     t_mlx *mlx;
-    mlx = (t_mlx *)param;
 
+    mlx = (t_mlx *)param;
     move_player(mlx);
     rotate_player(mlx);
     fov_details(mlx);
-
-	
     current_time = clock();
     fps = CLOCKS_PER_SEC / (double)(current_time - last_time);
     last_time = current_time;
 	render_fps_box(mlx, fps);
-
-    return 0;
+    return (SUCCESS);
 }
 
 

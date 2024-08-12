@@ -6,20 +6,36 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:37:15 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/11 23:05:02 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/12 19:07:02 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
+int	check_file(char *filename)
+{
+	size_t	len;
+
+	len = ft_strlen(filename) - 4;
+	if (len < 4)
+		return (0);
+	if (open(filename, O_RDONLY) < 0)
+		return (ERROR);
+	if (ft_strstr(filename, ".cub") && ft_strcmp(filename + len, ".cub") == 0)
+		return (SUCCESS);
+	return (ERROR);
+}
+
 static int	init_values(t_mlx **mlx, char **str)
 {
+	if (check_file(str[1]) == ERROR)
+		return (ft_error(FILE_ERROR));
 	(*mlx)->map->path = ft_strdup(str[1]);
-	if (ft_strncmp((*mlx)->map->path + ft_strlen((*mlx)->map->path) - 4, ".cub",
-			4))
-		return (ft_error(NOT_CUB_ERROR));
 	(*mlx)->flood_error = false;
+	(*mlx)->player_check = 0;
 	(*mlx)->map->file_lenght = get_map_len((*mlx)->map->path);
+	if ((*mlx)->map->file_lenght >= 40)
+		return (ft_error(FILE_ERROR));
 	if (init_player(mlx))
 		return (ERROR);
 	if ((*mlx)->map->file_lenght <= 0)
@@ -43,7 +59,7 @@ static int	check_file_and_init(t_mlx **mlx)
 	(*mlx)->map->file = ft_copy_tab((*mlx)->map->map, get_width((*mlx)->map->map));
 	flood_fill((*mlx)->map->file, (*mlx), (int)(*mlx)->player->x / TILL_S,
 		(int)(*mlx)->player->y / TILL_S);
-	if ((*mlx)->flood_error == true)
+	if ((*mlx)->flood_error == true || (*mlx)->player_check > 1)
 		return (ft_error(MAP_ERROR));
 	return (SUCCESS);
 }
