@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdeviann <qdeviann@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 21:36:42 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/12 09:14:18 by qdeviann         ###   ########.fr       */
+/*   Updated: 2024/08/12 16:09:17 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,11 @@ int	init_player(t_mlx **mlx)
 	(*mlx)->player->angle = 0;
 	(*mlx)->player->minimap = 0;
 	(*mlx)->player->debug = 0;
+	(*mlx)->player->eye_h = 0;
+	(*mlx)->player->save = 0;
+	(*mlx)->player->dir = 0;
+	(*mlx)->player->fov = FOV;
+	(*mlx)->player->speed = 0;
 	(*mlx)->flood_error = false;
 	(*mlx)->player->delta_x = cos((*mlx)->player->angle) * 5;
 	(*mlx)->player->delta_y = sin((*mlx)->player->angle) * 5;
@@ -75,6 +80,6 @@ int	init_player(t_mlx **mlx)
 	(*mlx)->player->keys->left = 0;
 	(*mlx)->player->keys->right = 0;
 	(*mlx)->player->keys->shift = 0;
-	(*mlx)->player->speed = 5;
+	(*mlx)->player->speed = PLAYER_SPEED;
 	return (SUCCESS);
 }

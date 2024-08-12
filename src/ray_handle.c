@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_handle.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdeviann <qdeviann@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 21:35:20 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/12 10:35:05 by qdeviann         ###   ########.fr       */
+/*   Updated: 2024/08/12 16:27:56 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,12 +102,12 @@ float	get_vertical_hit(t_mlx *mlx)
 	mlx->ray->step_y = v_y;
 	return (pythagoras(mlx, mlx->ray->step_x, mlx->ray->step_y));
 }
-
-void	fov_details(t_mlx *mlx)
+void fov_details(t_mlx *mlx)
 {
 	int	i;
 
 	i = 0;
+	mlx_clear_window(mlx->mlx, mlx->win);
 	mlx->ray->ray_angle = mlx->player->angle - (((FOV / 2) * PI) / 180);
 	if (mlx->ray->ray_angle < 0)
 		mlx->ray->ray_angle += 2 * PI;

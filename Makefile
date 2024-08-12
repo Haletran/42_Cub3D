@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: qdeviann <qdeviann@student.42.fr>          +#+  +:+       +#+         #
+#    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/17 10:49:06 by bapasqui          #+#    #+#              #
-#    Updated: 2024/08/12 10:33:43 by qdeviann         ###   ########.fr        #
+#    Updated: 2024/08/12 13:16:26 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ MAKEFLAGS += -j
 # Makefile vars
 CC := clang                                                             
 NAME    := cub3D
-# CFLAGS  := -Wextra -Wall -Werror -g #-fsanitize=address
+CFLAGS  := -Wextra -Wall -Werror -g #-fsanitize=address
 SRCS    := src/main.c \
            src/event.c \
 		   src/movement_utils.c \
@@ -44,7 +44,7 @@ OBJS_DIR := obj
 OBJS    := $(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
 LIBS    := MacroLibX/libmlx.so -lSDL2 -lm
 
-all: gt $(NAME)
+all: $(NAME)
 
 $(OBJS_DIR)/%.o: %.c
 	@mkdir -p $(@D)
@@ -57,14 +57,14 @@ $(NAME): $(OBJS)
 	echo "Compiling\033[1m\033[32m" $@ "\033[0m"
 	echo "\033[42mSuccessfully compiled :)\033[0m"
 
-gt:    
-	@if [ ! -d "MacroLibX" ]; then git clone https://github.com/seekrs/MacroLibX.git; fi
-
 norm:
 	@norminette $(SRCS) includes/*.h
 
 valgrind:
 	valgrind --leak-check=full --show-leak-kinds=all --suppressions=MacroLibX/valgrind.supp ./$(NAME) maps/map_sujet.cub
+
+macro:
+	@git clone https://github.com/seekrs/MacroLibX.git
 
 clean:
 	@make -C lib clean
@@ -75,6 +75,13 @@ fclean: clean
 	@make fclean -C lib
 	@make fclean -C MacroLibX
 	@rm -rf $(NAME)
+
+fclean_macro: clean
+	@make fclean -C lib
+	@make fclean -C MacroLibX
+	@rm -rf $(NAME)
+	@rm -rf MacroLibX
+	macro
 
 re:
 	$(MAKE) fclean

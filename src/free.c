@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdeviann <qdeviann@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 23:42:08 by baptiste          #+#    #+#             */
-/*   Updated: 2024/08/12 10:30:16 by qdeviann         ###   ########.fr       */
+/*   Updated: 2024/08/12 13:49:31 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ void	free_all(t_mlx **mlx)
 		free((*mlx)->player);
 	if ((*mlx)->ray)
 		free((*mlx)->ray);
-	mlx_destroy_window((*mlx)->mlx, (*mlx)->win);
+	if ((*mlx)->win)
+		mlx_destroy_window((*mlx)->mlx, (*mlx)->win);
 	mlx_destroy_display((*mlx)->mlx);
 	free((*mlx));
 }

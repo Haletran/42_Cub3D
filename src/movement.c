@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:24:46 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/11 22:23:08 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/12 16:09:54 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,32 @@ void	activate_minimap(t_mlx *mlx)
 		mlx->player->minimap = 0;
 }
 
+int	rotate_player(void *param)
+{
+	t_mlx	*mlx;
+
+	mlx = param;
+	if (mlx->player->keys->left == 1)
+		rotation_direction("left", mlx);
+	if (mlx->player->keys->right == 1)
+		rotation_direction("right", mlx);
+	return (SUCCESS);
+}
+
 int	move_player(void *param)
 {
 	t_mlx	*mlx;
 
 	mlx = param;
-	if (mlx->player->keys->w)
+	if (mlx->player->keys->w == 1)
 		basic_direction("w", mlx);
-	if (mlx->player->keys->s)
+	if (mlx->player->keys->s == 1)
 		basic_direction("s", mlx);
-	if (mlx->player->keys->d)
+	if (mlx->player->keys->d == 1)
 		lr_direction("d", mlx);
-	if (mlx->player->keys->a)
+	if (mlx->player->keys->a == 1)
 		lr_direction("a", mlx);
-	if (mlx->player->keys->left)
-		rotation_direction("left", mlx);
-	if (mlx->player->keys->right)
-		rotation_direction("right", mlx);
-	if (mlx->player->keys->shift)
+	if (mlx->player->keys->shift == 1)
 		mlx->player->speed = PLAYER_SPEED * 2;
 	return (0);
 }
@@ -65,7 +73,5 @@ int	keydown_keys(int key, void *params)
 		activate_minimap(mlx);
 	if (key == SHIFT_KEY)
 		mlx->player->keys->shift = 1;
-	move_player(mlx);
-	fov_details(mlx);
 	return (0);
 }
