@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 14:18:54 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/06/18 22:57:13 by baptiste         ###   ########.fr       */
+/*   Updated: 2024/08/12 19:29:19 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {

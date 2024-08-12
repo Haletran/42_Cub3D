@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 23:42:08 by baptiste          #+#    #+#             */
-/*   Updated: 2024/08/12 17:46:02 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/12 19:27:16 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,18 +59,17 @@ void	free_images(t_mlx **mlx)
 		mlx_destroy_image((*mlx)->mlx, (*mlx)->img_e->img);
 		free((*mlx)->img_e);
 	}
-}
-
-void	free_all(t_mlx **mlx)
-{
-	
-	free_images(mlx);
-	if ((*mlx)->map->path)
-		free_char((*mlx)->map->path);
 	free_char((*mlx)->map->data_map->no);
 	free_char((*mlx)->map->data_map->so);
 	free_char((*mlx)->map->data_map->ea);
 	free_char((*mlx)->map->data_map->we);
+}
+
+void	free_all(t_mlx **mlx)
+{
+	free_images(mlx);
+	if ((*mlx)->map->path)
+		free_char((*mlx)->map->path);
 	free_tab((*mlx)->map->map);
 	free_tab((*mlx)->map->file);
 	if ((*mlx)->minimap)

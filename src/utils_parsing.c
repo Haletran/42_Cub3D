@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 21:18:08 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/11 22:56:05 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/12 19:24:02 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,7 @@ char	**create_tmp_map(char **map)
 		tmp[i][j] = '\n';
 		i++;
 	}
-	tmp[i] = NULL;
-	return (tmp);
+	return (tmp[i] = NULL, tmp);
 }
 
 void	find_ray_lenght(t_mlx *mlx)

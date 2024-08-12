@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/17 10:49:06 by bapasqui          #+#    #+#              #
-#    Updated: 2024/08/12 13:16:26 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/08/12 19:27:56 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,7 @@ $(NAME): $(OBJS)
 	echo "\033[42mSuccessfully compiled :)\033[0m"
 
 norm:
-	@norminette $(SRCS) includes/*.h
+	@norminette $(SRCS) includes/*.h lib/*.c lib/*.h
 
 valgrind:
 	valgrind --leak-check=full --show-leak-kinds=all --suppressions=MacroLibX/valgrind.supp ./$(NAME) maps/map_sujet.cub

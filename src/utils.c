@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 17:52:00 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/12 16:30:55 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/12 19:24:10 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	my_put_image(t_mlx *mlx, t_xy *xy, t_wh *whc, void *img)
 		{
 			color = mlx_get_image_pixel(mlx->mlx, img, j, i);
 			if (color == 0)
-				mlx_pixel_put(mlx->mlx, mlx->win, xy->y + j, xy->x + i, 0xA07BADCD);
+				mlx_pixel_put(mlx->mlx, mlx->win, xy->y + j, xy->x + i,
+					0xA07BADCD);
 			if (whc->check == 1 && color != 0)
 				mlx_pixel_put(mlx->mlx, mlx->win, xy->y + j, xy->x + i, color);
 			else if (whc->check == 0)
@@ -81,7 +82,6 @@ int	get_width(char **str)
 	}
 	return (j);
 } */
-
 void	get_player_data(t_mlx *mlx, int i, int j, char c)
 {
 	if (c == 'N')

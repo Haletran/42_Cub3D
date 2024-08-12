@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_tab.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: baptiste <baptiste@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 21:51:50 by baptiste          #+#    #+#             */
-/*   Updated: 2024/06/18 21:53:35 by baptiste         ###   ########.fr       */
+/*   Updated: 2024/08/12 19:29:54 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	print_tab(char **tab)
 {
-    int	i;
+	int	i;
 
-    i = 0;
-    while (tab[i])
-    {
-        ft_putstr_fd(tab[i], 1);
-        i++;
-    }
+	i = 0;
+	while (tab[i])
+	{
+		ft_putstr_fd(tab[i], 1);
+		i++;
+	}
 }

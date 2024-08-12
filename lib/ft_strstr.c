@@ -6,14 +6,14 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 17:31:43 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/12 17:32:21 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/12 19:29:48 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 char	*ft_strstr(char *str, char *to_find)
 {
-	int c;
-	int d;
+	int	c;
+	int	d;
 
 	c = 0;
 	d = 0;

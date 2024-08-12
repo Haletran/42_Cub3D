@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 14:41:26 by bapasqui          #+#    #+#              #
-#    Updated: 2024/08/12 17:33:22 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/08/12 19:30:33 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,6 @@ SRCS =		ft_isalpha.c	\
             ft_strcpy.c		\
             ft_free.c	\
             ft_printf_fd.c	\
-            ft_atoi_base.c	\
             print_tab.c \
             ft_strcmp.c \
             ft_strstr.c \
