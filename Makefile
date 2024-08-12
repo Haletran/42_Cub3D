@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
+#    By: qdeviann <qdeviann@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/17 10:49:06 by bapasqui          #+#    #+#              #
-#    Updated: 2024/08/11 22:22:04 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/08/12 10:33:43 by qdeviann         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ MAKEFLAGS += -j
 # Makefile vars
 CC := clang                                                             
 NAME    := cub3D
-CFLAGS  := -Wextra -Wall -Werror -g #-fsanitize=address
+# CFLAGS  := -Wextra -Wall -Werror -g #-fsanitize=address
 SRCS    := src/main.c \
            src/event.c \
 		   src/movement_utils.c \

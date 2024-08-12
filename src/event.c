@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qdeviann <qdeviann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:13:14 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/11 23:15:36 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/12 08:06:38 by qdeviann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	window_hook(int event, void *param)
 
 	mlx = param;
 	if (event == KEY_ESC)
-		exit(1);
+		mlx_loop_end(mlx->mlx);
 	return (0);
 }
 

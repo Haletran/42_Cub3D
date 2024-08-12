@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qdeviann <qdeviann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 21:00:00 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/11 21:44:54 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/12 10:36:59 by qdeviann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ void	draw_in_color(t_mlx *mlx, int ray_index, float start, float end)
 	{
 		color = select_color(mlx, tex_x, (int)tex_y);
 		tex_y += step;
-		mlx_pixel_put(mlx->mlx, mlx->win, ray_index, start, color);
+		if (ray_index < RAYS && start < WINDOW_HEIGHT)
+			mlx_pixel_put(mlx->mlx, mlx->win, ray_index, start, color);
 		start++;
 	}
 }

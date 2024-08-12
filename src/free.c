@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qdeviann <qdeviann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 23:42:08 by baptiste          #+#    #+#             */
-/*   Updated: 2024/08/11 22:39:02 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/12 10:30:16 by qdeviann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,14 @@ void	free_images(t_mlx **mlx)
 
 void	free_all(t_mlx **mlx)
 {
+	
 	free_images(mlx);
-	if ((*mlx)->win)
-		mlx_destroy_window((*mlx)->mlx, (*mlx)->win);
-	mlx_destroy_display((*mlx)->mlx);
 	if ((*mlx)->map->path)
-		(*mlx)->map->path = free_char((*mlx)->map->path);
-	(*mlx)->map->data_map->no = free_char((*mlx)->map->data_map->no);
-	(*mlx)->map->data_map->so = free_char((*mlx)->map->data_map->so);
-	(*mlx)->map->data_map->ea = free_char((*mlx)->map->data_map->ea);
-	(*mlx)->map->data_map->we = free_char((*mlx)->map->data_map->we);
+		free_char((*mlx)->map->path);
+	free_char((*mlx)->map->data_map->no);
+	free_char((*mlx)->map->data_map->so);
+	free_char((*mlx)->map->data_map->ea);
+	free_char((*mlx)->map->data_map->we);
 	free_tab((*mlx)->map->map);
 	free_tab((*mlx)->map->file);
 	if ((*mlx)->minimap)
@@ -85,5 +83,7 @@ void	free_all(t_mlx **mlx)
 		free((*mlx)->player);
 	if ((*mlx)->ray)
 		free((*mlx)->ray);
+	mlx_destroy_window((*mlx)->mlx, (*mlx)->win);
+	mlx_destroy_display((*mlx)->mlx);
 	free((*mlx));
 }
