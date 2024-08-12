@@ -1,9 +1,9 @@
-NO images/eagle.png
-SO images/colorstone.png
-WE images/redbrick.png
-EA images/mossy.png
+NO images/tex_8.png
+SO images/tex_12.png
+WE images/tex_16.png
+EA images/tex_10.png
 
-F 112,112,112
+F 102,0,102
 C 56,56,56
 
     111111111111111111111111111

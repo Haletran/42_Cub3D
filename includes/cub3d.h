@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:02:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/12 18:57:24 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/12 19:57:23 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define FOV 60
 # define GAME_NAME "Cub3D"
 # define RAYS 920
-# define PI 3.14159265358979323846
+# define PI 3.1415926535
 # define TILL_S 64
 # define WINDOW_WIDTH 920
 # define WINDOW_HEIGHT 580
