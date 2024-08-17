@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdeviann <qdeviann@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:25:15 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/12 10:11:05 by qdeviann         ###   ########.fr       */
+/*   Updated: 2024/08/18 00:26:22 by bapt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	assign_data_map(char *map, char *prefix, char **target)
 {
 	if (!ft_strncmp(map, prefix, ft_strlen(prefix)))
 	{
-		*target = ft_strtrim(map + ft_strlen(prefix) + 1, " \n");
+		*target = ft_strtrim(map + ft_strlen(prefix) + 1, " \n	");
 		return (1);
 	}
 	return (0);
