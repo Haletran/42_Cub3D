@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 10:49:02 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/12 20:41:24 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/12 20:51:10 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	main(int argc, char **argv)
 	mlx->win = mlx_new_window(mlx->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, GAME_NAME);
 	if (!mlx->win)
 		return (ERROR);
-	//mlx_set_fps_goal(mlx->mlx, 60);
+	mlx_set_fps_goal(mlx->mlx, 60);
 	print_banner();
 	lst_print_data(mlx->map);
 	get_user_input(mlx);

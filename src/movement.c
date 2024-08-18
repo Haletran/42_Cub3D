@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:24:46 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/12 16:09:54 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/18 17:48:14 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,18 @@ void	activate_minimap(t_mlx *mlx)
 int	rotate_player(void *param)
 {
 	t_mlx	*mlx;
+	int x;
+	int y;
 
+	x = 0;
+	y = 0;
 	mlx = param;
-	if (mlx->player->keys->left == 1)
-		rotation_direction("left", mlx);
-	if (mlx->player->keys->right == 1)
+	mlx_mouse_get_pos(mlx->mlx, &x, &y);
+	printf("x: %d\n", x);
+	if (x > WINDOW_WIDTH / 2)
 		rotation_direction("right", mlx);
+	if (x == 0)
+		rotation_direction("left", mlx);
 	return (SUCCESS);
 }
 
