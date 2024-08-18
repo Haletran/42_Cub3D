@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: qdeviann <qdeviann@student.42.fr>          +#+  +:+       +#+         #
+#    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/17 10:49:06 by bapasqui          #+#    #+#              #
-#    Updated: 2024/08/18 18:53:05 by qdeviann         ###   ########.fr        #
+#    Updated: 2024/08/18 23:14:55 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ MAKEFLAGS += -j
 # Makefile vars
 CC := clang                                                             
 NAME    := cub3D
-CFLAGS  := -Wextra -Wall -Werror -O2#-fsanitize=address
+CFLAGS  := -Wextra -Wall -Werror -g#-fsanitize=address
 SRCS    := src/main.c \
            src/event.c \
 		   src/movement_utils.c \
@@ -39,6 +39,8 @@ SRCS    := src/main.c \
 		   src/utils_parsing.c \
 		   src/init_struct.c \
 		   src/weapon.c \
+		   src/mouse_event.c \
+		   src/data_checker.c \
 
 
 OBJS_DIR := obj
@@ -59,13 +61,16 @@ $(NAME): $(OBJS)
 	echo "\033[42mSuccessfully compiled :)\033[0m"
 
 norm:
-	@norminette $(SRCS) includes/*.h lib/*.c lib/*.h
+	@clear
+	@echo "\033[1m\033[32m""[ Norminette ]" "\033[0m"
+	-@norminette $(SRCS) lib/ includes/
 
 valgrind:
 	valgrind --leak-check=full --show-leak-kinds=all --suppressions=MacroLibX/valgrind.supp ./$(NAME) maps/map_sujet.cub
 
 macro:
-	@git clone https://github.com/seekrs/MacroLibX.git
+	@if [ ! -d MacroLibX ]; then git clone https://github.com/seekrs/MacroLibX.git; else echo "\033[31m""MacroLibX already installed" "\033[0m"; fi
+	@make -C MacroLibX
 
 clean:
 	@make -C lib clean
@@ -82,7 +87,6 @@ fclean_macro: clean
 	@make fclean -C MacroLibX
 	@rm -rf $(NAME)
 	@rm -rf MacroLibX
-	macro
 
 re:
 	$(MAKE) fclean

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdeviann <qdeviann@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:24:46 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/18 18:48:26 by qdeviann         ###   ########.fr       */
+/*   Updated: 2024/08/18 22:09:55 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	activate_minimap(t_mlx *mlx)
 int	rotate_player(void *param)
 {
 	t_mlx	*mlx;
-	int x;
-	int y;
+	int		x;
+	int		y;
 
 	x = 0;
 	y = 0;
@@ -35,7 +35,6 @@ int	rotate_player(void *param)
 	if (x < WINDOW_WIDTH / 2)
 		rotation_direction("left", mlx);
 	mlx_mouse_move(mlx->mlx, mlx->win, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
-	
 	return (SUCCESS);
 }
 

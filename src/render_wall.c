@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_wall.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdeviann <qdeviann@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:25:19 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/18 20:40:52 by qdeviann         ###   ########.fr       */
+/*   Updated: 2024/08/18 21:45:44 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ int	calculate_tex_x(t_mlx *mlx, float wall_x)
 	}
 	else
 	{
-		if (mlx->ray->ray_angle > (PI / 2) && mlx->ray->ray_angle < (3 * PI / 2))
+		if (mlx->ray->ray_angle > (PI / 2) && mlx->ray->ray_angle < (3 * PI
+				/ 2))
 			return (mlx->img_e->t_wid - wall_x * mlx->img_e->t_wid);
 		else
 			return (wall_x * mlx->img_w->t_wid);

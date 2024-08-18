@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdeviann <qdeviann@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 21:36:42 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/18 20:41:27 by qdeviann         ###   ########.fr       */
+/*   Updated: 2024/08/18 22:03:32 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,19 @@ static int	attrib_textures(t_mlx *mlx, t_img *img, char *path)
 {
 	img->img = mlx_png_file_to_image(mlx->mlx, path, &img->t_wid, &img->t_hei);
 	if (!img->img)
+		return (ft_error(MLX_SPRITE_ERROR));
+	return (SUCCESS);
+}
+
+static int	attrib_sprites(t_mlx *mlx, void **img, char *path)
+{
+	int	width;
+	int	height;
+
+	width = 256;
+	height = 256;
+	(*img) = mlx_png_file_to_image(mlx->mlx, path, &width, &height);
+	if (!img)
 		return (ft_error(MLX_SPRITE_ERROR));
 	return (SUCCESS);
 }
@@ -57,8 +70,12 @@ int	init_images(t_mlx **mlx)
 	(*mlx)->weapon = ft_calloc(1, sizeof(t_weapon));
 	(*mlx)->weapon->width = 256;
 	(*mlx)->weapon->height = 256;
-	(*mlx)->weapon->knife_0 = mlx_png_file_to_image((*mlx)->mlx, "images/knife_1.png", &(*mlx)->weapon->width, &(*mlx)->weapon->height);
-	(*mlx)->weapon->knife_1 = mlx_png_file_to_image((*mlx)->mlx, "images/knife_3.png", &(*mlx)->weapon->width, &(*mlx)->weapon->height);
+	error += attrib_sprites((*mlx), &(*mlx)->weapon->knife_0,
+			"images/knife_1.png");
+	error += attrib_sprites((*mlx), &(*mlx)->weapon->knife_1,
+			"images/knife_3.png");
+	error += attrib_sprites((*mlx), &(*mlx)->weapon->crosshair,
+			"images/crosshair.png");
 	(*mlx)->player->keys->mouse_click = 0;
 	if (error >= 1)
 		return (ERROR);

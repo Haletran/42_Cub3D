@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 22:21:15 by baptiste          #+#    #+#             */
-/*   Updated: 2024/08/12 19:57:27 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/18 22:51:34 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,20 @@ int	check_color(char *color)
 {
 	int	i;
 	int	comma_count;
-	int	len;
 
 	i = 0;
 	comma_count = 0;
-	len = ft_strlen(color);
-	if (len <= 0 || len > 11)
+	if (ft_strlen_color(color) <= 0 || ft_strlen_color(color) > 11)
 		return (ERROR);
 	while (color[i])
 	{
-		if (!(color[i] >= '0' && color[i] <= '9') && color[i] != ',')
+		if (!(color[i] >= '0' && color[i] <= '9') && color[i] != ','
+			&& color[i] != ' ')
 			return (ERROR);
 		if (color[i] == ',')
 		{
 			if (color[i + 1] && check_if_charset(color[i + 1],
-					"0123456789") == ERROR)
+					"0123456789 ") == ERROR)
 				return (ERROR);
 			comma_count++;
 		}
@@ -63,12 +62,8 @@ int	check_map_validity(t_mlx *mlx, char **map)
 	}
 	mlx->map->data_map->width = j;
 	mlx->map->data_map->height = i;
-	if (check_color(mlx->map->data_map->floor_char) == ERROR)
+	if (attribute_color(mlx))
 		return (ERROR);
-	if (check_color(mlx->map->data_map->sky_char) == ERROR)
-		return (ERROR);
-	mlx->map->data_map->floor_c = rgb_to_hex(mlx->map->data_map->floor_char);
-	mlx->map->data_map->sky_c = rgb_to_hex(mlx->map->data_map->sky_char);
 	return (SUCCESS);
 }
 
@@ -91,7 +86,6 @@ int	replace_space(t_mlx **mlx)
 	char	**tmp;
 
 	i = 0;
-	j = 0;
 	find_zero = false;
 	tmp = create_tmp_map((*mlx)->map->map);
 	while ((*mlx)->map->map[i])
@@ -99,17 +93,7 @@ int	replace_space(t_mlx **mlx)
 		j = 0;
 		while ((*mlx)->map->map[i][j])
 		{
-			if ((*mlx)->map->map[i][j] == '1')
-				tmp[i][j] = '1';
-			else if ((*mlx)->map->map[i][j] == '0')
-			{
-				find_zero = true;
-				tmp[i][j] = '0';
-			}
-			else if (check_if_charset((*mlx)->map->map[i][j], "NSEW") == SUCCESS)
-				tmp[i][j] = (*mlx)->map->map[i][j];
-			else if ((*mlx)->map->map[i][j] == 32 && find_zero == true)
-				tmp[i][j] = '1';
+			process_map_character(mlx, &find_zero, tmp, &(t_xy){i, j});
 			j++;
 		}
 		find_zero = false;
@@ -127,7 +111,7 @@ int	init_map(t_mlx **mlx)
 	int	i;
 	int	j;
 
-	i = (*mlx)->map->start_map;
+	i = (*mlx)->map->start_map + 1;
 	j = 0;
 	(*mlx)->map->map = ft_calloc(sizeof(char *), (*mlx)->map->file_lenght);
 	if (!(*mlx)->map->map)
@@ -141,6 +125,8 @@ int	init_map(t_mlx **mlx)
 	free_tab((*mlx)->map->file);
 	(*mlx)->map->file = NULL;
 	(*mlx)->map->map[j] = NULL;
+	if (check_map(mlx))
+		return (ft_error(MAP_ERROR));
 	replace_space(mlx);
 	return (SUCCESS);
 }

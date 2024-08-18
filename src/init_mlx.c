@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:37:15 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/12 19:31:45 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/18 22:31:47 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	check_file(char *filename)
 		return (0);
 	if (open(filename, O_RDONLY) < 0)
 		return (ERROR);
-	if (ft_strstr(filename, ".cub") && ft_strcmp(filename + len, ".cub") == 0)
+	if (ft_strstr(filename, ".cub") && !ft_strcmp(filename + len, ".cub"))
 		return (SUCCESS);
 	return (ERROR);
 }
@@ -54,8 +54,10 @@ static int	check_file_and_init(t_mlx **mlx)
 		return (ERROR);
 	if (check_map_validity((*mlx), (*mlx)->map->map) == ERROR)
 		return (ft_error(MAP_ERROR));
-	(*mlx)->map->data_map->floor_char = free_char((*mlx)->map->data_map->floor_char);
-	(*mlx)->map->data_map->sky_char = free_char((*mlx)->map->data_map->sky_char);
+	free_char((*mlx)->map->data_map->floor_char);
+	(*mlx)->map->data_map->floor_char = NULL;
+	free_char((*mlx)->map->data_map->sky_char);
+	(*mlx)->map->data_map->sky_char = NULL;
 	if (init_images(mlx) == ERROR)
 		return (ERROR);
 	(*mlx)->map->file = ft_copy_tab((*mlx)->map->map,

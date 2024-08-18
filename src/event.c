@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdeviann <qdeviann@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:13:14 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/18 20:38:44 by qdeviann         ###   ########.fr       */
+/*   Updated: 2024/08/18 21:46:28 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,27 +34,6 @@ int	reset_keys(int event, void *param)
 		mlx->player->keys->left = 0;
 	if (event == RIGHT_ARROW)
 		mlx->player->keys->right = 0;
-	return (0);
-}
-
-int	mouse_hook(int button, void *param)
-{
-	t_mlx	*mlx;
-
-	mlx = param;
-	if (button == 1)
-		mlx->player->keys->mouse_click = 1;
-	return (0);
-}
-
-int	mouse_reset(int button, void *param)
-{
-	t_mlx	*mlx;
-
-	mlx = param;
-	(void)button;
-	if (mlx->player->keys->mouse_click == 1)
-		mlx->player->keys->mouse_click = 0;
 	return (0);
 }
 

@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   weapon.c                                           :+:      :+:    :+:   */
+/*   mouse_event.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/18 18:45:37 by qdeviann          #+#    #+#             */
-/*   Updated: 2024/08/18 21:41:33 by bapasqui         ###   ########.fr       */
+/*   Created: 2024/08/18 21:46:12 by bapasqui          #+#    #+#             */
+/*   Updated: 2024/08/18 22:17:03 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	render_weapon(t_mlx *mlx)
+int	mouse_hook(int button, void *param)
 {
-	my_put_image(mlx, &(t_xy){WINDOW_HEIGHT - 256, WINDOW_WIDTH / 2},
-		&(t_wh){256, 256, 1}, mlx->weapon->knife_0);
+	t_mlx	*mlx;
+
+	mlx = param;
+	if (button == 1)
+		mlx->player->keys->mouse_click = 1;
+	return (0);
+}
+
+int	mouse_reset(int button, void *param)
+{
+	t_mlx	*mlx;
+
+	mlx = param;
+	(void)button;
 	if (mlx->player->keys->mouse_click == 1)
-	{
-		fov_details(mlx);
-		my_put_image(mlx, &(t_xy){WINDOW_HEIGHT - 256, WINDOW_WIDTH / 2},
-			&(t_wh){256, 256, 1}, mlx->weapon->knife_1);
-	}
+		mlx->player->keys->mouse_click = 0;
+	return (0);
 }

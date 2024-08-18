@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdeviann <qdeviann@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 17:52:00 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/18 18:45:04 by qdeviann         ###   ########.fr       */
+/*   Updated: 2024/08/18 22:09:32 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@ void	my_put_image(t_mlx *mlx, t_xy *xy, t_wh *whc, void *img)
 		while (j < whc->w)
 		{
 			color = mlx_get_image_pixel(mlx->mlx, img, j, i);
-			// if (color == 0)
-			// 	mlx_pixel_put(mlx->mlx, mlx->win, xy->y + j, xy->x + i,
-			// 		0xA97BADCD);
 			if (whc->check == 1 && color != 0)
 				mlx_pixel_put(mlx->mlx, mlx->win, xy->y + j, xy->x + i, color);
 			else if (whc->check == 0)
@@ -67,21 +64,6 @@ int	get_width(char **str)
 	return (i);
 }
 
-/* int get_height(char **str)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (str[i])
-	{
-		if (ft_strlen(str[i]) > j)
-			j = ft_strlen(str[i]);
-		i++;
-	}
-	return (j);
-} */
 void	get_player_data(t_mlx *mlx, int i, int j, char c)
 {
 	if (c == 'N')

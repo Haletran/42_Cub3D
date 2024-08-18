@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qdeviann <qdeviann@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:02:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/18 19:54:18 by qdeviann         ###   ########.fr       */
+/*   Updated: 2024/08/18 22:50:32 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,12 @@ typedef struct s_data_map
 
 typedef struct s_weapon
 {
-	void *knife_0;
-	void *knife_1;
-	int width;
-	int height;
-}	t_weapon;
-
+	void				*crosshair;
+	void				*knife_0;
+	void				*knife_1;
+	int					width;
+	int					height;
+}						t_weapon;
 
 typedef struct s_mlx
 {
@@ -108,7 +108,7 @@ typedef struct s_mlx
 	struct s_img		*img_s;
 	struct s_img		*img_w;
 	struct s_img		*img_e;
-	struct s_weapon     *weapon;
+	struct s_weapon		*weapon;
 	struct s_img		*minimap;
 }						t_mlx;
 
@@ -189,7 +189,7 @@ void					draw_in_color(t_mlx *mlx, int ray_index, float start,
 							float end);
 void					my_put_image(t_mlx *mlx, t_xy *xy, t_wh *whc,
 							void *img);
-void render_weapon(t_mlx *mlx);
+void					render_weapon(t_mlx *mlx);
 
 // Raycasting and calculations
 float					pythagoras(t_mlx *mlx, float x, float y);
@@ -215,6 +215,7 @@ char					**ft_copy_tab(char **src, int size);
 int						get_width(char **str);
 int						get_maxlenght(char **str);
 void					get_player_data(t_mlx *mlx, int i, int j, char c);
+int						check_map(t_mlx **mlx);
 
 // Utility functions
 int						ft_error(char *error);
@@ -223,17 +224,24 @@ char					*free_char(char *str);
 void					free_tab(char **tab);
 void					free_all(t_mlx **mlx);
 void					print_banner(void);
+int						ft_strlen_color(char *color);
+void					process_map_character(t_mlx **mlx, bool *find_zero,
+							char **tmp, t_xy *ij);
 
 // Event handling
 int						window_hook(int event, void *param);
 int						keydown_keys(int key, void *params);
 int						ft_close(int event, void *param);
+int						mouse_hook(int button, void *param);
+int						mouse_reset(int button, void *param);
 
 // Map attribute functions
 int						attribute_data_map(t_mlx *mlx);
+int						attribute_color(t_mlx *mlx);
 void					lst_print_data(t_map *lst);
 int						check_data_map(t_data_map *data_map);
 int						rgb_to_hex(char *color);
+int						check_color(char *color);
 
 // Additional calculation and checking
 int						select_color(t_mlx *mlx, int x, int y);
