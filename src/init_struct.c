@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qdeviann <qdeviann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 21:36:42 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/12 18:57:53 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/18 19:54:21 by qdeviann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,20 @@ int	init_textures(t_mlx **mlx)
 
 int	init_images(t_mlx **mlx)
 {
+	int error;
+	
+	error = 0;
 	if (init_textures(mlx) == ERROR)
 		return (ERROR);
 	(*mlx)->minimap = ft_calloc(1, sizeof(t_img));
+	(*mlx)->weapon = ft_calloc(1, sizeof(t_weapon));
+	(*mlx)->weapon->width = 256;
+	(*mlx)->weapon->height = 256;
+	(*mlx)->weapon->knife_0 = mlx_png_file_to_image((*mlx)->mlx, "images/knife_1.png", &(*mlx)->weapon->width, &(*mlx)->weapon->height);
+	(*mlx)->weapon->knife_1 = mlx_png_file_to_image((*mlx)->mlx, "images/knife_3.png", &(*mlx)->weapon->width, &(*mlx)->weapon->height);
+	(*mlx)->player->keys->mouse_click = 0;
+	if (error >= 1)
+		return (ERROR);
 	return (SUCCESS);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qdeviann <qdeviann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:02:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/12 19:57:23 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/18 19:54:18 by qdeviann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_key
 	bool				left;
 	bool				right;
 	bool				shift;
+	bool				mouse_click;
 }						t_key;
 
 typedef struct s_data_map
@@ -82,6 +83,15 @@ typedef struct s_data_map
 	char				*sky_char;
 }						t_data_map;
 
+typedef struct s_weapon
+{
+	void *knife_0;
+	void *knife_1;
+	int width;
+	int height;
+}	t_weapon;
+
+
 typedef struct s_mlx
 {
 	void				*mlx;
@@ -98,6 +108,7 @@ typedef struct s_mlx
 	struct s_img		*img_s;
 	struct s_img		*img_w;
 	struct s_img		*img_e;
+	struct s_weapon     *weapon;
 	struct s_img		*minimap;
 }						t_mlx;
 
@@ -178,6 +189,7 @@ void					draw_in_color(t_mlx *mlx, int ray_index, float start,
 							float end);
 void					my_put_image(t_mlx *mlx, t_xy *xy, t_wh *whc,
 							void *img);
+void render_weapon(t_mlx *mlx);
 
 // Raycasting and calculations
 float					pythagoras(t_mlx *mlx, float x, float y);

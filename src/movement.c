@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qdeviann <qdeviann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:24:46 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/18 17:48:14 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/18 18:48:26 by qdeviann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@ int	rotate_player(void *param)
 	y = 0;
 	mlx = param;
 	mlx_mouse_get_pos(mlx->mlx, &x, &y);
-	printf("x: %d\n", x);
 	if (x > WINDOW_WIDTH / 2)
 		rotation_direction("right", mlx);
-	if (x == 0)
+	if (x < WINDOW_WIDTH / 2)
 		rotation_direction("left", mlx);
+	mlx_mouse_move(mlx->mlx, mlx->win, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+	
 	return (SUCCESS);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qdeviann <qdeviann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 23:42:08 by baptiste          #+#    #+#             */
-/*   Updated: 2024/08/12 19:27:16 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/18 20:21:46 by qdeviann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,10 @@ void	free_images(t_mlx **mlx)
 		mlx_destroy_image((*mlx)->mlx, (*mlx)->img_e->img);
 		free((*mlx)->img_e);
 	}
+	if ((*mlx)->weapon->knife_1)
+		mlx_destroy_image((*mlx)->mlx, (*mlx)->weapon->knife_1);
+	if ((*mlx)->weapon->knife_0)
+		mlx_destroy_image((*mlx)->mlx, (*mlx)->weapon->knife_0);
 	free_char((*mlx)->map->data_map->no);
 	free_char((*mlx)->map->data_map->so);
 	free_char((*mlx)->map->data_map->ea);

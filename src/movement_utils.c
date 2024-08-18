@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qdeviann <qdeviann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 22:44:23 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/12 16:10:39 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/18 18:10:57 by qdeviann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ void	rotation_direction(char *direction, t_mlx *mlx)
 {
 	if (!ft_strncmp(direction, "left", 4))
 	{
-		mlx->player->angle -= 0.1;
+		mlx->player->angle -= 0.03;
 		if (mlx->player->angle < 0)
 			mlx->player->angle += 2 * PI;
 	}
 	else if (!ft_strncmp(direction, "right", 5))
 	{
-		mlx->player->angle += 0.1;
+		mlx->player->angle += 0.03;
 		if (mlx->player->angle > 2 * PI)
 			mlx->player->angle -= 2 * PI;
 	}

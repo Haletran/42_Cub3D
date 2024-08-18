@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
+#    By: qdeviann <qdeviann@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/17 10:49:06 by bapasqui          #+#    #+#              #
-#    Updated: 2024/08/12 19:27:56 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/08/18 18:53:05 by qdeviann         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ MAKEFLAGS += -j
 # Makefile vars
 CC := clang                                                             
 NAME    := cub3D
-CFLAGS  := -Wextra -Wall -Werror -g #-fsanitize=address
+CFLAGS  := -Wextra -Wall -Werror -O2#-fsanitize=address
 SRCS    := src/main.c \
            src/event.c \
 		   src/movement_utils.c \
@@ -38,6 +38,7 @@ SRCS    := src/main.c \
 		   src/draw.c \
 		   src/utils_parsing.c \
 		   src/init_struct.c \
+		   src/weapon.c \
 
 
 OBJS_DIR := obj

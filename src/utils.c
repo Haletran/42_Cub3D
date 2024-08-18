@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qdeviann <qdeviann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 17:52:00 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/12 19:24:10 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/18 18:45:04 by qdeviann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	my_put_image(t_mlx *mlx, t_xy *xy, t_wh *whc, void *img)
 		while (j < whc->w)
 		{
 			color = mlx_get_image_pixel(mlx->mlx, img, j, i);
-			if (color == 0)
-				mlx_pixel_put(mlx->mlx, mlx->win, xy->y + j, xy->x + i,
-					0xA07BADCD);
+			// if (color == 0)
+			// 	mlx_pixel_put(mlx->mlx, mlx->win, xy->y + j, xy->x + i,
+			// 		0xA97BADCD);
 			if (whc->check == 1 && color != 0)
 				mlx_pixel_put(mlx->mlx, mlx->win, xy->y + j, xy->x + i, color);
 			else if (whc->check == 0)

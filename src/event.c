@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qdeviann <qdeviann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:13:14 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/18 17:41:07 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/18 19:48:00 by qdeviann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,36 @@ int	reset_keys(int event, void *param)
 	return (0);
 }
 
+
+int mouse_hook(int button, void *param)
+{
+	t_mlx *mlx;
+
+	mlx = param;
+	if (button == 1)
+		mlx->player->keys->mouse_click = 1;
+	return (0);
+}
+
+int mouse_reset(int button, void *param)
+{
+	t_mlx *mlx;
+
+	mlx = param;
+	(void)button;
+	if (mlx->player->keys->mouse_click == 1)
+		mlx->player->keys->mouse_click = 0;
+	return (0);
+}
+
+
 void	get_user_input(t_mlx *mlx)
 {
 	mlx_on_event(mlx->mlx, mlx->win, MLX_KEYDOWN, keydown_keys, mlx);
 	mlx_on_event(mlx->mlx, mlx->win, MLX_KEYUP, reset_keys, mlx);
 	mlx_on_event(mlx->mlx, mlx->win, MLX_WINDOW_EVENT, ft_close, mlx);
+	mlx_on_event(mlx->mlx, mlx->win, MLX_MOUSEDOWN, mouse_hook, mlx);
+    mlx_on_event(mlx->mlx, mlx->win, MLX_MOUSEUP, mouse_reset, mlx);
 }
 
 int	window_hook(int event, void *param)

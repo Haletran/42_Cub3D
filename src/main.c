@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qdeviann <qdeviann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 10:49:02 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/12 20:51:10 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/18 19:37:39 by qdeviann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,11 @@ int	move_render(void *param)
 	t_mlx			*mlx;
 
 	mlx = (t_mlx *)param;
+
 	move_player(mlx);
 	rotate_player(mlx);
 	fov_details(mlx);
+	render_weapon(mlx);
 	current_time = clock();
 	fps = CLOCKS_PER_SEC / (double)(current_time - last_time);
 	last_time = current_time;
@@ -58,7 +60,8 @@ int	main(int argc, char **argv)
 	mlx->win = mlx_new_window(mlx->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, GAME_NAME);
 	if (!mlx->win)
 		return (ERROR);
-	mlx_set_fps_goal(mlx->mlx, 60);
+	mlx_mouse_hide();
+	mlx_mouse_move(mlx->mlx, mlx->win, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
 	print_banner();
 	lst_print_data(mlx->map);
 	get_user_input(mlx);
