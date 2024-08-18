@@ -1,25 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 10:49:02 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/18 23:29:29 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/18 23:45:15 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+#include <time.h>
+
+void	render_fps_box(t_mlx *mlx, int fps)
+{
+	void	*box;
+	char	*fps_str;
+
+	fps_str = ft_itoa(fps);
+	box = mlx_new_image(mlx->mlx, 100, 100);
+	my_put_image(mlx, &(t_xy){0, 0}, &(t_wh){80, 15, 0}, box);
+	mlx_string_put(mlx->mlx, mlx->win, 10, 10, 0xFFFFFFFF, "FPS:");
+	mlx_string_put(mlx->mlx, mlx->win, 50, 10, 0xFFFFFFFF, fps_str);
+	mlx_destroy_image(mlx->mlx, box);
+	fps_str = free_char(fps_str);
+}
 
 int	move_render(void *param)
 {
+	static clock_t	last_time = 0;
+	clock_t			current_time;
+	double			fps;
 	t_mlx			*mlx;
 
 	mlx = (t_mlx *)param;
 	move_player(mlx);
 	rotate_player(mlx);
 	fov_details(mlx);
+	render_weapon(mlx);
+	my_put_image(mlx, &(t_xy){WINDOW_HEIGHT / 2 - 30, WINDOW_WIDTH / 2 - 64},
+		&(t_wh){64, 64, 1}, mlx->weapon->crosshair);
+	if (mlx->player->fps_counter == 1)
+	{
+		current_time = clock();
+		fps = CLOCKS_PER_SEC / (double)(current_time - last_time);
+		last_time = current_time;
+		render_fps_box(mlx, fps);
+	}
 	return (SUCCESS);
 }
 
@@ -40,6 +68,7 @@ int	main(int argc, char **argv)
 	if (!mlx->win)
 		return (ERROR);
 	mlx_mouse_hide();
+	mlx_mouse_move(mlx->mlx, mlx->win, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
 	print_banner();
 	lst_print_data(mlx->map);
 	get_user_input(mlx);

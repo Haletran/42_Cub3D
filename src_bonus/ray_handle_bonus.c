@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 21:35:20 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/18 23:31:17 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/18 22:55:20 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ void	fov_details(t_mlx *mlx)
 	int	i;
 
 	i = 0;
+	mlx_clear_window(mlx->mlx, mlx->win);
 	mlx->ray->ray_angle = mlx->player->angle - (((FOV / 2) * PI) / 180);
 	if (mlx->ray->ray_angle < 0)
 		mlx->ray->ray_angle += 2 * PI;
@@ -121,4 +122,6 @@ void	fov_details(t_mlx *mlx)
 			mlx->ray->ray_angle -= 2 * PI;
 		i++;
 	}
+	if (mlx->player->minimap == 1)
+		draw_minimap(mlx);
 }

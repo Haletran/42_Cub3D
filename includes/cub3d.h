@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:02:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/18 22:50:32 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/18 23:37:28 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ typedef struct s_player
 	double				dir;
 	double				fov;
 	int					minimap;
+	int					fps_counter;
 	int					debug;
 	int					speed;
 	struct s_key		*keys;

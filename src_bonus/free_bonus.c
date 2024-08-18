@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 23:42:08 by baptiste          #+#    #+#             */
-/*   Updated: 2024/08/18 23:30:46 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/18 21:59:25 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,20 @@ void	free_tab(char **tab)
 	}
 	free(tab);
 	tab = NULL;
+}
+
+void	free_bonus(t_mlx **mlx)
+{
+	if ((*mlx)->weapon)
+	{
+		if ((*mlx)->weapon->knife_1)
+			mlx_destroy_image((*mlx)->mlx, (*mlx)->weapon->knife_1);
+		if ((*mlx)->weapon->knife_0)
+			mlx_destroy_image((*mlx)->mlx, (*mlx)->weapon->knife_0);
+		if ((*mlx)->weapon->crosshair)
+			mlx_destroy_image((*mlx)->mlx, (*mlx)->weapon->crosshair);
+		free((*mlx)->weapon);
+	}
 }
 
 void	free_images(t_mlx **mlx)
@@ -67,6 +81,7 @@ void	free_images(t_mlx **mlx)
 
 void	free_all(t_mlx **mlx)
 {
+	free_bonus(mlx);
 	free_images(mlx);
 	if ((*mlx)->map->path)
 		free_char((*mlx)->map->path);

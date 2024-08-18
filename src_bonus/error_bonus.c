@@ -1,32 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_keys.h                                         :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 14:10:54 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/18 23:35:07 by bapasqui         ###   ########.fr       */
+/*   Created: 2024/05/23 20:14:46 by bapasqui          #+#    #+#             */
+/*   Updated: 2024/08/11 21:35:13 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MLX_KEYS_H
-# define MLX_KEYS_H
+#include "../includes/cub3d.h"
 
-// Commands
-# define KEY_ESC 65307
-
-// Arrows
-# define LEFT_ARROW 80
-# define RIGHT_ARROW 79
-# define ECHAP_KEY 41
-# define W_KEY 26
-# define S_KEY 22
-# define D_KEY 4
-# define A_KEY 7
-# define M_KEY 16
-# define H_KEY 11
-# define SHIFT_KEY 225
-# define F_KEY 9
-
-#endif
+int	ft_error(char *error)
+{
+	ft_printf_fd(2, BOLDRED "[ Error ]\n" RESET "%s", error);
+	return (ERROR);
+}

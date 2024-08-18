@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/17 10:49:06 by bapasqui          #+#    #+#              #
-#    Updated: 2024/08/18 23:14:55 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/08/18 23:45:06 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ MAKEFLAGS += -j
 # Makefile vars
 CC := clang                                                             
 NAME    := cub3D
+NAME_BONUS := cub3D_bonus
 CFLAGS  := -Wextra -Wall -Werror -g#-fsanitize=address
 SRCS    := src/main.c \
            src/event.c \
@@ -34,17 +35,36 @@ SRCS    := src/main.c \
 		   src/error.c \
 		   src/utils.c \
 		   src/flood_fill.c \
-		   src/minimap.c \
 		   src/draw.c \
 		   src/utils_parsing.c \
 		   src/init_struct.c \
-		   src/weapon.c \
-		   src/mouse_event.c \
 		   src/data_checker.c \
 
+SRCS_BONUS := src_bonus/data_checker_bonus.c \
+		   src_bonus/draw_bonus.c \
+		   src_bonus/error_bonus.c \
+		   src_bonus/event_bonus.c \
+		   src_bonus/flood_fill_bonus.c \
+		   src_bonus/free_bonus.c \
+		   src_bonus/init_mlx_bonus.c \
+		   src_bonus/init_struct_bonus.c \
+		   src_bonus/lst_print_bonus.c \
+		   src_bonus/main_bonus.c \
+		   src_bonus/minimap_bonus.c \
+		   src_bonus/mouse_event_bonus.c \
+		   src_bonus/movement_bonus.c \
+		   src_bonus/movement_utils_bonus.c \
+		   src_bonus/parser_bonus.c \
+		   src_bonus/ray_handle_bonus.c \
+		   src_bonus/render_map_bonus.c \
+		   src_bonus/render_wall_bonus.c \
+		   src_bonus/utils_bonus.c \
+		   src_bonus/utils_parsing_bonus.c \
+		   src_bonus/weapon_bonus.c \
 
 OBJS_DIR := obj
 OBJS    := $(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
+OBJS_BONUS := $(addprefix $(OBJS_DIR)/,$(SRCS_BONUS:.c=.o))
 LIBS    := MacroLibX/libmlx.so -lSDL2 -lm
 
 all: $(NAME)
@@ -60,10 +80,19 @@ $(NAME): $(OBJS)
 	echo "Compiling\033[1m\033[32m" $@ "\033[0m"
 	echo "\033[42mSuccessfully compiled :)\033[0m"
 
+
+bonus: $(OBJS_BONUS)
+	@echo "\033[1m\033[32m""[ Bonus ]" "\033[0m"
+	@make -C MacroLibX
+	@make -C lib
+	$(CC) $(CFLAGS) -o $(NAME_BONUS) $(OBJS_BONUS) lib/libft.a $(LIBS)
+	echo "Compiling\033[1m\033[32m" $@ "\033[0m"
+	echo "\033[42mSuccessfully compiled :)\033[0m"
+
 norm:
 	@clear
 	@echo "\033[1m\033[32m""[ Norminette ]" "\033[0m"
-	-@norminette $(SRCS) lib/ includes/
+	-@norminette $(SRCS) lib/ includes/ $(SRCS_BONUS)
 
 valgrind:
 	valgrind --leak-check=full --show-leak-kinds=all --suppressions=MacroLibX/valgrind.supp ./$(NAME) maps/map_sujet.cub
@@ -80,7 +109,7 @@ clean:
 fclean: clean
 	@make fclean -C lib
 	@make fclean -C MacroLibX
-	@rm -rf $(NAME)
+	@rm -rf $(NAME) $(NAME_BONUS)
 
 fclean_macro: clean
 	@make fclean -C lib
