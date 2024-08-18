@@ -6,7 +6,7 @@
 /*   By: qdeviann <qdeviann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 21:36:42 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/18 19:54:21 by qdeviann         ###   ########.fr       */
+/*   Updated: 2024/08/18 20:41:27 by qdeviann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ int	init_textures(t_mlx **mlx)
 
 int	init_images(t_mlx **mlx)
 {
-	int error;
-	
+	int	error;
+
 	error = 0;
 	if (init_textures(mlx) == ERROR)
 		return (ERROR);

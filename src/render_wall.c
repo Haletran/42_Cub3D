@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_wall.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qdeviann <qdeviann@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:25:19 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/12 20:40:28 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/18 20:40:52 by qdeviann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,18 +76,18 @@ float	calculate_step(t_mlx *mlx)
 
 int	calculate_tex_x(t_mlx *mlx, float wall_x)
 {
-    if (mlx->ray->h_hit)
-    {
-        if (mlx->ray->ray_angle > 0 && mlx->ray->ray_angle < PI)
-            return (wall_x * mlx->img_s->t_wid);
-        else
-            return (wall_x * mlx->img_n->t_wid);
-    }
-    else
-    {
-        if (mlx->ray->ray_angle > (PI / 2) && mlx->ray->ray_angle < (3 * PI / 2))
-            return (mlx->img_e->t_wid - wall_x * mlx->img_e->t_wid);
-        else
-            return (wall_x * mlx->img_w->t_wid);
-    }
+	if (mlx->ray->h_hit)
+	{
+		if (mlx->ray->ray_angle > 0 && mlx->ray->ray_angle < PI)
+			return (wall_x * mlx->img_s->t_wid);
+		else
+			return (wall_x * mlx->img_n->t_wid);
+	}
+	else
+	{
+		if (mlx->ray->ray_angle > (PI / 2) && mlx->ray->ray_angle < (3 * PI / 2))
+			return (mlx->img_e->t_wid - wall_x * mlx->img_e->t_wid);
+		else
+			return (wall_x * mlx->img_w->t_wid);
+	}
 }
