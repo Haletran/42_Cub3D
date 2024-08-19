@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 22:21:15 by baptiste          #+#    #+#             */
-/*   Updated: 2024/08/19 16:37:04 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/19 18:02:35 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	check_data_map(t_data_map *data_map)
 {
 	if (!data_map->no || !data_map->so || !data_map->we || !data_map->ea
 		|| !data_map->floor_char || !data_map->sky_char)
-		return (ft_error(DATA_ERROR));
+		return (ft_error(MISSING_DATA));
 	if (access(data_map->no, F_OK) == -1 || access(data_map->so, F_OK) == -1
 		|| access(data_map->we, F_OK) == -1 || access(data_map->ea, F_OK) == -1)
 		return (ft_error(PATH_ERROR));

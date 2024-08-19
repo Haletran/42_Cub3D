@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 22:20:26 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/19 16:38:06 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/19 18:39:01 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,11 @@ int	attribute_color(t_mlx *mlx)
 	if (check_color(mlx->map->data_map->sky_char) == ERROR)
 		return (ERROR);
 	mlx->map->data_map->floor_c = rgb_to_hex(mlx->map->data_map->floor_char);
+	if (mlx->map->data_map->floor_c == ERROR)
+		return (ERROR);
 	mlx->map->data_map->sky_c = rgb_to_hex(mlx->map->data_map->sky_char);
+	if (mlx->map->data_map->sky_c == ERROR)
+		return (ERROR);
 	return (SUCCESS);
 }
 

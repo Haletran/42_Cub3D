@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 02:43:54 by bapt              #+#    #+#             */
-/*   Updated: 2024/08/19 16:43:47 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/19 18:32:11 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,8 @@
 # define COLOR_ERROR "Invalid color\n"
 # define IMG_ERROR "Invalid image\n"
 # define MAP_SIZE_ERROR "Invalid map size\n"
+# define MISSING_DATA "Missing some vars in map file\n"
+# define NOTHING_IN_FILE "Nothing to read in file\n"
+# define COLOR_ERROR "Invalid color\n"
 
 #endif

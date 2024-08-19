@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:25:15 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/19 17:43:41 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/19 18:10:45 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,7 @@ int	read_file(t_mlx *mlx)
 		i++;
 	}
 	close(fd);
+	if (i < 1)
+		return (ft_error(NOTHING_IN_FILE));
 	return (SUCCESS);
 }

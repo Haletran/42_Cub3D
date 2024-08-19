@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/17 10:49:06 by bapasqui          #+#    #+#              #
-#    Updated: 2024/08/19 17:49:48 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/08/19 17:56:53 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,11 +70,14 @@ LIBS    := MacroLibX/libmlx.so -lSDL2 -lm
 all: $(NAME)
 
 $(OBJS_DIR)/%.o: %.c
+	@clear
 	@mkdir -p $(@D)
 	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
 
 $(NAME): $(OBJS)
-	@make -C MacroLibX
+	@echo "\033[1m\033[32m""[ Cub3D ]" "\033[0m"
+	@echo "Compiling\033[1m\033[32m" MacroLibX "\033[0m"
+	@make -C MacroLibX > /dev/null
 	@make -C lib
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) lib/libft.a $(LIBS)
 	echo "Compiling\033[1m\033[32m" $@ "\033[0m"
