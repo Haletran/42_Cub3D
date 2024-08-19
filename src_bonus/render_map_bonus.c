@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:25:15 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/19 17:38:55 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/19 17:43:50 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static int	assign_data_map(char *map, char *prefix, char **target)
 {
-	char *tmp;
-	
+	char	*tmp;
+
 	if (!ft_strncmp(map, prefix, ft_strlen(prefix)))
 	{
 		tmp = *target;
