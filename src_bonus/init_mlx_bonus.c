@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_mlx.c                                         :+:      :+:    :+:   */
+/*   init_mlx_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:37:15 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/18 22:31:47 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/19 16:40:21 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 int	check_file(char *filename)
 {
 	size_t	len;
+	int 	fd;
 
 	len = ft_strlen(filename) - 4;
 	if (len < 4)
 		return (0);
-	if (open(filename, O_RDONLY) < 0)
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
 		return (ERROR);
 	if (ft_strstr(filename, ".cub") && !ft_strcmp(filename + len, ".cub"))
 		return (SUCCESS);
@@ -59,7 +61,7 @@ static int	check_file_and_init(t_mlx **mlx)
 	free_char((*mlx)->map->data_map->sky_char);
 	(*mlx)->map->data_map->sky_char = NULL;
 	if (init_images(mlx) == ERROR)
-		return (ERROR);
+		return (ft_error(IMG_ERROR));
 	(*mlx)->map->file = ft_copy_tab((*mlx)->map->map,
 			get_width((*mlx)->map->map));
 	flood_fill((*mlx)->map->file, (*mlx), (int)(*mlx)->player->x / TILL_S,

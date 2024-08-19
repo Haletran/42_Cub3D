@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   data_checker.c                                     :+:      :+:    :+:   */
+/*   data_checker_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 22:20:26 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/18 22:50:49 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/19 16:38:06 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,6 @@ void	process_map_character(t_mlx **mlx, bool *find_zero, char **tmp,
 	else if (check_if_charset((*mlx)->map->map[ij->x][ij->y],
 		"NSEW") == SUCCESS)
 		tmp[ij->x][ij->y] = (*mlx)->map->map[ij->x][ij->y];
-	else if ((*mlx)->map->map[ij->x][ij->y] == 32 && *find_zero == true)
+	else if ((*mlx)->map->map[ij->x][ij->y] == 32)
 		tmp[ij->x][ij->y] = '1';
 }
