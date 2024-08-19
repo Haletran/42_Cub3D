@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/17 10:49:06 by bapasqui          #+#    #+#              #
-#    Updated: 2024/08/19 17:56:53 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/08/19 19:04:24 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,7 +86,8 @@ $(NAME): $(OBJS)
 
 bonus: $(OBJS_BONUS)
 	@echo "\033[1m\033[32m""[ Bonus ]" "\033[0m"
-	@make -C MacroLibX
+	@echo "Compiling\033[1m\033[32m" MacroLibX "\033[0m"
+	@make -C MacroLibX > /dev/null
 	@make -C lib
 	$(CC) $(CFLAGS) -o $(NAME_BONUS) $(OBJS_BONUS) lib/libft.a $(LIBS)
 	echo "Compiling\033[1m\033[32m" $@ "\033[0m"
