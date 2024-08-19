@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/28 02:43:54 by bapt              #+#    #+#             */
-/*   Updated: 2024/08/19 16:30:14 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/19 16:43:47 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@
 # define END_OF_EXEC "\n-- Goodbye, user! Have a great day! --\n"
 # define COLOR_ERROR "Invalid color\n"
 # define IMG_ERROR "Invalid image\n"
+# define MAP_SIZE_ERROR "Invalid map size\n"
 
 #endif

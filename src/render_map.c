@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:25:15 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/19 16:23:32 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/19 17:39:18 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,14 @@
 
 static int	assign_data_map(char *map, char *prefix, char **target)
 {
+	char *tmp;
+	
+	tmp = NULL;
 	if (!ft_strncmp(map, prefix, ft_strlen(prefix)))
 	{
+		tmp = *target;
 		*target = ft_strtrim(map + ft_strlen(prefix) + 1, " \n	");
+		free(tmp);
 		return (1);
 	}
 	return (0);
@@ -31,15 +36,15 @@ int	attribute_data_map(t_mlx *mlx)
 	while (mlx->map->file[mlx->counter])
 	{
 		assign += assign_data_map(mlx->map->file[mlx->counter], "NO",
-				&mlx->map->data_map->no);
+					&mlx->map->data_map->no);
 		assign += assign_data_map(mlx->map->file[mlx->counter], "SO",
-				&mlx->map->data_map->so);
+					&mlx->map->data_map->so);
 		assign += assign_data_map(mlx->map->file[mlx->counter], "WE",
-				&mlx->map->data_map->we);
+					&mlx->map->data_map->we);
 		assign += assign_data_map(mlx->map->file[mlx->counter], "EA",
-				&mlx->map->data_map->ea);
+					&mlx->map->data_map->ea);
 		assign += assign_data_map(mlx->map->file[mlx->counter], "F",
-				&mlx->map->data_map->floor_char);
+					&mlx->map->data_map->floor_char);
 		assign += assign_data_map(mlx->map->file[mlx->counter], "C",
 				&mlx->map->data_map->sky_char);
 		if (assign == 6)
