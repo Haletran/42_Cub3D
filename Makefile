@@ -6,7 +6,7 @@
 #    By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/17 10:49:06 by bapasqui          #+#    #+#              #
-#    Updated: 2024/08/18 23:45:06 by bapasqui         ###   ########.fr        #
+#    Updated: 2024/08/19 13:40:57 by bapasqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -121,4 +121,4 @@ re:
 	$(MAKE) fclean
 	$(MAKE) -j$(nproc)
 
-.PHONY: all clean fclean re gt
+.PHONY: all clean fclean bonus re gt

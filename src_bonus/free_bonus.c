@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   free_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 23:42:08 by baptiste          #+#    #+#             */
-/*   Updated: 2024/08/18 21:59:25 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/19 16:33:01 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	free_bonus(t_mlx **mlx)
 			mlx_destroy_image((*mlx)->mlx, (*mlx)->weapon->crosshair);
 		free((*mlx)->weapon);
 	}
+	free_char((*mlx)->map->data_map->floor_char);
+	free_char((*mlx)->map->data_map->sky_char);
 }
 
 void	free_images(t_mlx **mlx)

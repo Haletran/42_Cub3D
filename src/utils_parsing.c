@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 21:18:08 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/12 19:24:02 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/19 15:06:23 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,20 @@ int	rgb_to_hex(char *color)
 
 	a = 255;
 	r = ft_atoi(color);
+	if (r < 0 || r > 255)
+		return (ERROR);
 	while (*color && *color != ',')
 		color++;
 	color++;
 	g = ft_atoi(color);
+	if (g < 0 || g > 255)
+		return (ERROR);
 	while (*color && *color != ',')
 		color++;
 	color++;
 	b = ft_atoi(color);
+	if (b < 0 || b > 255)
+		return (ERROR);
 	return (a << 24 | r << 16 | g << 8 | b);
 }
 

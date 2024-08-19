@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 23:42:08 by baptiste          #+#    #+#             */
-/*   Updated: 2024/08/18 23:30:46 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/19 16:31:22 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void	free_images(t_mlx **mlx)
 void	free_all(t_mlx **mlx)
 {
 	free_images(mlx);
+	free_char((*mlx)->map->data_map->floor_char);
+	free_char((*mlx)->map->data_map->sky_char);
 	if ((*mlx)->map->path)
 		free_char((*mlx)->map->path);
 	free_tab((*mlx)->map->map);

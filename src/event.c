@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:13:14 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/18 23:30:53 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/19 15:14:55 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,6 @@ void	get_user_input(t_mlx *mlx)
 	mlx_on_event(mlx->mlx, mlx->win, MLX_KEYDOWN, keydown_keys, mlx);
 	mlx_on_event(mlx->mlx, mlx->win, MLX_KEYUP, reset_keys, mlx);
 	mlx_on_event(mlx->mlx, mlx->win, MLX_WINDOW_EVENT, ft_close, mlx);
-}
-
-int	window_hook(int event, void *param)
-{
-	t_mlx	*mlx;
-
-	mlx = param;
-	if (event == KEY_ESC)
-		mlx_loop_end(mlx->mlx);
-	return (0);
 }
 
 int	ft_close(int event, void *param)

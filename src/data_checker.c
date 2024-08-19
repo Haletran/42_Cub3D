@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 22:20:26 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/18 23:31:02 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/19 15:05:02 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,11 @@ int	attribute_color(t_mlx *mlx)
 	if (check_color(mlx->map->data_map->sky_char) == ERROR)
 		return (ERROR);
 	mlx->map->data_map->floor_c = rgb_to_hex(mlx->map->data_map->floor_char);
+	if (mlx->map->data_map->floor_c == ERROR)
+		return (ERROR);
 	mlx->map->data_map->sky_c = rgb_to_hex(mlx->map->data_map->sky_char);
+	if (mlx->map->data_map->sky_c == ERROR)
+		return (ERROR);
 	return (SUCCESS);
 }
 
@@ -74,6 +78,6 @@ void	process_map_character(t_mlx **mlx, bool *find_zero, char **tmp,
 	else if (check_if_charset((*mlx)->map->map[ij->x][ij->y],
 		"NSEW") == SUCCESS)
 		tmp[ij->x][ij->y] = (*mlx)->map->map[ij->x][ij->y];
-	else if ((*mlx)->map->map[ij->x][ij->y] == 32 && *find_zero == true)
+	else if ((*mlx)->map->map[ij->x][ij->y] == 32)
 		tmp[ij->x][ij->y] = '1';
 }
