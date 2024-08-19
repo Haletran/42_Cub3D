@@ -1,10 +1,10 @@
-NO images/mossy.png
-SO images/colorstone.png
-WE images/redbrick.png
-EA images/eagle.png
+NO images/bigmac.png
+SO images/mac.png
+WE images/cheeseburger.png
+EA images/bur.png
 
-F 5,5,0
-C 123,23,1
+F 255,255,0
+C 255,0,0
 
 1111111111111111111111111
 1000000000000000000000001
