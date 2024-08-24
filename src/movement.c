@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:24:46 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/18 23:28:56 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/24 15:19:54 by bapt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,7 @@
 int	rotate_player(void *param)
 {
 	t_mlx	*mlx;
-	int		x;
-	int		y;
 
-	x = 0;
-	y = 0;
 	mlx = param;
 	if (mlx->player->keys->left == 1)
 		rotation_direction("left", mlx);

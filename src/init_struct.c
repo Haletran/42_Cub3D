@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 21:36:42 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/19 15:34:24 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/24 15:20:01 by bapt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,6 @@ int	init_textures(t_mlx **mlx)
 
 int	init_images(t_mlx **mlx)
 {
-	int	error;
-
-	error = 0;
 	if (init_textures(mlx) == ERROR)
 		return (ERROR);
 	return (SUCCESS);
