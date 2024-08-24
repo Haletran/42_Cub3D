@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   weapon.c                                           :+:      :+:    :+:   */
+/*   weapon_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 18:45:37 by qdeviann          #+#    #+#             */
-/*   Updated: 2024/08/18 21:41:33 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/25 00:34:51 by bapt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	render_weapon(t_mlx *mlx)
+void	render_weapon(t_mlx *mlx, void *img_1, void *img_2, t_xy *pos)
 {
-	my_put_image(mlx, &(t_xy){WINDOW_HEIGHT - 256, WINDOW_WIDTH / 2},
-		&(t_wh){256, 256, 1}, mlx->weapon->knife_0);
+	my_put_image(mlx, pos, &(t_wh){256, 256, 1}, img_1);
 	if (mlx->player->keys->mouse_click == 1)
 	{
 		fov_details(mlx);
-		my_put_image(mlx, &(t_xy){WINDOW_HEIGHT - 256, WINDOW_WIDTH / 2},
-			&(t_wh){256, 256, 1}, mlx->weapon->knife_1);
+		my_put_image(mlx, pos, &(t_wh){256, 256, 1}, img_2);
 	}
 }

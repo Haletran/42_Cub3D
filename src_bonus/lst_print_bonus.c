@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_print_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 22:06:13 by baptiste          #+#    #+#             */
-/*   Updated: 2024/08/19 00:10:09 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/25 00:35:32 by bapt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	lst_print_data(t_map *lst)
 		ft_printf_fd(1, BOLDCYAN "D : " RESET "Move right\n");
 		ft_printf_fd(1, BOLDCYAN "MOUSE : " RESET "Rotate with the mouse\n");
 		ft_printf_fd(1, BOLDCYAN "RIGHT CLICK : "RESET "Stab with the knife\n");
+		ft_printf_fd(1, BOLDCYAN "SCROLL UP : " RESET "Switch to pistol\n");
 		ft_printf_fd(1, BOLDCYAN "M : " RESET "Toggle minimap\n");
 		ft_printf_fd(1, BOLDCYAN "F : " RESET "Toggle fps counter\n");
 		ft_printf_fd(1, BOLDCYAN "ESC : " RESET "Quit\n");

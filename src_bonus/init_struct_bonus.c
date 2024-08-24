@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 21:36:42 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/18 23:39:15 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/24 23:58:04 by bapt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,10 @@ int	init_images(t_mlx **mlx)
 			"images/knife_3.png");
 	error += attrib_sprites((*mlx), &(*mlx)->weapon->crosshair,
 			"images/crosshair.png");
+	error += attrib_sprites((*mlx), &(*mlx)->weapon->pistol_0,
+			"images/pistol_0.png");
+	error += attrib_sprites((*mlx), &(*mlx)->weapon->pistol_1,
+			"images/pistol_1.png");
 	(*mlx)->player->keys->mouse_click = 0;
 	if (error >= 1)
 		return (ERROR);

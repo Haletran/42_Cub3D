@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:37:15 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/19 16:48:23 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/24 23:55:56 by bapt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,7 @@ int	init(t_mlx **mlx, char **str)
 		return (ERROR);
 	if (check_file_and_init(mlx) != SUCCESS)
 		return (ERROR);
+	(*mlx)->player->fov = FOV;
+	(*mlx)->player->weapon = 1;
 	return (SUCCESS);
 }

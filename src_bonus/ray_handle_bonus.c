@@ -6,7 +6,7 @@
 /*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 21:35:20 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/24 15:43:32 by bapt             ###   ########.fr       */
+/*   Updated: 2024/08/24 23:39:41 by bapt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	fov_details(t_mlx *mlx)
 
 	i = 0;
 	mlx_clear_window(mlx->mlx, mlx->win);
-	mlx->ray->ray_angle = mlx->player->angle - (((FOV / 2) * PI) / 180);
+	mlx->ray->ray_angle = mlx->player->angle - (((mlx->player->fov / 2) * PI) / 180);
 	if (mlx->ray->ray_angle < 0)
 		mlx->ray->ray_angle += 2 * PI;
 	while (i < RAYS)
@@ -117,7 +117,7 @@ void	fov_details(t_mlx *mlx)
 		mlx->ray->h_hit = 0;
 		find_ray_lenght(mlx);
 		draw_wall(mlx, i);
-		mlx->ray->ray_angle += ((FOV * PI) / 180) / RAYS;
+		mlx->ray->ray_angle += ((mlx->player->fov * PI) / 180) / RAYS;
 		if (mlx->ray->ray_angle > 2 * PI)
 			mlx->ray->ray_angle -= 2 * PI;
 		i++;

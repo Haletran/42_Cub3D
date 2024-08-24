@@ -6,7 +6,7 @@
 /*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:02:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/24 15:47:33 by bapt             ###   ########.fr       */
+/*   Updated: 2024/08/25 00:01:04 by bapt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ typedef struct s_weapon
 	void				*crosshair;
 	void				*knife_0;
 	void				*knife_1;
+	void 				*pistol_0;
+	void 				*pistol_1;
 	int					width;
 	int					height;
 }						t_weapon;
@@ -127,6 +129,7 @@ typedef struct s_player
 	int					fps_counter;
 	int					debug;
 	int					speed;
+	int 				weapon;
 	struct s_key		*keys;
 }						t_player;
 
@@ -190,7 +193,7 @@ void					draw_in_color(t_mlx *mlx, int ray_index, float start,
 							float end);
 void					my_put_image(t_mlx *mlx, t_xy *xy, t_wh *whc,
 							void *img);
-void					render_weapon(t_mlx *mlx);
+void	render_weapon(t_mlx *mlx, void *img_1, void *img_2, t_xy *pos);
 
 // Raycasting and calculations
 float					pythagoras(t_mlx *mlx, float x, float y);
@@ -247,5 +250,7 @@ int						check_color(char *color);
 // Additional calculation and checking
 int						select_color(t_mlx *mlx, int x, int y);
 int						check_neg_step(t_mlx *mlx, int h);
+int mouse_wheel_hook(int button, void *param);
+
 
 #endif
