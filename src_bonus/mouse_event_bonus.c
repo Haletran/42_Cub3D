@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_event_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 21:46:12 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/25 00:30:13 by bapt             ###   ########.fr       */
+/*   Updated: 2024/08/25 15:26:17 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int	mouse_reset(int button, void *param)
 	{
 	    mlx->player->keys->mouse_click = 0;
 	    if (mlx->player->weapon == 0)
-	        system("aplay images/weapon_pistol.wav > /dev/null 2>&1 &");
+	        system("cvlc --play-and-exit images/weapon_pistol.wav > /dev/null 2>&1 &");
 	    else if (mlx->player->weapon == 1)
-	        system("aplay images/weapon_knife.wav > /dev/null 2>&1 &");
+	        system("cvlc --play-and-exit images/weapon_knife.wav > /dev/null 2>&1 &");
 	}
 	return (0);
 }
