@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 23:42:08 by baptiste          #+#    #+#             */
-/*   Updated: 2024/08/25 00:00:09 by bapt             ###   ########.fr       */
+/*   Updated: 2024/08/25 16:07:18 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,10 @@ void	free_bonus(t_mlx **mlx)
 			mlx_destroy_image((*mlx)->mlx, (*mlx)->weapon->pistol_1);
 		if ((*mlx)->weapon->pistol_0)
 			mlx_destroy_image((*mlx)->mlx, (*mlx)->weapon->pistol_0);
+		if ((*mlx)->weapon->rifle_1)
+			mlx_destroy_image((*mlx)->mlx, (*mlx)->weapon->rifle_1);
+		if ((*mlx)->weapon->rifle_0)
+			mlx_destroy_image((*mlx)->mlx, (*mlx)->weapon->rifle_0);
 		free((*mlx)->weapon);
 	}
 	free_char((*mlx)->map->data_map->floor_char);

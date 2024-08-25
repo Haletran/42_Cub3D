@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 10:49:02 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/25 15:27:43 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/25 16:20:32 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,7 @@ int	move_render(void *param)
 	move_player(mlx);
 	rotate_player(mlx);
 	fov_details(mlx);
-	if (mlx->player->weapon == 1)
-		render_weapon(mlx, mlx->weapon->knife_0, mlx->weapon->knife_1, &(t_xy){WINDOW_HEIGHT - 256, WINDOW_WIDTH / 2});
-	else if (mlx->player->weapon == 0)
-		render_weapon(mlx, mlx->weapon->pistol_0, mlx->weapon->pistol_1, &(t_xy){WINDOW_HEIGHT - 256, (WINDOW_WIDTH - 256) / 2});
-	my_put_image(mlx, &(t_xy){(WINDOW_HEIGHT - 64) / 2, (WINDOW_WIDTH - 64) / 2},
-        &(t_wh){64, 64, 1}, mlx->weapon->crosshair);
+	weapon_bonus(mlx);
 	if (mlx->player->fps_counter == 1)
 	{
 		current_time = clock();

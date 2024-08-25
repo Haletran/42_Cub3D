@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:02:49 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/25 00:01:04 by bapt             ###   ########.fr       */
+/*   Updated: 2024/08/25 16:23:08 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,10 @@ typedef struct s_weapon
 	void				*crosshair;
 	void				*knife_0;
 	void				*knife_1;
-	void 				*pistol_0;
-	void 				*pistol_1;
+	void				*pistol_0;
+	void				*pistol_1;
+	void				*rifle_0;
+	void				*rifle_1;
 	int					width;
 	int					height;
 }						t_weapon;
@@ -129,7 +131,7 @@ typedef struct s_player
 	int					fps_counter;
 	int					debug;
 	int					speed;
-	int 				weapon;
+	int					weapon;
 	struct s_key		*keys;
 }						t_player;
 
@@ -181,6 +183,7 @@ void					basic_direction(char *key, t_mlx *mlx);
 void					rotation_direction(char *direction, t_mlx *mlx);
 void					lr_direction(char *key, t_mlx *mlx);
 int						rotate_player(void *param);
+void					weapon_bonus(t_mlx *mlx);
 
 // Drawing functions
 void					draw_minimap(t_mlx *mlx);
@@ -193,7 +196,8 @@ void					draw_in_color(t_mlx *mlx, int ray_index, float start,
 							float end);
 void					my_put_image(t_mlx *mlx, t_xy *xy, t_wh *whc,
 							void *img);
-void	render_weapon(t_mlx *mlx, void *img_1, void *img_2, t_xy *pos);
+void					render_weapon(t_mlx *mlx, void *img_1, void *img_2,
+							t_xy *pos);
 
 // Raycasting and calculations
 float					pythagoras(t_mlx *mlx, float x, float y);
@@ -250,7 +254,6 @@ int						check_color(char *color);
 // Additional calculation and checking
 int						select_color(t_mlx *mlx, int x, int y);
 int						check_neg_step(t_mlx *mlx, int h);
-int mouse_wheel_hook(int button, void *param);
-
+int						mouse_wheel_hook(int button, void *param);
 
 #endif

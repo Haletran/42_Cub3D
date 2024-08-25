@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 21:36:42 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/24 23:58:04 by bapt             ###   ########.fr       */
+/*   Updated: 2024/08/25 16:15:08 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ int	init_images(t_mlx **mlx)
 		return (ERROR);
 	(*mlx)->minimap = ft_calloc(1, sizeof(t_img));
 	(*mlx)->weapon = ft_calloc(1, sizeof(t_weapon));
-	(*mlx)->weapon->width = 256;
-	(*mlx)->weapon->height = 256;
 	error += attrib_sprites((*mlx), &(*mlx)->weapon->knife_0,
 			"images/knife_1.png");
 	error += attrib_sprites((*mlx), &(*mlx)->weapon->knife_1,
@@ -80,7 +78,10 @@ int	init_images(t_mlx **mlx)
 			"images/pistol_0.png");
 	error += attrib_sprites((*mlx), &(*mlx)->weapon->pistol_1,
 			"images/pistol_1.png");
-	(*mlx)->player->keys->mouse_click = 0;
+	error += attrib_sprites((*mlx), &(*mlx)->weapon->rifle_0,
+			"images/rifle_1.png");
+	error += attrib_sprites((*mlx), &(*mlx)->weapon->rifle_1,
+			"images/rifle_2.png");
 	if (error >= 1)
 		return (ERROR);
 	return (SUCCESS);

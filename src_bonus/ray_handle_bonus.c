@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_handle_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 21:35:20 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/24 23:39:41 by bapt             ###   ########.fr       */
+/*   Updated: 2024/08/25 16:12:42 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,8 @@ void	fov_details(t_mlx *mlx)
 
 	i = 0;
 	mlx_clear_window(mlx->mlx, mlx->win);
-	mlx->ray->ray_angle = mlx->player->angle - (((mlx->player->fov / 2) * PI) / 180);
+	mlx->ray->ray_angle = mlx->player->angle - (((mlx->player->fov / 2) * PI)
+			/ 180);
 	if (mlx->ray->ray_angle < 0)
 		mlx->ray->ray_angle += 2 * PI;
 	while (i < RAYS)
