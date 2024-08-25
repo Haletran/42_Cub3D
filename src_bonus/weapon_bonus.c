@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 18:45:37 by qdeviann          #+#    #+#             */
-/*   Updated: 2024/08/25 16:23:24 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/25 16:31:34 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	render_weapon(t_mlx *mlx, void *img_1, void *img_2, t_xy *pos)
 	}
 }
 
-void weapon_bonus(t_mlx *mlx)
+void	weapon_bonus(t_mlx *mlx)
 {
 	if (mlx->player->weapon == 1)
 		render_weapon(mlx, mlx->weapon->knife_0, mlx->weapon->knife_1,
@@ -60,4 +60,3 @@ void weapon_bonus(t_mlx *mlx)
 	my_put_image(mlx, &(t_xy){(WINDOW_HEIGHT - 64) / 2, (WINDOW_WIDTH - 64)
 		/ 2}, &(t_wh){64, 64, 1}, mlx->weapon->crosshair);
 }
-

@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 10:49:02 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/19 19:01:22 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/25 16:39:25 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char **argv)
 		return (ft_error(ARG_ERROR));
 	mlx = ft_calloc(1, sizeof(t_mlx));
 	mlx->mlx = mlx_init();
-	if (init(&mlx, argv) != SUCCESS)
+	if (!mlx->mlx || init(&mlx, argv) != SUCCESS)
 	{
 		free_all(&mlx);
 		return (ERROR);

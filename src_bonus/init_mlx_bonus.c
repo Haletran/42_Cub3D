@@ -6,7 +6,7 @@
 /*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:37:15 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/25 16:15:15 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/25 16:35:08 by bapasqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	check_file(char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		return (ERROR);
+	close(fd);
 	if (ft_strstr(filename, ".cub") && !ft_strcmp(filename + len, ".cub"))
 		return (SUCCESS);
 	return (ERROR);
