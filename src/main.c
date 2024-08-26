@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 10:49:02 by bapasqui          #+#    #+#             */
-/*   Updated: 2024/08/25 16:39:25 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/26 12:52:41 by bapt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 {
 	t_mlx	*mlx;
 
-	if (argc < 2)
+	if (argc < 2 || argc > 2)
 		return (ft_error(ARG_ERROR));
 	mlx = ft_calloc(1, sizeof(t_mlx));
 	mlx->mlx = mlx_init();

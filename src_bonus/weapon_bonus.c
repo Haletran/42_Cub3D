@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   weapon_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bapasqui <bapasqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 18:45:37 by qdeviann          #+#    #+#             */
-/*   Updated: 2024/08/25 16:31:34 by bapasqui         ###   ########.fr       */
+/*   Updated: 2024/08/26 12:51:19 by bapt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ void	render_weapon(t_mlx *mlx, void *img_1, void *img_2, t_xy *pos)
 	my_put_image(mlx, pos, &(t_wh){256, 256, 1}, img_1);
 	if (mlx->player->keys->mouse_click == 1)
 	{
-		fov_details(mlx);
+		if (mlx->player->weapon == 1)
+			fov_details(mlx);
 		my_put_image(mlx, pos, &(t_wh){256, 256, 1}, img_2);
 		current_time = actual_time();
 		if (mlx->player->weapon == 2 && current_time - start_time >= 100)
