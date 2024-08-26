@@ -1,7 +1,7 @@
 # Cub3D
 
 ## Project Overview
-Cub3D is a project developed as part of the 42 curriculum, inspired by the classic Wolfenstein 3D game. The goal is to create a simple 3D game using raycasting to render the environment. This project teaches fundamental concepts of graphics programming, game development, and low-level C programming using the MiniLibX library.
+Cub3D is a project developed as part of the 42 curriculum, inspired by the classic Wolfenstein 3D game. The goal is to create a simple 3D game using raycasting to render the environment. This project teaches fundamental concepts of graphics programming, game development, and low-level C programming using the MacroLibX library.
 
 ## Features
 - Raycasting engine for 3D rendering
