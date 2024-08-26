@@ -62,4 +62,5 @@ The project relies on the following libraries:
 ## License
 
 This project is licensed under the [MIT License](LICENSE)
+
 And adheres to the NORM V3 coding standards as specified by 42 School. I know i know...
