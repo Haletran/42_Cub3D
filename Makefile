@@ -6,7 +6,7 @@
 #    By: bapt <bapt@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/17 10:49:06 by bapasqui          #+#    #+#              #
-#    Updated: 2024/08/24 15:40:13 by bapt             ###   ########.fr        #
+#    Updated: 2024/08/26 12:55:11 by bapt             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -125,4 +125,4 @@ re:
 	$(MAKE) fclean
 	$(MAKE) -j$(nproc)
 
-.PHONY: all clean fclean bonus re gt
+.PHONY: all clean fclean bonus re norm valgrind macro
