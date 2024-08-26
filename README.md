@@ -55,7 +55,8 @@ Maps are stored in .cub files and must adhere to a specific format, defining the
 ## Libraries
 
 The project relies on the following libraries:
-    - [MacroLibX](https://macrolibx.kbz8.me./) : For handling graphics and events.
+
+    - MacroLibX : For handling graphics and events.
     - libft: Custom C standard library implementation used throughout the project.
 
 ## License
