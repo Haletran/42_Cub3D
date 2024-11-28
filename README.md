@@ -22,8 +22,6 @@ make macro
 
 Clone the repository and compile the project by running the following commands:
 ```bash
-git clone https://github.com/your-repo/cub3D.git
-cd cub3D
 make
 ```
 
